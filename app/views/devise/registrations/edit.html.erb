@@ -1,0 +1,63 @@
+<!-- ======= devise/registrations/edit.html.erb ======= -->
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+
+    <div class="dataBox">
+        <div class="dataRow fR_1">
+            <h2 class="dataTitle"><%= @user.full_name %></h2>
+        </div>
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <div class="dataRow">
+                <i>Currently waiting confirmation for: <%= resource.unconfirmed_email %></i>
+            </div>
+        <% end %>
+        <div class="dataRow">
+            <div class="formLabel"><%= f.label :firstname %></div>
+            <div class="formValue"><%= f.text_field :firstname, autofocus: true %></div>
+        </div>
+        <div class="dataRow">
+            <div class="formLabel"><%= f.label :lastname %></div>
+            <div class="formValue"><%= f.text_field :lastname, autofocus: true %></div>
+        </div>
+        <div class="dataRow">
+            <div class="formLabel"><%= f.label :username %></div>
+            <div class="formValue"><%= f.text_field :username, autofocus: true %></div>
+        </div>
+        <div class="dataRow">
+            <div class="formLabel"><%= f.label :email %></div>
+            <div class="formValue"><%= f.email_field :email, autofocus: true %></div>
+        </div>
+        <div class="dataRow">
+            <div class="formLabel"><%= f.label :current_password %></div>
+            <div class="formValue">
+                <%= f.password_field :current_password, autofocus: true %>
+                <i>needed to confirm changes</i>
+            </div>
+        </div>
+        <div class="dataRow">
+            <div class="formLabel"><%= f.label :password %></div>
+            <div class="formValue">
+                <%= f.password_field :password, autofocus: true %>
+                <i>leave blank to keep</i>
+            </div>
+        </div>
+        <div class="dataRow">
+            <div class="formLabel"><%= f.label :password_confirmation %></div>
+            <div class="formValue">
+                <%= f.text_field :password_confirmation, autofocus: true %>
+                <% if @minimum_password_length %>
+                    <i><%= @minimum_password_length %> characters minimum</i>
+                <% end %>
+            </div>
+        </div>
+        <div class="dataRow">
+            <div class="formLabel">&nbsp;</div>
+            <div class="formValue"><%= f.submit "Update", class: "formBtn formBtn_1" %></div>
+        </div>
+        <% end %>
+
+        <div class="buttonRow">
+            <%= link_to "Back", request.referer.present? ? request.referer : "/home", class: "formLink" %>
+            <%= button_to "Delete Acct", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "formBtn formBtn_2" %><i>&nbsp; click to cancel your account</i>
+        </div>
+    </div>

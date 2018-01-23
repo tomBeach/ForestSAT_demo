@@ -1,0 +1,343 @@
+// ======= partials ======= //
+@import 'theme_colors';
+
+/* ======= ======= ======= show ======= ======= ======= */
+/* ======= ======= ======= show ======= ======= ======= */
+/* ======= ======= ======= show ======= ======= ======= */
+
+/* ======= general ======= */
+.showAbstractBox, .editAbstractBox {
+    width: 80%;
+    min-width: 680px;
+    margin: 20px auto;
+    padding: 20px 0;
+    background-color: $dataBox;
+}
+.showAbstractRow_1 {
+    min-height: 40px;
+}
+.showAbstractTitle {
+    width: 90%;
+    height: auto;
+    margin: 20px 20px;
+    margin-top: 0;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 1.1em;
+    text-overflow: clip;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3; /* number of lines to show */
+    line-height: 1.1em;        /* fallback */
+    max-height: 3.3em;       /* fallback */
+    color: $dataText;
+    background-color: $label_accent;
+}
+.showAbstractScroll {
+    height: 260px;
+    margin: 0 20px;
+    padding: 20px;
+    border: solid 2px $bright_accent;
+    overflow-y: scroll;
+}
+.showAbstractScroll > .abstractRow_2 > .dataLabel:nth-of-type(1) {
+    float: left;
+    width: 30%;
+    margin: 10px 20px;
+    margin-top: 0;
+    padding: 2px 20px;
+    text-align: left;
+    color: $dataText;
+    background-color: $label_accent;
+}
+.showAbstractScroll > .abstractRow_2 > .dataLabel:nth-of-type(2) {
+    float: right;
+    width: 20%;
+    margin: 10px 20px;
+    margin-top: 0;
+    padding: 2px 20px;
+    text-align: right;
+    color: $dataText;
+    background-color: $label_accent;
+}
+.showPresentingAuthor {
+    clear: both;
+    float: left;
+    margin-left: 30px;
+    max-width: 380px;
+}
+.showSubmitter {
+    float: right;
+    margin-right: 30px;
+}
+.submitter {
+    float: right;
+    margin-right: 30px;
+    text-align: right;
+}
+.showAbstractScroll > .abstractRow_3 > .dataLabel:nth-of-type(1) {
+    clear: both;
+    width: 20%;
+    // height: 30px;
+    margin: 10px 20px;
+    margin-top: 0;
+    padding: 2px 20px;
+    text-align: left;
+    color: $dataText;
+    background-color: $label_accent;
+}
+.showAbstractAuthors {
+    margin-left: 30px;
+}
+.showAbstractAuthors > span:nth-of-type(1) {
+    font-weight: bold;
+}
+.showAbstractAuthors > span:nth-of-type(2) {
+    font-style: italic;
+}
+.showAbstractText {
+    margin: 20px 30px;
+}
+.showAbstractKeywords {
+    margin-left: 30px;
+}
+
+/* ======= ======= ======= edit ======= ======= ======= */
+/* ======= ======= ======= edit ======= ======= ======= */
+/* ======= ======= ======= edit ======= ======= ======= */
+
+/* ======= rows ======= */
+.editAbstractRow_1 {
+    height: 60px;
+}
+.editAbstractRow_2 {
+    height: 80px;
+}
+.editAbstractRow_2_1 {
+    height: 180px;
+}
+.editAbstractRow_3 {
+    height: 80px;
+}
+.editAbstractRow_4 {
+    height: auto;
+    padding-bottom: 20px;
+}
+.editAbstractRow_5 {
+    height: 80px;
+}
+.editAbstractRow_6 {
+    height: 80px;
+}
+
+/* ======= presenting/submitting ======= */
+.editAbstractRow_3 > p:nth-of-type(1) {
+    display: inline-block;
+    width: 200px;
+    margin: 0;
+    margin-left: 20px;
+}
+.editAbstractRow_3 > p:nth-of-type(2) {
+    display: inline-block;
+    width: 200px;
+    margin: 0;
+    margin-left: 20px;
+}
+.editAbstractRow_3 > p:nth-of-type(3) > select:nth-of-type(1) {
+    width: 120px;
+}
+.editAbstractRow_3 > p:nth-of-type(3) > select:nth-of-type(2) {
+    width: 120px;
+    margin-left: 140px;
+}
+
+/* ======= authors/affiliations ======= */
+// .editAbstractRow_4 > .authors {
+//     margin-left: 30px;
+// }
+.editAbstractRow_4 > .authors > .authorInfo {
+    margin-left: 60px;
+    color: $color_P_4;
+}
+.editAbstractRow_4 > .authors > .authorInfo:nth-of-type(1) {
+    margin-left: 30px;
+    color: $form_label;
+}
+
+
+/* ======= authors/affiliations list ======= */
+.authors {
+    font-size: 0.8em;
+}
+.authors > span:nth-of-type(1) {
+    margin-left: 40px;
+    color: #ddd;
+}
+.authors > span:nth-of-type(2) {
+    color: #ddd;
+}
+.authors > span:nth-of-type(3) {
+    margin-left: 20px;
+    font-style: italic;
+    color: #999;
+}
+.authors > span:nth-of-type(4) {
+    font-style: italic;
+    color: #999;
+}
+.authors > span:nth-of-type(4) {
+    margin-right: 30px;
+}
+
+/* ======= add author ======= */
+.editAbstractRow_5 {
+    display: none;
+}
+.newAuthorButton {
+    display: block;
+}
+.editAbstractRow_5 > .authorLabels {
+    width: 480px;
+}
+.editAbstractRow_5 > .dataLabel > span:nth-of-type(2) {
+    margin-left: 20px;
+}
+.editAbstractRow_5 > .dataLabel > span:nth-of-type(3) {
+    margin-left: 20px;
+}
+.editAbstractRow_5 > .dataLabel > span:nth-of-type(4) {
+    margin-left: 20px;
+}
+.editAbstractRow_5 > p:nth-of-type(2) > span:nth-of-type(1) {
+    margin-left: 35px;
+    font-size: 0.8em;
+}
+.editAbstractRow_5 > p:nth-of-type(2) > span:nth-of-type(1) > input[type=text],
+.editAbstractRow_5 > p:nth-of-type(2) > span:nth-of-type(2) > input[type=text],
+.editAbstractRow_5 > p:nth-of-type(2) > span:nth-of-type(3) > input[type=text],
+.editAbstractRow_5 > p:nth-of-type(2) > span:nth-of-type(4) > input[type=text] {
+    width: 80px;
+}
+.editAbstractRow_5 > p:nth-of-type(2) > span:nth-of-type(5) > i {
+    font-size: 0.8em;
+}
+
+/* ======= keywords ======= */
+.editAbstractRow_6 > .keywordLabels {
+    width: 480px;
+}
+.editAbstractRow_6 > .keywordLabels > span:nth-of-type(2) {
+    margin-left: 70px;
+}
+.editAbstractRow_6 > .keywordLabels > span:nth-of-type(3) {
+    margin-left: 60px;
+}
+.editAbstractRow_6 > select:nth-of-type(1) {
+    margin-left: 30px;
+}
+.keywordSelect {
+    width: 120px;
+    margin-left: 10px;
+}
+
+/* ======= admin ======= */
+.adminLabels {
+    width: 220px;
+}
+
+.editAbstractScroll {
+    height: 260px;
+    margin: 0 20px;
+    padding: 20px;
+    border: solid 2px $bright_accent;
+    overflow-y: scroll;
+}
+
+// ======= ======= ======= colorchips ======= ======= ======= //
+// ======= ======= ======= colorchips ======= ======= ======= //
+// ======= ======= ======= colorchips ======= ======= ======= //
+
+.chip {
+    float: left;
+    width: 20px;
+    height: 20px;
+}
+#chip_1 {
+    background-color: $bright_accent;
+}
+#chip_2 {
+    background-color: $title_stripe;
+}
+#chip_3 {
+    background-color: $dataText;
+}
+#chip_4 {
+    background-color: $dataBox;
+}
+#chip_5 {
+    background-color: $label_accent;
+}
+#chip_6 {
+    background-color: $accent_2;
+}
+#chip_7 {
+    background-color: $dataBox;
+}
+#chip_8 {
+    background-color: $color_P_1;
+}
+#chip_9 {
+    background-color: $color_P_2;
+}
+#chip_10 {
+    background-color: $color_P_3;
+}
+#chip_11 {
+    background-color: $color_P_4;
+}
+#chip_12 {
+    background-color: $color_Sb_0;
+}
+#chip_13 {
+    background-color: $color_Sb_1;
+}
+#chip_14 {
+    background-color: $color_Sb_2;
+}
+#chip_15 {
+    background-color: $color_Sb_3;
+}
+#chip_16 {
+    background-color: $color_Sb_4;
+}
+#chip_17 {
+    background-color: $color_Sa_0;
+}
+#chip_18 {
+    background-color: $color_Sa_1;
+}
+#chip_19 {
+    background-color: $color_Sa_2;
+}
+#chip_20 {
+    background-color: $color_Sa_3;
+}
+#chip_21 {
+    background-color: $color_Sa_4;
+}
+#chip_22 {
+    background-color: $secB_grad_0;
+}
+#chip_23 {
+    background-color: $secB_grad_1;
+}
+#chip_24 {
+    background-color: $secB_grad_2;
+}
+#chip_25 {
+    background-color: $secB_grad_3;
+}
+#chip_26 {
+    background-color: $secB_grad_4;
+}

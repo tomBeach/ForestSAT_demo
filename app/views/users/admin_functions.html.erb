@@ -1,0 +1,58 @@
+<!-- ======= users/admin_functions.html.erb ======= -->
+
+<div class="dataBox">
+    <div class="dataRow fR_1">
+        <h2 class="dataTitle">Administrator Tasks</h2>
+    </div>
+
+        <!-- ======= keywords ======= -->
+        <%= form_for(@keyword, url: "/process_admin_functions", method: "post") do |f| %>
+            <div class="taskRow">
+                <div class="adminTask">
+                    <p class="task">add keywords</p>
+                </div>
+                <div class="adminData">
+                    <div class="taskInputs">
+                        <%= f.text_field :keyword_name, id: "new_keyword", class: "adminEntry" %>
+                        <%= f.submit id: "keywordBtn", class: "adminBtn" %>
+                        <i>add new key word</i>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+
+        <!-- ======= rooms ======= -->
+        <%= form_for(@room, url: "/process_admin_functions", method: "post") do |f| %>
+            <div class="taskRow">
+                <div class="adminTask">
+                    <p class="task">add rooms</p>
+                </div>
+                <div class="adminData">
+                    <div class="taskInputs">
+                        <%= f.text_field :room_name, id: "new_room", class: "adminEntry", placeholder: "room" %>
+                        <%= f.text_field :room_floor, id: "new_room", class: "adminEntry", placeholder: "floor" %>
+                        <%= f.text_field :room_type, id: "new_room", class: "adminEntry", placeholder: "type" %>
+                        <%= f.submit id: "roomBtn", class: "adminBtn" %>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+
+        <!-- ======= tasks ======= -->
+        <div class="taskRow">
+            <div class="adminTask">
+                <p class="task">lists</p>
+            </div>
+            <div class="adminData">
+                <div class="taskInputs adminBtns">
+                    <%= link_to "All Users", users_path, class: "adminLink" %>
+                    <%= link_to "All Authors", authors_path, class: "adminLink" %>
+                    <%= link_to "All Affiliations", affiliations_path, class: "adminLink" %>
+                    <%= link_to "All Keywords", keywords_path, class: "adminLink" %>
+                    <%= link_to "All Rooms", rooms_path, class: "adminLink" %>
+                </div>
+            </div>
+        </div>
+
+
+    </div>

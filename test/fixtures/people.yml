@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  affiliation: one
+  firstname: MyString
+  lastname: MyString
+
+two:
+  affiliation: two
+  firstname: MyString
+  lastname: MyString

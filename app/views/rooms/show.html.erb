@@ -1,0 +1,14 @@
+<!-- ======= rooms/show.html.erb ======= -->
+
+<div class="field">
+    <span class="field-label">Room name: </span><span><%= @room[:room_name] %></span>
+</div>
+<div class="field">
+    <span class="field-label">Floor: </span><span><%= @room[:room_floor] %></span>
+</div>
+<div class="field">
+    <span class="field-label">Type: </span><span><%= @room[:room_type] %></span>
+</div>
+
+<%= link_to 'Edit', edit_room_path(@room) %> |
+<%= link_to "Back", request.referer.present? ? request.referer : "/home" %>

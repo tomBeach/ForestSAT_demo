@@ -1,0 +1,114 @@
+<form class="new_abstract" id="new_abstract"
+<div id="categories">
+<div id="primary_author">
+<div id="secondary_authors">
+<div id="presentation_request">
+<div id="reviewers">
+<div id="presentation_assigned">
+
+<input id="abstract_presentation_id">
+<input id="abstract_session_sequence">
+<input id="abstract_present_assigned">
+
+<!-- ======= abstract categories ======= -->
+
+<input id="abstract_abs_title">
+<input id="abstract_abs_text">
+<input id="abstract_keyword_1">
+<input id="abstract_keyword_2">
+<input id="abstract_keyword_3">
+<input id="abstract_invited">
+<input id="abstract_corr_author_id">
+<input id="abstract_pres_author_id">
+
+<!-- ======= primary author/affiliation ======= -->
+<input id="firstname_1" alue="George" class="toggle_input">
+<input id="lastname_1" value="Bush" class="toggle_input">
+<input id="author_types_P" value="primary" class="toggle_input">
+<input id="affiliation_institution">
+<input id="affiliation_department">
+
+<!-- ======= secondary authors/affiliations ======= -->
+<input id="firstname_1" value="George" class="toggle_input">
+<input id="lastname_1" value="Bush" class="toggle_input">
+<input id="author_types_1" value="secondary" class="toggle_input">
+<input id="affiliation_institution">
+<input id="affiliation_department">
+
+<!-- ======= presentation request ======= -->
+<input id="abstract_present_request">
+
+<!-- ======= reviewers ======= -->
+<input id="abstract_reviewer1_id">
+<input id="abstract_reviewer2_id">
+<input id="abstract_reviewer1_rec">
+<input id="abstract_reviewer2_rec">
+<input id="abstract_accepted">
+<input id="abstract_paper">
+
+<!-- ======= css containers ======= -->
+new_abstract
+categories
+primary_author
+secondary_authors
+presentation_request
+reviewers
+presentation_assigned
+abstract_presentation_id
+abstract_session_sequence
+abstract_present_assigned
+
+<!-- ======= abstract categories ======= -->
+abstract_abs_title
+abstract_abs_text
+abstract_keyword_1
+abstract_keyword_2
+abstract_keyword_3
+abstract_invited
+abstract_corr_author_id
+abstract_pres_author_id
+
+<!-- ======= primary author/affiliation ======= -->
+firstname_1
+lastname_1
+author_types_P
+affiliation_institution
+affiliation_department
+
+<!-- ======= secondary authors/affiliations ======= -->
+firstname_1
+lastname_1
+author_types_1
+affiliation_institution
+affiliation_department
+
+<!-- ======= presentation request ======= -->
+abstract_present_request
+
+<!-- ======= reviewers ======= -->
+abstract_reviewer1_id
+abstract_reviewer2_id
+abstract_reviewer1_rec
+abstract_reviewer2_rec
+abstract_accepted
+abstract_paper
+
+
+
+
+
+<!-- ======= abstract categories ======= -->
+[abstract_abs_title, abstract_abs_text]
+[abstract_corr_author_id, abstract_pres_author_id, abstract_keyword_1, abstract_keyword_2, abstract_keyword_3, abstract_invited]
+
+<!-- ======= primary author/affiliation ======= -->
+[firstname_primary, lastname_primary, author_types_primary, affiliation_institution_primary, affiliation_department_primary]
+
+<!-- ======= secondary authors/affiliations ======= -->
+[firstname_sec_, lastname_sec_, author_types_sec_, affiliation_institution, affiliation_department]
+
+<!-- ======= presentation request ======= -->
+[abstract_present_request]
+
+<!-- ======= reviewers ======= -->
+[abstract_reviewer1_id, abstract_reviewer2_id, abstract_reviewer1_rec, abstract_reviewer2_rec, abstract_accepted, abstract_paper]

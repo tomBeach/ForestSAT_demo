@@ -1,0 +1,149 @@
+<!-- ======= abstracts/review_abstracts.html.erb ======= -->
+
+<%= form_for("save_all_reviews", url: "/save_all_reviews", :html => {:id => "save_all_reviews"}) do |f| %>
+
+    <% grade_select_options = [nil, "A", "B", "C", "D", "F"] %>
+    <% rec_select_options = [nil, "oral", "poster", "rejected"] %>
+    <% which_reviewer = nil %>
+
+    <div class="absRevBox">
+        <div class="dataRow fR_1">
+            <% if @title %>
+                <h2 class="dataTitle"><%= @title %></h2>
+            <% else %>
+                <h2 class="dataTitle">Review Abstracts</h2>
+            <% end %>
+        </div>
+
+        <div id="abstractsHead">
+            <table id="revabsStaticTable">
+                <thead>
+                    <tr>
+                        <th>title</th>
+                        <th>presenting</th>
+                        <th>primary</th>
+                        <th>recommend</th>
+                        <th>grade</th>
+                        <th>comment</th>
+                        <th>keywords ok</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+
+        <div id="revAbsBody">
+            <table id="revabsScrollTable">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                <!-- ======= loop through all abstracts ======= -->
+                <% @abstracts.each do |abstract| %>
+                    <% puts "\nabstract[:id]: #{abstract[:id].inspect}" %>
+                    <% puts "abstract[:reviewer1_rec]: #{abstract[:reviewer1_rec].inspect}" %>
+                    <% puts "abstract[:reviewer1_grade]: #{abstract[:reviewer1_grade].inspect}" %>
+                    <% puts "abstract[:reviewer1_keywords]: #{abstract[:reviewer1_keywords].inspect}" %>
+
+                    <!-- == get primary author -->
+                    <% prim_author_id = nil %>
+                    <% prim_author_name = nil %>
+                    <% sql = "SELECT authors.id, authors.firstname, authors.lastname, abstract_authors.author_type FROM authors INNER JOIN abstract_authors ON authors.id = abstract_authors.author_id WHERE abstract_authors.abstract_id = '" + abstract[:id].to_s + "' AND abstract_authors.author_type = 'primary';" %>
+                    <% author_data = ActiveRecord::Base.connection.execute(sql) %>
+                    <% author_data_array = author_data.to_a %>
+                    <% puts "author_data_array: #{author_data_array.inspect}" %>
+
+                    <% author_data.each do |author| %>
+                        <% prim_author_name = author["firstname"] + " " + author["lastname"] %>
+                        <% prim_author_id = author["id"] %>
+                    <% end %>
+
+                    <!-- ======= loop through reviewer abstracts ======= -->
+                    <% if User.exists?(abstract[:corr_author_id]) %>
+
+                        <!-- == corresponding/presenting authors == -->
+                        <% corr_author = User.find(abstract[:corr_author_id]) %>
+                        <% corr_author_name = corr_author[:firstname].to_s + " " + corr_author[:lastname].to_s %>
+                        <% pres_author = Author.find(abstract[:pres_author_id]) %>
+                        <% pres_author_name = pres_author[:firstname].to_s + " " + pres_author[:lastname].to_s %>
+
+                        <!-- ======= abstract row ======= -->
+                        <tr>
+                            <td class="main-col"><%= link_to abstract[:abs_title], abstract_path(abstract) %></td>
+                            <td><%= link_to pres_author_name, author_path(abstract[:pres_author_id]) %></td>
+                            <td><%= link_to prim_author_name, author_path(prim_author_id.to_s) %></td>
+
+                            <!-- == recommendations and grades -->
+                            <% if current_user[:id] == abstract[:reviewer1_id] %>
+                                <% puts "abstract[:reviewer1_id]: #{abstract[:reviewer1_id].inspect}" %>
+                                <% keyword_check = abstract[:reviewer1_keywords] %>
+                                <% which_reviewer = "reviewer1" %>
+                                <td><%= select_tag("abstract[reviewer_recs][]", options_for_select(rec_select_options, abstract[:reviewer1_rec]), :id => "abstract_reviewer_rec_" + abstract[:id].to_s) %></td>
+
+                                <td><%= select_tag("abstract[reviewer_grades][]", options_for_select(grade_select_options, abstract[:reviewer1_grade]), :id => "abstract_reviewer_grade_" + abstract[:id].to_s) %></td>
+                            <% else %>
+                                <% puts "abstract[:reviewer2_id]: #{abstract[:reviewer2_id].inspect}" %>
+                                <% which_reviewer = "reviewer2" %>
+                                <% keyword_check = abstract[:reviewer2_keywords] %>
+                                <td><%= select_tag("abstract[reviewer_recs][]", options_for_select(rec_select_options, abstract[:reviewer2_rec]), :id => "abstract_reviewer_rec_" + abstract[:id].to_s) %></td>
+
+                                <td><%= select_tag("abstract[reviewer_grades][]", options_for_select(grade_select_options, abstract[:reviewer2_grade]), :id => "abstract_reviewer_grade_" + abstract[:id].to_s) %></td>
+                            <% end %>
+                            <% puts "keyword_check: #{keyword_check.inspect}" %>
+                            <% puts "which_reviewer: #{which_reviewer.inspect}" %>
+
+
+                            <td>
+                                <button id="absId_<%= abstract[:id] %>" class="addCommentBtn" type="button">comment</button>
+                            </td>
+                            <td>
+                                <% puts "keyword_check: #{keyword_check.inspect}" %>
+                                <% if keyword_check == true %>
+                                    <%= check_box_tag "abstract[keywords_ok][]", abstract[:id].to_s, { :checked => "checked" } %>
+                                <% else %>
+                                    <%= check_box_tag "abstract[keywords_ok][]", abstract[:id].to_s %>
+                                <% end %>
+                            </td>
+
+                            <!-- ======= abstract and reviewer identities ======= -->
+                            <%= hidden_field_tag "abstract[abstract_ids][]", abstract[:id], :id => "abstract_abstract_ids_" + abstract[:id].to_s %>
+                            <%= hidden_field_tag "abstract[which_reviewers][]", which_reviewer, :id => "abstract_which_reviewers_" + abstract[:id].to_s %>
+
+                        </tr>
+
+                        <!-- ======= separate rows ======= -->
+                        <tr class="tableSpacer">
+                            <td colspan="7"></td>
+                        </tr>
+
+                        <% end %>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ======= comment input box ======= -->
+        <div class="commentBox">
+            <%= text_area_tag "abstract[abs_comment]", "", maxlength: "2500", placeholder: "Add comment text", class: "commentEntry leftEntry", cols: "30", rows: "4" %>
+            <%= hidden_field_tag "abstract[id]", "" %>
+            <%= f.button "Save comment", type: "button", id: "saveCommentBtn", class: "formBtn commentBtn" %>
+            <%= f.button "Cancel", type: "button", id: "cancelCommentBtn", class: "formBtn commentBtn" %>
+        </div>
+
+
+    <!-- ======= save all changes option ======= -->
+    <div class="buttonRow fR">
+        <%= link_to "Back", request.referer.present? ? request.referer : "/home", class: "formLink" %>
+        <%= f.button "Save all changes", type: "button", id: "submitReviewBtn", class: "formBtn formBtn_1" %>
+    </div>
+
+<% end %>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>||| ForestSat |||</title>
+        <%= csrf_meta_tags %>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+        <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+        <link href="https://fonts.googleapis.com/css?family=Dosis|Jura|Poiret One|Comfortaa|Fira Sans|Raleway" rel="stylesheet">
+        <%= favicon_link_tag 'favicon.ico' %>
+    </head>
+
+    <!-- ======= ======= ======= body ======= ======= ======= -->
+    <body>
+        <div id="pageWrap">
+
+            <!-- == sidebar == -->
+            <div id="sidebar">
+                <div class="title_stripe sidebar_stripe">&nbsp;</div>
+                <%= image_tag("forest_sidebar.jpg", id:"forest_sidebar", alt:"forest_sidebar.jpg") %>
+            </div>
+
+            <!-- ======= ======= ======= menu ======= ======= ======= -->
+            <div id="menuBox">
+                <div class="title_stripe">
+                    <%= image_tag("FSAT_sm.png", id:"FSAT_logo", alt:"FSAT_logo") %>
+                </div>
+                <div class="menuGroup signin">
+                    <div class="menuLinks">
+                      <%= link_to "FAQ", "www.forestsat.org/faq", class: "linkItem" %>
+                      <%= link_to "ForestSat 2018", "www.forestsat.org", class: "linkItem" %>
+                    </div>
+
+                    <p class="menuLabel">account</p>
+                    <%= link_to "Home", home_path, class: "menuItem clearfix" %>
+                    <% if !current_user %>
+                        <%= link_to "register", new_user_registration_path, class: "menuItem clearfix" %>
+                        <%= link_to "login", new_user_session_path, class: "menuItem clearfix" %>
+                    </div>
+                    <% else %>
+                        <%= link_to "logout", destroy_user_session_path, :method => :delete, class: "menuItem clearfix" %>
+                    </div>
+
+                        <div class="menuGroup users">
+                            <p class="menuLabel">users</p>
+                            <%= link_to "My Profile", user_path(current_user), class: "menuItem clearfix" %>
+                        </div>
+
+                        <div class="menuGroup abstracts">
+                            <p class="menuLabel">abstracts</p>
+                            <%= link_to "My Abstracts", "/my_abstracts", class: "menuItem clearfix" %>
+                            <% if current_user.admin? %>
+                                <%= link_to "All Abstracts", abstracts_path, class: "menuItem clearfix" %>
+                            <% end %>
+                            <%= link_to "New Abstract", new_abstract_path, class: "menuItem clearfix" %>
+                        </div>
+
+                        <div class="menuGroup admin">
+                            <% if current_user.reviewer? %>
+                                <p class="menuLabel">review</p>
+                                <% puts "@reviewer_abstracts: #{@reviewer_abstracts.inspect}" %>
+                                <% if @reviewer_abstracts.length > 0 %>
+                                    <%= link_to "Review Abstracts", "/review_abstracts", class: "menuItem" %>
+                                <% else %>
+                                    <p><i>no assignments yet</i></p>
+                                <% end %>
+                            <% end %>
+                            <% if current_user.admin? %>
+                                <p class="menuLabel">admin</p>
+                                <%= link_to 'Select Reviewers', "/select_reviewers", class: "menuItem" %>
+                                <%= link_to "Assign Reviewers", "/assign_reviewers", class: "menuItem" %>
+                                <%= link_to "Select Abstracts", "/select_abstracts", class: "menuItem" %>
+                                <%= link_to "Admin Tasks", "/admin_functions", class: "menuItem" %>
+                            <% end %>
+                        </div>
+                    <% end %>
+                </div>
+
+            <!-- == content == -->
+            <div id="contentBox">
+
+                <!-- ======= ======= ======= title ======= ======= ======= -->
+                <div class="titleBox">
+                    <p><span>ForestSat</span><span>2018</span></p>
+                </div>
+                <div class="subtitleBox">
+                    <% if current_user %>
+                        <div>Welcome <%= current_user.firstname %></div>
+                    <% else %>
+                        <div>&nbsp;</div>
+                    <% end %>
+                    <div class="subtitle">October 2-5, 2018</div>
+                </div>
+
+                <!-- == messages == -->
+                <% if @wide_flag %>
+                    <div id="messagesWide">
+                        <% if defined? resource %>
+                            <%= render 'layouts/error_messages', object: resource %>
+                        <% else %>
+                            <p class="notice"><%= notice %></p>
+                            <p class="alert"><%= notice %></p>
+                        <% end %>
+                    </div>
+                <% else %>
+                    <div id="messages">
+                        <% if defined? resource %>
+                            <%= render 'layouts/error_messages', object: resource %>
+                        <% else %>
+                            <p class="notice"><%= notice %></p>
+                            <p class="alert"><%= notice %></p>
+                        <% end %>
+                    </div>
+                <% end %>
+
+                <!-- ======= ======= ======= data ======= ======= ======= -->
+                <div id="yield" class="section" data-state="default">
+                    <%= yield %>
+                </div>    <!-- end yield -->
+            </div>    <!-- end contentBox -->
+        </div>    <!-- end pageWrap -->
+    </body>
+</html>

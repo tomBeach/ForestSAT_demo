@@ -1,0 +1,71 @@
+<%= form_with(model: presentation, local: true) do |f| %>
+  <% if presentation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(presentation.errors.count, "error") %> prohibited this presentation from being saved:</h2>
+
+      <ul>
+      <% presentation.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    # id
+    # session_org_id
+    # session_chair_id
+    # room_id
+    # session_type
+    # session_title
+    # session_start
+
+    <% selected_abstract = nil %>
+    <% if @presentation[:abstract_id] %>
+        <% selected_abstract = @presentation[:abstract_id] %>
+    <% end %>
+    <% selected_room_loc = nil %>
+    <% if @presentation[:room_loc_id] %>
+        <% selected_room_loc = @presentation[:room_loc_id] %>
+    <% end %>
+
+    <% abstract_ids = [] %>
+    <% @abstracts.each_with_index do |abstract, index| %>
+        <% abstract_ids << [abstract[:abstract_title], abstract[:id]] %>
+    <% end %>
+    <% room_loc_ids = [] %>
+    <% @room_locs.each_with_index do |room_loc, index| %>
+        <% room_loc_ids << [room_loc[:room_loc_name], room_loc[:id]] %>
+    <% end %>
+
+    <div class="actions">
+        <div class="field">
+            <%= f.label :abstract_id %><br />
+            <%= f.select(:abstract_id, options_for_select(abstract_ids, selected_abstract)) %>
+        </div>
+        <div class="field">
+            <%= f.label :session_room_id %><br />
+            <%= f.select(:session_room_id, options_for_select(room_loc_ids, selected_room_loc)) %>
+        </div>
+        <div class="field">
+            <%= f.label :poster_location %><br />
+            <%= f.text_field :poster_location, autofocus: true %>
+        </div>
+        <div class="field">
+            <%= f.label :session_type %><br />
+            <%= f.text_field :session_type, autofocus: true %>
+        </div>
+        <div class="field">
+            <%= f.label :session_code %><br />
+            <%= f.text_field :session_code, autofocus: true %>
+        </div>
+        <div class="field">
+            <%= f.label :session_datetime %><br />
+            <%= f.datetime_field :session_datetime, autofocus: true %>
+        </div>
+        <div class="field">
+            <%= f.label :session_sequence %><br />
+            <%= f.number_field :session_sequence, autofocus: true %>
+        </div>
+        <%= f.submit %>
+    </div>
+<% end %>

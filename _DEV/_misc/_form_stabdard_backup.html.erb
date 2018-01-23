@@ -1,0 +1,101 @@
+<!-- ======= abstracts new_form ======= -->
+
+<%= form_for(@abstract, url: "/signup_abstract") do |f| %>
+
+    <!-- ======= reviewer initialize ======= -->
+    <% selected_reviewer1 = nil %>
+    <% selected_reviewer2 = nil %>
+    <% if @abstract[:reviewer1_id] %>
+        <% selected_reviewer1 = @abstract[:reviewer1_id] %>
+    <% end %>
+    <% if @abstract[:reviewer2_id] %>
+        <% selected_reviewer2 = @abstract[:reviewer2_id] %>
+    <% end %>
+
+    <!-- ======= users selectbox ======= -->
+    <% user_name_ids = [] %>
+    <% @users.each_with_index do |user, index| %>
+        <% fullname = user[:firstname] + " " + user[:lastname] %>
+        <% user_name_ids << [fullname, user[:id]] %>
+    <% end %>
+
+    <!-- ======= abstract categories ======= -->
+    <div class="input_box">
+        <%= fields_for :abstract do |abstract| %>
+            <%= abstract.text_field :abs_title, placeholder: "Abstract Title", class: "toggle_input" %>
+            <%= abstract.text_area :abs_text, placeholder: "Abstract Text", class: "toggle_input", cols: "30", rows: "6" %>
+            <%= abstract.text_field :keyword_1, value: "keyword_1", class: "toggle_input keyword" %>
+            <%= abstract.text_field :keyword_2, value: "keyword_2", class: "toggle_input keyword" %>
+            <%= abstract.text_field :keyword_3, value: "keyword_3", class: "toggle_input keyword" %>
+            <%= abstract.check_box :invited, class: "toggle_input" %>
+            <%= abstract.hidden_field :corr_author_id, value: current_user[:id].to_s, class: "toggle_input" %>
+            <%= abstract.hidden_field :pres_author_id, value: current_user[:id].to_s, class: "toggle_input" %>
+            <%= hidden_field_tag "admin_flag", @admin_flag.to_s %>
+        <% end %>
+
+        <!-- ======= primary author/affiliation ======= -->
+        <p id="primary_author_type" class="input_label">primary author</p>
+        <%= fields_for :author do |author| %>
+            <%= text_field_tag "author[firstnames][]", "George", id: "primary_firstname", class: "toggle_input author" %>
+            <%= text_field_tag "author[lastnames][]", "Bush", id: "primary_lastname", class: "toggle_input author" %>
+        <% end %>
+        <%= fields_for :affiliation do |affiliation| %>
+            <%= text_field_tag "affiliation[institutions][]", "Cornell University", id: "primary_institution", class: "toggle_input affiliation" %>
+            <%= text_field_tag "affiliation[departments][]", "Geology", id: "primary_department", class: "toggle_input affiliation" %>
+        <% end %>
+        <%= fields_for :abstract_author do |abstract_author| %>
+            <%= hidden_field_tag "abstract_author[author_types][]", "primary", class: "toggle_input author" %>
+        <% end %>
+        <%= fields_for :abstract do |abstract| %>
+            <%= abstract.radio_button :accepted, "no", class: "toggle_input presenting" %>
+        <% end %>
+        <button id="prevBtn" class="abstractBtns" type="button">back</button>
+        <button id="addAuthorBtn" class="abstractBtns" type="button">add author</button>
+        <button id="nextBtn" class="abstractBtns" type="button">next</button>
+
+        <!-- ======= secondary authors/affiliations ======= -->
+        <div id="secondary_authors"></div>
+
+        <!-- ======= presentation request ======= -->
+        <%= fields_for :abstract do |abstract| %>
+            <%= abstract.text_field :present_request, value: "presentation_request", class: "toggle_input" %>
+
+            <!-- ======= reviewers ======= -->
+            <% if @admin_flag %>
+                <span class="input_label radio">reviewer 1</span>
+                <%= abstract.select(:reviewer1_id, options_for_select(user_name_ids, selected_reviewer1), {}, { :class => 'toggle_input optional_select' }) %>
+                <span class="input_label radio">reviewer 2</span>
+                <%= abstract.select(:reviewer2_id, options_for_select(user_name_ids, selected_reviewer2), {}, { :class => 'toggle_input optional_select' }) %>
+
+                <p class="input_label radio">reviewer 1 recomendation</p>
+                <span class="abstract_input toggle_input">
+                    accept <%= abstract.radio_button :reviewer1_rec, "yes", class: "toggle_input radio" %>
+                    reject <%= abstract.radio_button :reviewer1_rec, "no", class: "toggle_input radio" %>
+                </span>
+                <p class="input_label radio">reviewer 1 recomendation</p>
+                <span class="abstract_input toggle_input">
+                    accept <%= abstract.radio_button :reviewer2_rec, "yes", class: "toggle_input radio" %>
+                    reject <%= abstract.radio_button :reviewer2_rec, "no", class: "toggle_input radio" %>
+                </span>
+                <p class="input_label radio">accepted status</p>
+                <span class="abstract_input toggle_input">
+                    accepted <%= abstract.radio_button :accepted, "yes", class: "toggle_input radio" %>
+                    not accepted <%= abstract.radio_button :accepted, "no", class: "toggle_input radio" %>
+                </span>
+                <p class="input_label radio">paper recomendation</p>
+                <span class="abstract_input toggle_input">
+                    recommend <%= abstract.radio_button :paper, "yes", class: "toggle_input radio" %>
+                    not recommended <%= abstract.radio_button :paper, "no", class: "toggle_input radio" %>
+                </span>
+
+                <!-- ======= presentation ======= -->
+                <%= abstract.text_field :presentation_id, class: "toggle_input" %>
+                <%= abstract.text_field :session_sequence, value: "1", class: "toggle_input" %>
+                <%= abstract.text_field :present_assigned, value: "unassigned", class: "toggle_input" %>
+            <% end %>
+        <% end %>
+    </div>
+
+<% end %>
+
+<!-- corr_author_id, pres_author_id, reviewer1_id, reviewer2_id, presentation_id, session_sequence, abs_title, abs_text, keyword_1, keyword_2, keyword_3, present_request, present_assigned, reviewer1_rec, reviewer2_rec, accepted, invited, paper  -->

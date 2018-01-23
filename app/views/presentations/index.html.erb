@@ -1,0 +1,32 @@
+
+<h1>Presentations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>presentation</th>
+      <th>presenter</th>
+      <th>edit</th>
+      <th>delete</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @presentations.each do |presentation| %>
+      <tr>
+          <% abstract = Abstract.find(presentation[:abstract_id]) %>
+          <% abstract_title = abstract[:abstract_title] %>
+          <% presenter = User.find(abstract[:presenting_author_id]) %>
+          <% presenter_name = presenter[:firstname].to_s + " " + presenter[:lastname].to_s %>
+        <td class="main-col"><%= link_to abstract_title, abstract_path(presentation[:abstract_id]) %></td>
+        <td><%= link_to presenter_name, user_path(abstract[:presenting_author_id]) %></td>
+        <td><%= link_to 'E', edit_presentation_path(presentation) %></td>
+        <td><%= link_to 'D', presentation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Presentation', new_presentation_path %>

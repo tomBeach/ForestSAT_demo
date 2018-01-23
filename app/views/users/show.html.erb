@@ -1,0 +1,43 @@
+<div class="dataBox">
+    <div class="dataRow fR_1">
+        <h2 class="dataTitle"><%= @user.full_name %></h2>
+    </div>
+    <div class="dataRow fR">
+        <div class="formLabel">firstname</div>
+        <div class="formValue"><%= @user[:firstname] %></div>
+    </div>
+    <div class="dataRow fR">
+        <div class="formLabel">lastname</div>
+        <div class="formValue"><%= @user[:lastname] %></div>
+    </div>
+    <div class="dataRow fR">
+        <div class="formLabel">username</div>
+        <div class="formValue"><%= @user[:username] %></div>
+    </div>
+    <div class="dataRow fR">
+        <div class="formLabel">email</div>
+        <div class="formValue"><%= @user[:email] %></div>
+    </div>
+
+    <% if @check_affiliation %>
+        <div class="dataRow fR">
+            <div class="formLabel">institution</div>
+            <div class="formValue"><%= @user[:institution] %></div>
+        </div>
+        <div class="dataRow fR">
+            <div class="formLabel">department</div>
+            <div class="formValue"><%= @user[:department] %></div>
+        </div>
+    <% end %>
+
+    <div id="showUserSpacer" class="dataSpacer">
+        &nbsp;
+    </div>
+
+    <div class="buttonRow fR">
+        <%= link_to "Back", request.referer.present? ? request.referer : "/home", class: "formLink" %>
+        <% if current_user[:id] == @user[:id] %>
+            <%= link_to 'Edit', edit_user_registration_path(@user), class: "formLink" %>
+        <% end %>
+    </div>
+</div>

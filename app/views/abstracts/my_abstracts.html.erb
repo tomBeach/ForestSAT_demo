@@ -1,0 +1,146 @@
+<!-- ======= abstracts/my_abstracts.html.erb ======= -->
+
+<div class="dataBox">
+    <div class="dataRow fR_1">
+        <% if @title %>
+            <h2 class="dataTitle"><%= @title %></h2>
+        <% else %>
+            <h2 class="dataTitle">Abstracts</h2>
+        <% end %>
+    </div>
+    <div id="abstractsHead">
+        <table id="abstractsStaticTable">
+            <thead>
+                <tr>
+                    <th>code</th>
+                    <th>abstract title</th>
+                    <th colspan="2">admin</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+
+    <div id="abstractsBody">
+        <table id="abstractsScrollTable">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <!-- ======= loop through all abstracts ======= -->
+                <% puts "@abstract_data_array.length: #{@abstract_data_array.length.inspect}" %>
+                <% if @abstract_data_array.length > 0 %>
+                    <% @abstract_data_array.each do |abstract_data| %>
+                        <% puts "\nabstract_data[:abstract]: #{abstract_data[:abstract].inspect}" %>
+                        <% puts "abstract_data[:authors]: #{abstract_data[:authors].inspect}" %>
+
+                        <% if User.exists?(abstract_data[:abstract][:corr_author_id]) %>
+                            <% corr_author = User.find(abstract_data[:abstract][:corr_author_id]) %>
+                            <% corr_author_name = corr_author.full_name %>
+                            <% pres_author = Author.find(abstract_data[:abstract][:pres_author_id]) %>
+                            <% pres_author_name = pres_author.full_name %>
+                            <% puts "pres_author: #{pres_author.inspect}" %>
+                            <% puts "pres_author_name: #{pres_author_name.inspect}" %>
+                        <% end %>
+                        <% puts "corr_author_name: #{corr_author_name.inspect}" %>
+                        <% puts "pres_author_name: #{pres_author_name.inspect}" %>
+
+                        <tr class="abstractTitle">
+                            <td rowspan="3" class="idCell"><%= abstract_data[:abstract][:id] %></td>
+                            <td class="titleCell"><%= link_to abstract_data[:abstract][:abs_title], abstract_path(abstract_data[:abstract]) %></td>
+                            <% if current_user[:id] == abstract_data[:abstract][:corr_author_id] || current_user[:admin] == true %>
+                                <td class="adminCell" colspan="2"><%= "edit / delete" %></td>
+                            <% else %>
+                                <td></td>
+                                <td></td>
+                            <% end %>
+                        </tr>
+
+                        <tr class="abstractAuthors">
+                            <td class="authorCell">
+                                <span class="mainAuthLabel">presenting: </span>
+                                <span><%= link_to pres_author_name, author_path(abstract_data[:abstract][:pres_author_id]) %>  </span>
+                            </td>
+                            <!-- == allow corresponding authors/admins to edit/delete (only) -->
+                            <% if current_user[:id] == abstract_data[:abstract][:corr_author_id] || current_user[:admin] == true %>
+                                <td class="EDlink"><%= link_to 'E', edit_abstract_path(abstract_data[:abstract][:id]) %></td>
+                                <td class="EDlink"><%= link_to 'D', abstract_data[:abstract], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                            <% else %>
+                                <td></td>
+                                <td></td>
+                            <% end %>
+                        </tr>
+
+                        <tr class="abstractAuthors">
+                            <td class="authorCell">
+                                <p class="authorText">
+                                    <span class="mainAuthLabel">authors: </span>
+                                    <% author_index = 0 %>
+                                    <% abstract_data[:authors].each do |key, value| %>
+                                        <% puts "value: #{value.inspect}"  %>
+                                        <% if author_index == 0 %>
+                                            <span>
+                                                <%= link_to value[:name], author_path(value[:id]) %>
+                                            </span>
+                                            <i>
+                                                <%= " (" %>
+                                                <% value[:affls].each_with_index do |affiliation, j| %>
+                                                    <% puts "affiliation: #{affiliation.inspect}"  %>
+                                                    <% puts "value[:affls].length: #{value[:affls].length.inspect}"  %>
+                                                    <% if j == value[:affls].length - 1 %>
+                                                        <%= affiliation + " )" %>
+                                                    <% else %>
+                                                        <%= affiliation + ", " %>
+                                                    <% end %>
+                                                <% end %>
+                                            </i>
+                                        <% else author_index < (abstract_data[:authors].length - 1) %>
+                                            <%= ", " %>
+                                            <span>
+                                                <%= value[:name] %>
+                                            </span>
+                                            <i>
+                                                <%= " (" %>
+                                                <% value[:affls].each_with_index do |affiliation, k| %>
+                                                    <% puts "affiliation: #{affiliation.inspect}"  %>
+                                                    <% puts "value[:affls].length: #{value[:affls].length.inspect}"  %>
+                                                    <% if k == value[:affls].length - 1 %>
+                                                        <%= affiliation + " )" %>
+                                                    <% else %>
+                                                        <%= affiliation + ", " %>
+                                                    <% end %>
+                                                <% end %>
+                                            </i>
+                                        <% end %>
+                                        <% author_index = author_index + 1 %>
+                                    <% end %>
+                                </p>
+                            </td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr class="tableSpacer"><td colspan="4"></td></tr>
+
+                    <% end %>
+                <% else %>
+                    <tr class="abstractMessage">
+                        <td>&nbsp;</td>
+                        <td colspan="2">
+                            <% if @title == "Abstracts" %>
+                                <p>There are no abstracts currently in the system.  Please contact the system administrator if you believe this is an error.  Thank you.</p>
+                            <% else %>
+                                <p>You are not listed as an author on the abstracts currently in the system.  Please contact the system administrator if you believe this is an error.  Thank you.</p>
+                            <% end %>
+                        </td>
+                        <td>&nbsp;</td>
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+</div>

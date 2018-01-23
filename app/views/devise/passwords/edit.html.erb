@@ -1,0 +1,33 @@
+<!-- ======= devise/passwords/edit.html.erb ======= -->
+
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+    <%= f.hidden_field :reset_password_token %>
+
+    <div class="dataBox">
+        <div class="dataRow fR_1">
+            <h2 class="dataTitle">New Password Set</h2>
+        </div>
+        <div class="dataRow">
+            <div class="formLabel">
+                <%= f.label :password, "New password" %>
+                <% if @minimum_password_length %>
+                    <em>(<%= @minimum_password_length %> characters minimum)</em><br />
+                <% end %>
+            </div>
+            <div class="formValue">
+                <%= f.password_field :password, autofocus: true, autocomplete: "off" %>
+            </div>
+        </div>
+        <div class="dataRow">
+            <div class="formLabel"><%= f.label :password_confirmation, "Confirm new password" %></div>
+            <div class="formValue"><%= f.password_field :password_confirmation, autocomplete: "off" %></div>
+        </div>
+
+        <div class="buttonRow">
+            <%= link_to "Back", request.referer.present? ? request.referer : "/home", class: "formLink" %>
+            <span>
+                <%= f.submit "Change password", class: "formBtn formBtn_1" %>
+            </span>
+        </div>
+    </div>
+<% end %>

@@ -1,0 +1,27 @@
+
+
+<div class="field">
+    <span class="field-label">Abstract Title: </span><span><%= Abstract.find(@presentation[:abstract_id])[:abstract_title] %></span>
+</div>
+<div class="field">
+    <span class="field-label">Poster Loc: </span><span><%= @presentation[:poster_location] %></span>
+</div>
+<div class="field">
+    <span class="field-label">Session Room: </span><span><%= @presentation[:session_room_id] %></span>
+</div>
+<div class="field">
+    <span class="field-label">Session Type: </span><span><%= @presentation[:session_type] %></span>
+</div>
+<div class="field">
+    <span class="field-label">Session Code: </span><span><%= @presentation[:session_code] %></span>
+</div>
+<div class="field">
+    <span class="field-label">Session Date/Time: </span><span><%= @presentation[:session_datetime].strftime("%A %m/%d %I:%M %p") %></span>
+</div>
+<div class="field">
+    <span class="field-label">Sequence Number: </span><span><%= @presentation[:session_sequence] %></span>
+</div>
+
+
+<%= link_to 'Edit', edit_presentation_path(@presentation) %> |
+<%= link_to "Back", request.referer.present? ? request.referer : "/home" %>

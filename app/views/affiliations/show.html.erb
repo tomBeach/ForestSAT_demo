@@ -1,0 +1,11 @@
+<!-- ======= affiliations/show.html.erb ======= -->
+
+<div class="field">
+    <span class="field-label">Institution: </span><span><%= @affiliation[:institution] %></span>
+</div>
+<div class="field">
+    <span class="field-label">Department: </span><span><%= @affiliation[:department] %></span>
+</div>
+
+<%= link_to 'Edit', edit_affiliation_path(@affiliation) %> |
+<%= link_to "Back", request.referer.present? ? request.referer : "/home" %>

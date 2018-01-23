@@ -1,0 +1,219 @@
+<!-- ======= abstracts new _form ======= -->
+
+<%= form_for(@abstract, url: "/signup_abstract") do |f| %>
+
+    <!-- # corr_author_id, pres_author_id, reviewer1_id, reviewer2_id, presentation_id, session_sequence, abs_title, abs_text, keyword_1, keyword_2, keyword_3, present_request, present_assigned, reviewer1_rec, reviewer2_rec, accepted, invited, paper -->
+
+    <!-- ======= presentation ======= -->
+    <% if @abstract[:presentation_id] %>
+        <% presentation = Presentation.find(@abstract[:presentation_id]) %>
+    <% else %>
+        <% presentation = "unassigned" %>
+    <% end %>
+
+    <!-- ======= reviewer initialize ======= -->
+    <% selected_reviewer2 = nil %>
+    <% selected_reviewer1 = nil %>
+    <% selected_pres_author = nil %>
+    <% if @abstract[:reviewer1_id] %>
+        <% selected_reviewer1 = @abstract[:reviewer1_id] %>
+    <% end %>
+    <% if @abstract[:reviewer2_id] %>
+        <% selected_reviewer2 = @abstract[:reviewer2_id] %>
+    <% end %>
+    <% if @abstract[:pres_author_id] %>
+        <% selected_pres_author = @abstract[:pres_author_id] %>
+    <% end %>
+
+    <!-- ======= affiliations selectbox ======= -->
+    <% if @affiliations.length > 0 %>
+        <% institution_ids = [] %>
+        <% department_ids = [] %>
+        <% @affiliations.each_with_index do |affiliation, index| %>
+            <% institution_ids << [affiliation[:institution], affiliation[:id]] %>
+            <% department_ids << [affiliation[:department], affiliation[:id]] %>
+        <% end %>
+    <% end %>
+
+    <!-- ======= users selectbox ======= -->
+    <% user_name_ids = [] %>
+    <% @users.each_with_index do |user, index| %>
+        <% fullname = user[:firstname] + " " + user[:lastname] %>
+        <% user_name_ids << [fullname, user[:id]] %>
+    <% end %>
+
+    <!-- ======= authors/affiliations ======= -->
+    <div class="author-row">
+        <span class="author-label">firstname</span>
+        <span class="author-label">lastname</span>
+        <span class="author-label">institution</span>
+        <span class="author-label">department</span>
+        <span class="author-label">author type</span>
+    </div>
+
+    <!-- ======= primary ======= -->
+    <div class="author-group">primary author:
+        <div class="author-row">
+            <%= fields_for :author do |author| %>
+                <span class="author-col"><%= text_field_tag "author[firstnames][]", "Joe" %></span>
+                <span class="author-col"><%= text_field_tag "author[lastnames][]", "Biden" %></span>
+            <% end %>
+            <%= fields_for :affiliation do |affiliation| %>
+                <% if @affiliations.length > 0 %>
+                    <span class="author-col"><%= affiliation.select(:institution, options_for_select(institution_ids)) %></span>
+                    <span class="author-col"><%= affiliation.select(:department, options_for_select(department_ids)) %></span>
+                <% end %>
+                <span class="author-col"><%= affiliation.text_field :institution, value: "Cornell University" %></span>
+                <span class="author-col"><%= affiliation.text_field :department, value: "Geology" %></span>
+            <% end %>
+            <%= fields_for :abstract_author do |abstract_author| %>
+                <span class="author-col"><%= text_field_tag "abstract_author[author_types][]", "primary" %></span>
+            <% end %>
+        </div>
+    </div>
+
+    <!-- ======= secondary ======= -->
+    <div class="author-group">secondary authors:
+        <div class="author-row">
+            <%= fields_for :author do |author| %>
+                <span class="author-col"><%= text_field_tag "author[firstnames][]", "Bill" %></span>
+                <span class="author-col"><%= text_field_tag "author[lastnames][]", "Clinton" %></span>
+            <% end %>
+            <%= fields_for :affiliation do |affiliation| %>
+                <span class="author-col"><%= affiliation.text_field :institution, value: "Cornell University" %></span>
+                <span class="author-col"><%= affiliation.text_field :department, value: "Geology" %></span>
+            <% end %>
+            <%= fields_for :abstract_author do |abstract_author| %>
+                <span class="author-col"><%= text_field_tag "abstract_author[author_types][]", "secondary" %></span>
+            <% end %>
+        </div>
+        <div class="author-row">
+            <%= fields_for :author do |author| %>
+                <span class="author-col"><%= text_field_tag "author[firstnames][]", "George" %></span>
+                <span class="author-col"><%= text_field_tag "author[lastnames][]", "Bush" %></span>
+            <% end %>
+            <%= fields_for :affiliation do |affiliation| %>
+                <span class="author-col"><%= affiliation.text_field :institution, value: "Cornell University" %></span>
+                <span class="author-col"><%= affiliation.text_field :department, value: "Geology" %></span>
+            <% end %>
+            <%= fields_for :abstract_author do |abstract_author| %>
+                <span class="author-col"><%= text_field_tag "abstract_author[author_types][]", "secondary" %></span>
+            <% end %>
+        </div>
+    </div>
+
+    <!-- ======= abstract ======= -->
+    <%= fields_for :abstract do |abstract| %>
+        <div class="abstract-row">
+            <span class="abstract-label"><%= abstract.label "First Reviewer" %></span>
+            <span class="abstract-input"><%= abstract.select(:reviewer1_id, options_for_select(user_name_ids, selected_reviewer1)) %></span>
+            <span class="abstract-label"><%= abstract.label "Second Reviewer" %></span>
+            <span class="abstract-input"><%= abstract.select(:reviewer2_id, options_for_select(user_name_ids, selected_reviewer2)) %></span>
+        </div>
+        <div class="abstract-row">
+            <span class="abstract-label"><%= abstract.label "corresponding author" %></span>
+            <span class="abstract-input"><%= current_user[:firstname] + " " + current_user[:lastname] %></span>
+            <%= abstract.hidden_field :corr_author_id, value: current_user[:id] %>
+        </div>
+        <div class="abstract-row">
+            <span class="abstract-label"><%= abstract.label "presenting author" %></span>
+            <span class="abstract-input"><%= abstract.select(:pres_author_id, options_for_select(user_name_ids, selected_pres_author)) %></span>
+        </div>
+        <div class="abstract-row">
+            <span class="abstract-label"><%= abstract.label "presentation" %></span>
+            <span class="abstract-input"><%= text_field_tag "presentation", presentation, autofocus: true %></span>
+            <%= abstract.hidden_field :presentation_id, value: 2, autofocus: true %>
+        </div>
+        <div class="abstract-row">
+            <span class="abstract-label"><%= abstract.label "session_sequence" %></span>
+            <span class="abstract-input"><%= abstract.text_field :session_sequence, value: 0, autofocus: true %></span>
+        </div>
+        <div class="abstract-row">
+            <span class="abstract-label"><%= abstract.label :abs_title %></span>
+            <span class="abstract-input"><%= abstract.text_field :abs_title, value: "My Abstract", autofocus: true %></span>
+        </div>
+        <div class="abstract-row">
+            <span class="abstract-label"><%= abstract.label :abs_text %></span>
+            <span class="abstract-input"><%= abstract.text_field :abs_text, value: "some text", autofocus: true %></span>
+        </div>
+        <div class="abstract-row">
+            <span class="abstract-label"><%= abstract.label :invited %></span>
+            <span class="abstract-input"><%= abstract.check_box :invited %></span>
+        </div>
+
+        <!-- ======= keywords ======= -->
+        <div class="author-group">keywords:
+            <div class="author-row">
+                <span class="author-col"><%= f.text_field :keyword_1 %></span>
+                <span class="author-col"><%= f.text_field :keyword_2 %></span>
+                <span class="author-col"><%= f.text_field :keyword_3 %></span>
+            </div>
+        </div>
+
+        <!-- ======= presentation ======= -->
+        <div class="abstract-row">
+            <span class="abstract-label"><label for="present_request">Room Requested</label></span>
+            <span class="abstract-input"><%= abstract.text_field :present_request, value: "R100", autofocus: true %></span>
+        </div>
+        <% if current_user[:admin] %>
+            <div class="field">
+                <span class="abstract-label"><%= abstract.label :present_assigned %></span>
+                <span class="abstract-input"><%= abstract.text_field :present_assigned, autofocus: true %></span>
+            </div>
+            <div class="field">
+                <span class="abstract-label"><%= abstract.label :accepted %></span>
+                <span class="abstract-input"><%= abstract.check_box :accepted, autofocus: true %></span>
+            </div>
+            <div class="field">
+                <span class="abstract-label"><%= abstract.label :paper %></span>
+                <span class="abstract-input"><%= abstract.check_box :paper, autofocus: true %></span>
+            </div>
+            <div class="field">
+                <span class="abstract-label"><%= abstract.label :reviewer1_rec %></span>
+                <span class="abstract-input">
+                    accept <%= abstract.radio_button :reviewer1_rec, "yes" %>
+                    reject <%= abstract.radio_button :reviewer1_rec, "no" %>
+                </span>
+            </div>
+            <div class="field">
+                <span class="abstract-label"><%= abstract.label :reviewer2_rec %></span>
+                <span class="abstract-input">
+                    accept <%= abstract.radio_button :reviewer2_rec, "yes" %>
+                    reject <%= abstract.radio_button :reviewer2_rec, "no" %>
+                </span>
+            </div>
+        <% end %>
+        <div class="field">
+            <span class="abstract-label"></span>
+            <span class="abstract-input"><%= f.submit %></span>
+        </div>
+        <div class="field">
+            <span class="abstract-label"></span>
+            <span class="abstract-input"><%= link_to 'Back', abstracts_path %></span>
+        </div>
+    <% end %>
+<% end %>
+
+<!--
+# corr_author_id, pres_author_id, reviewer1_id, reviewer2_id, presentation_id, session_sequence, abs_title, abs_text, keyword_1, keyword_2, keyword_3, present_request, present_assigned, reviewer1_rec, reviewer2_rec, accepted, invited, paper
+
+"corr_author_id"=>"1", "pres_author_id"=>"2", "reviewer1_id"=>"2", "reviewer2_id"=>"2", "presentation_id"=>"", "session_sequence"=>"0", "abs_title"=>"My Abstract", "abs_text"=>"some text", "keyword_1"=>"first keyword", "keyword_2"=>"second keyword", "keyword_3"=>"third keyword", "present_request"=>"R100", "present_assigned"=>"R100", "accepted"=>"1", "invited"=>"1", "paper"=>"1"
+
+corr_author_id
+pres_author_id
+reviewer1_id
+reviewer2_id
+session_id
+abs_title
+abs_text
+keyword_1
+keyword_2
+keyword_3
+present_request
+present_assigned
+reviewer1_rec
+reviewer2_rec
+session_sequence
+invited
+paper
+-->

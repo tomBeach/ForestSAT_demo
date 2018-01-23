@@ -1,0 +1,615 @@
+// ======= partials ======= //
+@import 'theme_colors';
+
+/* ======= general ======= */
+body {
+    font-family: "Ariel", sans-serif;
+}
+div {
+    box-sizing: border-box;
+}
+table {
+    border-collapse: collapse;
+}
+i {
+    font-size: 1em;
+    font-style: italic;
+    color: #94a092;
+}
+#pageWrap {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+/* ======= sections ======= */
+#sidebar, #menuBox, #contentBox {
+    margin: 0;
+    height:100vh;
+}
+#sidebar {
+    width: 14%;
+    // min-width: 205px;
+    background:url(forest_banner.jpg) no-repeat;
+    background-size: cover;
+    z-index: -1;
+}
+#menuBox {
+    width: 14%;
+    // min-width: 300px;
+    background-color: $primaryA_0;
+}
+#contentBox {
+    width: 74%;
+    background-color: $primaryA_4;
+    min-width: 400px;
+}
+.clearfix::after {
+    display: table;
+    clear: both;
+    content: "";
+}
+
+/* ======= messages ======= */
+#messages {
+    height: 30px;
+    width: 80%;
+    margin: 20px auto;
+    margin-top: 60px;
+    background-color: $primaryA_3;
+}
+.notice {
+    margin: 5px;
+    margin-left: 10px;
+    text-align: center;
+    color: red;
+}
+
+/* ======= accent ======= */
+.titleBox, .title_stripe {
+    width: 90%;
+    height: 80px;
+    text-align: right;
+    border-bottom: solid 8px $secA_0;
+}
+.title_stripe {
+    margin: 0;
+    margin-top: 16px;
+    width: 100%;
+}
+.sidebar_stripe {
+    float: right;
+    width: 40%;
+    clear: both;
+}
+
+/* ======= titles ======= */
+.titleBox > p > span:nth-of-type(1) {
+    margin: 0;
+    width: 100%;
+    font-family: 'Raleway', sans-serif;
+    font-size: 65px;
+    color: $main_title;
+}
+.titleBox > p > span:nth-of-type(2) {
+    margin: 0;
+    width: 100%;
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 65px;
+    color: white;
+}
+
+/* ======= menu ======= */
+.menuGroup {
+    width: 90%;
+    margin: 10px auto;
+    text-align: right;
+}
+.menuLabel {
+    margin: 2px;
+    padding: 2px;
+    padding-left: 10px;
+    text-align: left;
+    color: $secB_3;
+    background-color: $accent_2;
+}
+#menuBox > div:nth-of-type(2) > p:nth-of-type(1) {
+    margin-top: 75px;
+}
+.menuItem {
+    display: block;
+    height: 20px;
+    width: 80%;
+    margin: 10px;
+    margin-left: 20%;
+    padding-top: 5px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 0.9em;
+    color: white;
+    border-radius: 4px;
+}
+.signin > a {
+    background-color: $secB_grad_0;
+}
+.users > a {
+    background-color: $secB_grad_1;
+}
+.abstracts > a {
+    background-color: $secB_grad_2;
+}
+.admin > a {
+    background-color: $secB_grad_3;
+}
+.menuItem:hover {
+    // color: red;
+    background-color: $secB_0;
+}
+
+/* ======= dataBox ======= */
+#dataBox {
+    width: 80%;
+    height: 420px;
+    margin: 20px auto;
+    background-color: $main_title;
+    border: solid 2px $main_title;
+}
+.dataTitle {
+    width: 95%;
+    margin: 0 auto;
+    padding: 20px;
+    font-size: 1.8em;
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
+    color: $dataText;
+}
+.dataTitle > span:nth-of-type(1) {
+    color: #88DA2A;
+}
+.dataText, .dataInfo {
+    width: 80%;
+    margin: 20px auto;
+    font-size: 1.2em;
+    text-align: left;
+    color: $dataText;
+}
+.dataInfo {
+    width: 70%;
+    list-style-type: square;
+}
+.dataInfo > li > span:nth-of-type(1) {
+    color: $secA_0;
+}
+.dataLabel {
+    width: 100px;
+    margin: 20px;
+    margin-top: 0;
+    padding: 2px 10px;
+    text-align: left;
+    color: $secB_3;
+    background-color: $accent_2;
+}
+.dataEntry {
+    margin: 0;
+    padding: 10px;
+    font-size: 0.8em;
+    text-align: left;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.textEntry {
+    width: 95%;
+    height: 30px;
+    margin: 0 5px;
+}
+.areaEntry {
+    width: 95%;
+}
+.authorEntry {
+    width: 20%;
+    height: 30px;
+}
+.afflEntry {
+    width: 20%;
+    height: 30px;
+    margin: 0 5px;
+}
+
+/* ======= general details ======= */
+// h4 {
+//     margin: 0;
+// }
+// #bgBanner {
+//     position: fixed;
+//     height: 148px;
+//     width: 100%;
+//     top: 0;
+//     left: 0;
+//     background:url(forest_banner.jpg);
+//     opacity: 0.6;
+//     z-index: -1;
+// }
+//
+// /* ======= containers ======= */
+// #menuBox, #messages, #contentBox {
+//     width: 100%;
+// }
+//
+// /* ======= title ======= */
+// .title {
+//     margin: 0;
+//     margin-top: -5px;
+// }
+// .titleItem > .title > span:nth-of-type(1) {
+//     font-size: 65px;
+//     font-family: 'Raleway', sans-serif;
+//     color: white;
+// }
+// .titleItem > .title > span:nth-of-type(2) {
+//     font-size: 65px;
+//     font-family: 'Fira Sans', sans-serif;
+//     color: $secB_2;
+// }
+// #subTitle {
+//     margin: 0;
+//     margin-top: 10px;
+//     margin-right: 5px;
+//     margin-bottom: 10px;
+//     text-align: right;
+//     font-size: 2em;
+//     font-style: italic;
+//     color: white;
+//     font-family: 'Fira Sans', sans-serif;
+// }
+//
+// /* ======= menu ======= */
+// #menuBox {
+//     margin-top: 10px;
+// }
+// .menuRow {
+//     display: flex;
+//     flex-direction: row;
+//     justify-content: flex-start;
+//     height: 60px;
+//     margin-bottom: 5px;
+// }
+// .menuGroup {
+//     height: 100%;
+//     margin: 0;
+//     margin-left: 5px;
+// }
+//
+// /* ======= menu groups ======= */
+// .signinItems {
+//     width: 49%;
+// }
+// .titleItem {
+//     width: 49%;
+//     text-align: right;
+// }
+// .userItems {
+//     width: 19%;
+// }
+// .abstractItems {
+//     width: 49%;
+// }
+// .subtitleItem {
+//     width: 29%;
+//     float: right;
+// }
+// .adminItems {
+//     width: 19%;
+// }
+// .reviewerItems {
+//     width: 79%;
+// }
+// .signinItems_user {
+//     width: 29%;
+// }
+// .titleItem_user {
+//     width: 69%;
+// }
+//
+// /* ======= menu group details ======= */
+// .menuRow_1 {
+//     height: 70px;
+//     border-bottom: solid 8px $primaryA_0;
+// }
+// .menuRow_2 > div:nth-of-type(3) {
+//     // width: 39.5%;
+// }
+//
+// /* ======= menu item details ======= */
+// .signinItems > p {
+//     margin-top: 10px;
+// }
+// .menuLabel {
+//     margin: 2px auto;
+//     font-size: 1em;
+//     font-style: italic;
+//     color: $primaryA_4;
+// }
+// .menuItem {
+//     display: inline-block;
+//     width: 116px;
+//     height: 16px;
+//     margin: 1px;
+//     vertical-align: bottom;
+//     padding: 5px;
+//     font-size: 0.9em;
+//     text-align: center;
+//     text-decoration: none;
+//     background-color: $secB_0;
+//     color: white;
+//     // border-radius: 4px;
+//     // border: solid 2px #c4a1a3;
+// }
+// .menuItem:hover {
+//     color: $primaryA_4;
+//     background-color: $secA_0;
+//     // border: solid 2px #5e3b3d;
+// }
+//
+// /* ======= messages ======= */
+// #messages {
+//     height: 30px;
+//     width: 98.5%;
+//     margin-top: 20px;
+//     margin-left: 5px;
+//     background-color: $secA_5;
+// }
+// .notice {
+//     margin: 5px;
+//     margin-left: 10px;
+//     text-align: center;
+//     color: red;
+// }
+//
+// /* ======= contentBox ======= */
+// #contentBox {
+//     height: 420px;
+//     width: 98.5%;
+//     margin-top: 20px;
+//     margin-left: 5px;
+//     text-align: center;
+//     background-color: $primaryA_0;
+// }
+//
+// /* ======= home page ======= */
+// .sectionTitle {
+//     width: 90%;
+//     margin: 0 auto;
+//     padding-top: 60px;
+//     padding-bottom: 40px;
+//     font-size: 1.8em;
+//     text-align: center;
+//     // font-family: 'Fira Sans', sans-serif;
+//     font-family: 'Raleway', sans-serif;
+// }
+// .sectionTitle > span:nth-of-type(1) {
+//     color: $secB_0;
+// }
+// .sectionText, .sectionInfo {
+//     width: 70%;
+//     margin: 20px auto;
+//     font-size: 1.2em;
+//     text-align: left;
+// }
+// .sectionInfo {
+//     width: 55%;
+//     list-style-type: square;
+// }
+// .sectionInfo > li > span:nth-of-type(1) {
+//     color: $secA_5;
+// }
+//
+//
+// /* ======= content ======= */
+//
+// /*.menuRow {
+//     height: 62px;
+//     margin: 0;
+//     padding-left: 6px;
+//     margin-bottom: 6px;
+// }
+// .menuGroup {
+//     display: inline-block;
+//     height: 100%;
+//     margin: 5px 0;
+//     margin-right: 4px;
+//     text-align: center;
+//     background-color: #ebe0e0;
+// }
+// #menuRow_2A {
+//     display: none;
+// }*/
+//
+// /* ======= menu groups ======= */
+// /*#signinItems, #signinFiller {
+//     width: 464px;
+//     text-align: center;
+// }
+// #abstractItems, #adminItems {
+//     width: 440px;
+//     text-align: center;
+// }
+// #reviewItems, #sessionItems {
+//     width: 320px;
+//     text-align: center;
+// }
+// #authorItems, #userItems {
+//     width: 160px;
+//     text-align: center;
+// }*/
+//
+// /* ======= visible items ======= */
+// /*#signinItems, #signinFiller {
+//     background-color: rgba(235, 224, 224, 0.3);
+// }
+// #userFullName {
+//     display: inline-block;
+//     width: 116px;
+//     height: 16px;
+//     margin: 1px;
+//     vertical-align: bottom;
+//     padding: 5px;
+//     font-size: 1em;
+//     text-align: center;
+//     text-decoration: none;
+//     color: #813772;
+// }*/
+//
+// /* ======= hidden items ======= */
+// #userItems > p, #abstractItems > p, #reviewItems > p, #authorItems > p, #adminItems > p, #sessionItems > p {
+//     visibility: hidden;
+// }
+// #userItems > a, #abstractItems > a, #reviewItems > a, #authorItems > a, #adminItems > a, #sessionItems > a {
+//     visibility: hidden;
+// }
+// #userFullName {
+//     visibility: hidden;
+// }
+//
+// /* ======= menu labels/items ======= */
+// /*.menuLabel {
+//     margin: 2px auto;
+//     font-size: 1em;
+//     font-style: italic;
+//     color: white;
+// }
+// .menuItem {
+//     display: inline-block;
+//     width: 116px;
+//     height: 16px;
+//     margin: 1px;
+//     vertical-align: bottom;
+//     padding: 5px;
+//     font-size: 1em;
+//     text-align: center;
+//     text-decoration: none;
+// }
+// .menuItem {
+//     font-family: 'Raleway', sans-serif;
+//     color: #813772;
+//     background-color: #33cc33;
+//     border-bottom: solid 4px #fc4a1a;
+// }
+// .menuItem:hover {
+//     color: white;
+//     background-color: #813772;
+//     border-bottom: solid 4px #ffa366;
+// }*/
+//
+//
+// /* ======= ======= ======= ARCHIVE ======= ======= ======= */
+// /* ======= ======= ======= ARCHIVE ======= ======= ======= */
+// /* ======= ======= ======= ARCHIVE ======= ======= ======= */
+//
+// /*html {
+//      forest.jpg forest_green forest_hicon forest_banner
+//     background: url(forest_banner.jpg) no-repeat top left fixed;
+//     -webkit-background-size: cover;
+//     -moz-background-size: cover;
+//     -o-background-size: cover;
+//     background-size: cover;
+// }
+// #bgBanner {
+//     position: fixed;
+//     height: 148px;
+//     width: 100%;
+//     top: 0;
+//     left: 0;
+//     background-color: red;
+//     background:url(forest_banner.jpg);
+//     background size: 100% 700px;
+//     z-index: -1;
+// }
+// #bgFade {
+//     position: absolute;
+//     top:0px;
+//     left:0px;
+//     width:100%;
+//     height:100%;
+//     background:transparent;
+//     background: -moz-linear-gradient(top, rgba( 255, 255, 255, 0) 0%, rgba( 255, 255, 255, 1 ) 22% );
+//     background: -ms-linear-gradient(top, rgba( 255, 255, 255, 0 ) 0%, rgba( 255, 255, 255, 1 ) 22% );
+//     background: -o-linear-gradient( top, rgba( 255, 255, 255, 0 ) 0%, rgba( 255, 255, 255, 1 ) 22% );
+//     background: -webkit-linear-gradient( top, rgba( 255, 255, 255, 0 ) 0%, rgba( 255, 255, 255, 1 ) 22% );
+//     background: linear-gradient(top, rgba( 255, 255, 255, 255 ) 0%, rgba( 255, 255, 255, 1 ) 22% );
+//     z-index: -1;
+// }*/
+//
+// /* ======= title ======= */
+// /*#menuRow_2B {
+//     margin-left: 5px;
+//     width: 940px;
+//     height: 62px;
+//     text-align: right;
+// }
+// #titleBg {
+//     padding: 0;
+// }
+// #mainTitle {
+//     margin-top: -20px;
+//     height: 62px;
+//     margin: 0;
+//     margin-left: -5px;
+//     padding-bottom: 10px;
+//     border-bottom: solid 8px #ffa366;
+// }
+// #mainTitle > span:nth-of-type(1) {
+//     margin: 0;
+//     width: 100%;
+//     font-size: 65px;
+//     color: #f0552e;
+// }
+// #mainTitle > span:nth-of-type(2) {
+//     margin: 0;
+//     width: 100%;
+//     font-family: 'Fira Sans', sans-serif;
+//     font-size: 65px;
+//     color: white;
+// }
+// #subTitle {
+//     width: 464px;
+//     margin: 0;
+//     margin-bottom: 10px;
+//     text-align: right;
+//     font-size: 2em;
+//     font-style: italic;
+//     color: #813772;
+//     font-family: 'Fira Sans', sans-serif;
+// }*/
+//
+// /* ======= content ======= */
+// /*.titleInfoBox {
+//     width: 940px;
+//     height: 320px;
+//     margin: 20px auto;
+//     margin-left: 5px;
+//     text-align: center;
+//     background-color: rgba(255, 163, 102, 0.8);
+// }
+// .sectionTitle {
+//     width: 80%;
+//     margin: 20px auto;
+//     font-size: 1.8em;
+//     text-align: center;
+//     font-family: 'Fira Sans', sans-serif;
+// }
+// .sectionTitle > span:nth-of-type(1) {
+//     color: #813772;
+// }
+// .sectionText, .sectionInfo {
+//     width: 74%;
+//     margin: 20px auto;
+//     font-size: 1.2em;
+//     text-align: left;
+// }
+// .sectionInfo {
+//     width: 60%;
+//     list-style-type: square;
+// }
+// .sectionInfo > li > span:nth-of-type(1) {
+//     color: #fc4a1a;
+// }*/

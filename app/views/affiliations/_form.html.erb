@@ -1,0 +1,30 @@
+<%= form_with(model: affiliation, local: true) do |f| %>
+    <% if affiliation.errors.any? %>
+        <div id="error_explanation">
+            <h2><%= pluralize(affiliation.errors.count, "error") %> prohibited this affiliation from being saved:</h2>
+            <ul>
+                <% affiliation.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+
+    <div class="actions">
+        <div class="field">
+            <%= f.label :institution %><br />
+            <%= f.text_field :institution, autofocus: true %>
+        </div>
+        <div class="field">
+            <%= f.label :department %><br />
+            <%= f.text_field :department, autofocus: true %>
+        </div>
+        <div class="field">
+            <% if @author_id %>
+                <% puts "@author_id: #{@author_id}" %>
+                <%= f.hidden_field :author_id, value: @author_id.to_s %>
+            <% end %>
+            <%= f.submit %>
+        </div>
+    </div>
+<% end %>

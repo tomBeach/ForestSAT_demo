@@ -1,0 +1,6 @@
+<h1>Editing Presentation</h1>
+
+<%= render 'form', presentation: @presentation %>
+
+<%= link_to 'Show', @presentation %> |
+<%= link_to "Back", request.referer.present? ? request.referer : "/home" %>

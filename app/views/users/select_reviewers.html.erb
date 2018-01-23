@@ -1,0 +1,85 @@
+<!-- ======= users/select_reviewers.html.erb ======= -->
+
+<%= form_for("save_selected_reviewers", url: "/save_selected_reviewers", :html => {:id => "save_selected_reviewers"}) do %>
+
+    <div class="absRevBox">
+        <div class="dataRow fR_1">
+            <h2 class="dataTitle">Select Reviewers</h2>
+        </div>
+        <div id="abstractsHead">
+            <table id="selrevStaticTable">
+                <thead>
+                    <tr>
+                        <th>name</th>
+                        <th>affiliation</th>
+                        <th>reviewer</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+
+        <div id="abstractsBody">
+            <table id="selrevScrollTable">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <!-- ======= display all current users (reviewer candidates) ======= -->
+                    <% @users.each do |user| %>
+                        <% puts "user: #{user.inspect}" %>
+
+                        <!-- ======= find users who are also authors ======= -->
+                        <% author = Author.where(:user_id => user[:id]).first %>
+                        <% if author %>
+                            <% puts "author: #{author.inspect}" %>
+                            <% affiliation = author.affiliations.first %>
+                            <% if affiliation %>
+                                <% puts "affiliation: #{affiliation.inspect}" %>
+                            <% end %>
+                        <% end %>
+
+                        <tr>
+                            <% fullname = user.full_name  %>
+                            <td><%= link_to fullname, user %></td>
+                            <% if affiliation %>
+                                <td><%= affiliation[:institution] + ", " + affiliation[:department] %></td>
+                            <% else %>
+                                <td>no affiliation(s) for this user</td>
+                            <% end %>
+                            <% if current_user.admin? %>
+                                <% if user.reviewer? %>
+                                    <td>
+                                        <i>This user is already a reviewer</i>
+                                    </td>
+                                <% else %>
+                                    <td>
+                                        <%= check_box_tag "user[reviewer_ids][]", user[:id] %>
+                                        <i>check to select reviewer</i>
+                                    </td>
+                                <% end %>
+                            <% else %>
+                                <% if user.reviewer? %>
+                                    <td>reviewer</td>
+                                <% else %>
+                                    <td></td>
+                                <% end %>
+                            <% end %>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="buttonRow fR">
+            <%= link_to "Back", request.referer.present? ? request.referer : "/home", class: "formLink" %>
+            <%= button_tag "Save all changes", type: "submit", class: "formBtn formBtn_1" %>
+        </div>
+
+    </div>
+<% end %>

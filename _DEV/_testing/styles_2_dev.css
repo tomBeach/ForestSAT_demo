@@ -1,0 +1,494 @@
+/* ======= general ======= */
+body {
+    font-family: "Ariel", sans-serif;
+}
+#pageWrap {
+    width: 900px;
+    margin: 0 auto;
+}
+#mainTitle {
+    float: right;
+    margin-top: 20px;
+    width: 180px;
+}
+#user {
+    display: inline-block;
+    width: 240px;
+    float: right;
+}
+#yield {
+    /*height: 400px;*/
+    margin: 0;
+}
+.entryTitle {
+    margin: 20px;
+    width: 180px;
+}
+.new_abstract {
+    width: 90%;
+    height: 400px;
+}
+.toggle_input {
+    display: none;
+}
+
+/* ======= menu ======= */
+#menuBox {
+    margin-top: 20px;
+    height: 220px;
+}
+.menuRow {
+    height: 60px;
+    margin: 0;
+    padding-bottom: 8px;
+}
+.menuGroup {
+    display: inline-block;
+    height: 30%;
+    text-align: center;
+}
+.menuLabel {
+    margin: 0 10px;
+    font-size: 1em;
+    font-style: italic;
+    color: #ddd;
+    background-color: #eee;
+}
+.menuItem {
+    display: inline-block;
+    width: 120px;
+    height: 32px;
+    margin: 5px;
+    vertical-align: bottom;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    color: red;
+    border-radius: 8px;
+    border: solid 2px #813772;
+    box-sizing: border-box;
+}
+.menuItem:hover {
+    color: white;
+    background-color: #813772;
+}
+.filler {
+    border: solid 2px #eee;
+}
+.filler:hover {
+    background-color: white;
+}
+
+/* ======= menu spacers ======= */
+#signinItems {
+    width: 420px;
+    text-align: center;
+}
+#signinItems > a:first-of-type {
+    margin-left: 3px;
+}
+#abstractItems {
+    width: 400px;
+    text-align: center;
+}
+#userItems, #affItems, #sessionItems, #roomItems {
+    width: 280px;
+}
+.menuSpacer {
+    display: inline-block;
+    width: 20px;
+    height: 100%;
+}
+
+/* ======= abstract entries ======= */
+.abstractEntryBox {
+    width: 720px;
+    height: 320px;
+    margin: 20px;
+    background-color: #cad0c8;
+    border: solid 2px #626e60;
+}
+.entry {
+    float: left;
+    height: 26px;
+    margin-left: 10px;
+    padding-left: 10px;
+    font-size: 1em;
+    font-style: italic;
+    color: #cad0c8;
+    border-radius: 4px;
+}
+.abstractBtn {
+    -webkit-appearance: none;
+    width: 120px;
+    height: 32px;
+    margin: 5px;
+    vertical-align: bottom;
+    padding: 5px;
+    font-size: 1em;
+    text-align: center;
+    text-decoration: none;
+    color: red;
+    border-radius: 8px;
+    border: solid 2px #813772;
+    box-sizing: border-box;
+}
+.abstractBtn:hover {
+    color: white;
+    background-color: #813772
+}
+
+/* ======= abstracts ======= */
+.abstractRow_1, .abstractRow_2, .abstractRow_3 {
+    width: 100%;
+    text-align: center;
+}
+.abstractRow_1 {
+    height: 60px;
+}
+.abstractRow_2 {
+    height: 170px;
+}
+.abstractRow_3 {
+    height: 80px;
+    width: 100%;
+    box-sizing: border-box;
+}
+.abstractLabel_1, .abstractLabel_2 {
+    width: 20%;
+    margin: 16px 20px;
+    font-size: 1em;
+    font-style: italic;
+    color: #626e60;
+    background-color: #eee;
+}
+.abstractLabel_2 {
+    margin: 20px 20px;
+    text-align: center;
+}
+#abstract_abs_title {
+    width: 90%;
+    height: 26px;
+    margin: -5px auto;
+}
+#abstract_abs_text {
+    width: 90%;
+    margin: 10px auto;
+}
+
+/* ======= authors ======= */
+.authorRow_1, .authorRow_2, .authorRow_3 {
+    width: 100%;
+    text-align: center;
+}
+.authorRow_1 {
+    height: 130px;
+}
+.authorRow_2 {
+    height: 110px;
+    width: 680px;
+    margin: 0 auto;
+    border: solid 1px #626e60;
+    overflow-y: scroll;
+}
+.authorRow_3 {
+    height: 80px;
+    padding-top: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+.authorLabel_1, .authorLabel_2 {
+    width: 680px;
+    margin: 10px auto;
+    font-size: 1em;
+    font-style: italic;
+    color: #626e60;
+    background-color: #eee;
+}
+.authorLabel_2 {
+    text-align: center;
+}
+.authorEntryGrp {
+    display: inline-block;
+    margin: 5px 0;
+    text-align: center;
+}
+.authorName {
+    width: 80px;
+}
+.affiliation {
+    width: 120px;
+}
+.radio {
+    float: left;
+    width: 160px;
+    height: 26px;
+    margin-top: 10px;
+    margin-left: 10px;
+    font-size: 1em;
+    text-align: left;
+    color: #626e60;
+}
+
+/* ======= keywords ======= */
+.keyRow_1, .keyRow_2, .keyRow_3 {
+    width: 100%;
+    text-align: center;
+}
+.keyRow_1 {
+    height: 100px;
+}
+.keyRow_2 {
+    height: 150px;
+}
+.keyRow_3 {
+    height: 44px;
+    margin: 0;
+    padding: 10px;
+}
+.keyGrp_1 {
+    display: inline-block;
+    width: 100%;
+    margin: 5px 0;
+    text-align: center;
+}
+.keyLabel_1 {
+    width: 440px;
+    margin: 10px;
+    font-size: 1em;
+    font-style: italic;
+    color: #626e60;
+    background-color: #eee;
+}
+.keywordLabel {
+    margin: 0 30px;
+}
+.keywords {
+    margin-top: 30px;
+    padding-left: 36px;
+    text-align: left;
+}
+.keyword {
+    float: left;
+    height: 26px;
+    width: 125px;
+    margin-top: 10px;
+    margin-left: 10px;
+    padding-left: 10px;
+    font-size: 1em;
+    font-style: italic;
+    color: #cad0c8;
+    border-radius: 4px;
+}
+.select {
+    float: left;
+    height: 26px;
+    width: 140px;
+    margin-top: 0;
+    margin-left: 10px;
+    padding-left: 10px;
+    font-size: 1em;
+    font-style: italic;
+    color: #cad0c8;
+    border-radius: 4px;
+}
+.groupRow {
+    width: 100%;
+    height: 80px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.groupRow > select:first-of-type {
+    margin-left: -10px;
+}
+.groupRow > input:first-of-type {
+    margin-left: 40px;
+}
+.spacerRow {
+    height: 100px;
+}
+.keywordInfo {
+    float: left;
+    width: 230px;
+    margin: 10px;
+    vertical-align: top;
+    color: #626e60;
+}
+.primaryRow > .keywordInfo:nth-of-type(1) {
+    margin-top: 24px;
+}
+.groupRow > .keywordInfo:nth-of-type(1) {
+    margin-top: -1px;
+}
+
+/* ======= reviewers ======= */
+.reviewRow_1, .reviewRow_2, .reviewRow_3 {
+    width: 100%;
+    text-align: center;
+}
+.reviewRow_1 {
+    height: 120px;
+}
+.reviewRow_2 {
+    height: 60px;
+}
+.reviewRow_3 {
+    height: 80px;
+    text-align: left;
+}
+.reviewRow_4 {
+    height: 80px;
+    width: 100%;
+    padding-left: 20px;
+    box-sizing: border-box;
+}
+.reviewGrp_1 {
+    display: inline-block;
+    width: 100%;
+    margin: 5px 0;
+    text-align: center;
+}
+.reviewLabel {
+    display: inline-block;
+    float: left;
+    width: 320px;
+    margin: 10px 20px;
+    font-size: 1em;
+    font-style: italic;
+    text-align: left;
+    color: #626e60;
+    background-color: #eee;
+}
+.reviews {
+    margin-top: 30px;
+    padding-left: 36px;
+    text-align: left;
+}
+.reviewEntry {
+    float: left;
+    height: 26px;
+    width: 125px;
+    margin: 5px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    font-size: 1em;
+    font-style: italic;
+    color: #cad0c8;
+    border-radius: 4px;
+}
+.reviewRow_1 > input[type=text]:nth-of-type(1) {
+    margin-left: 40px;
+}
+.reviewRow_1 > input[type=text]:nth-of-type(3) {
+    margin-left: 60px;
+}
+.reviewerInfo {
+    clear: both;
+    margin: 0 20px;
+    text-align: left;
+    color: #626e60;
+}
+.reviewSelect {
+    float: left;
+    height: 26px;
+    width: 220px;
+    margin-top: 5px;
+    margin-left: 20px;
+    padding-left: 10px;
+    font-size: 1em;
+    font-style: italic;
+    color: #cad0c8;
+    border-radius: 4px;
+}
+.reviewRow_2 > select:nth-of-type(1) {
+    margin-left: 40px;
+}
+.reviewRow_2 > select:nth-of-type(2) {
+    margin-left: 140px;
+}
+.reviewRadio {
+    float: left;
+    width: 120px;
+    height: 26px;
+    margin-top: 0;
+    margin-left: 20px;
+    font-size: 1em;
+    text-align: left;
+    color: #626e60;
+}
+.reviewRow_3 > .reviewRadio:nth-of-type(1) {
+    margin-left: 40px;
+}
+.reviewRow_3 > .reviewRadio:nth-of-type(3) {
+    margin-left: 100px;
+}
+.reviewRow_4 button:nth-of-type(1) {
+    margin-left: 400px;
+}
+
+
+/* ======= widgets ======= */
+// buttons
+// - prev
+// - next
+// - author
+// - new_keyword
+// - save_keyword
+// - cancel
+// - admin_review
+// - review_save
+// - admin_session
+// - session_save
+// authors
+// - firstnames
+// - lastname
+// radiobuttons
+// - presenting
+// - reviewer_recommend
+// - actual_recommend
+// - actual_accept
+// affiliations
+// - institutions
+// - departments
+// scroll_boxes
+// - secondary_authors
+// selectboxes
+// - keyword_1 (corr_author, admin)
+// - keyword_2 (corr_author, admin)
+// - keyword_3 (corr_author, admin)
+// - reviewer_1
+// - reviewer_2
+// new_keywords
+// - keyword_1
+// - keyword_2
+// - keyword_3
+
+/* ======= structures ======= */
+// button_bar
+// author_grid
+// author_scroll
+// keyword_grid
+// session_grid
+// reviewer_grid
+// show_view_toggle
+// admin_view_toggle
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ======= widgets ======= */

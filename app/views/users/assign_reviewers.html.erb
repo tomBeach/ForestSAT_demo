@@ -1,0 +1,101 @@
+<!-- ======= users/assign_reviewers.html.erb ======= -->
+
+<!-- ======= reviewers selectbox (users filtered for reviewer => true) ======= -->
+<% reviewer_name_ids = [nil] %>
+<% @reviewers.each_with_index do |reviewer, index| %>
+    <% fullname = reviewer[:firstname] + " " + reviewer[:lastname] %>
+    <% reviewer_name_ids << [fullname, reviewer[:id]] %>
+<% end %>
+
+<%= form_for("save_assigned_reviewers", url: "/save_assigned_reviewers", :html => {:id => "save_assigned_reviewers"}) do %>
+
+    <div class="absRevBox">
+        <div class="dataRow fR_1">
+            <h2 class="dataTitle">Assign Reviewers</h2>
+        </div>
+        <div id="abstractsHead">
+            <table id="assignStaticTable">
+                <thead>
+                    <tr>
+                        <th>title</th>
+                        <th>primary</th>
+                        <th>rev1</th>
+                        <th>rev2</th>
+                        <th>last update</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+
+        <div id="abstractsBody">
+            <table id="assignScrollTable">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                <%= fields_for :abstract do |a| %>
+
+                    <!-- ======= list abstracts/reviewers ======= -->
+                    <% if @abstracts.length > 0 %>
+                        <% @abstracts.each do |next_abstract| %>
+
+                            <!-- ======= identify assigned reviewers (if any) ======= -->
+                            <% selected_reviewer_id1 = nil %>
+                            <% selected_reviewer_id2 = nil %>
+                            <% if next_abstract[:reviewer1_id] %>
+                                <% selected_reviewer_id1 = next_abstract[:reviewer1_id] %>
+                            <% end %>
+                            <% if next_abstract[:reviewer2_id] %>
+                                <% selected_reviewer_id2 = next_abstract[:reviewer2_id] %>
+                            <% end %>
+
+                            <!-- ======= get primary author ======= -->
+                            <% sql = "SELECT authors.firstname, authors.lastname, abstract_authors.author_type FROM authors INNER JOIN abstract_authors ON authors.id = abstract_authors.author_id WHERE abstract_authors.abstract_id = '" + next_abstract[:id].to_s + "' AND abstract_authors.author_type = 'primary';" %>
+                            <% author_data = ActiveRecord::Base.connection.execute(sql) %>
+                            <% author_data_array = author_data.to_a %>
+                            <% puts "author_data: #{author_data.inspect}" %>
+                            <% puts "author_data_array: #{author_data_array.inspect}" %>
+                            <% if author_data_array.length > 0 %>
+                                <% primary_author = author_data[0]["firstname"].to_s + " " + author_data[0]["lastname"].to_s %>
+                            <% end %>
+
+                            <tr>
+                                <%= hidden_field_tag "abstract[abstract_ids][]", next_abstract[:id].to_s %>
+                                <td><%= link_to next_abstract[:abs_title], abstract_path(next_abstract) %></td>
+                                <td><%= primary_author %></td>
+                                <td><%= select_tag("abstract[reviewer1_ids][]", options_for_select(reviewer_name_ids, selected_reviewer_id1), :id => "abstract_reviewer1_ids_" + next_abstract[:id].to_s) %></td>
+                                <td><%= select_tag("abstract[reviewer2_ids][]", options_for_select(reviewer_name_ids, selected_reviewer_id2), :id => "abstract_reviewer2_ids_" + next_abstract[:id].to_s) %></td>
+                                <% formatted_date = next_abstract[:updated_at].in_time_zone("Eastern Time (US & Canada)").strftime('%m/%d %l:%M') %>
+                                <td><%= formatted_date %> </td>
+                            </tr>
+
+                            <!-- ======= separate rows ======= -->
+                            <tr class="tableSpacer">
+                                <td colspan="7"></td>
+                            </tr>
+
+                        <% end %>
+                    <% else %>
+                        <tr class="abstractMessage">
+                            <td colspan="5">
+                                <p>There are no abstracts currently in the system.  Please contact the system administrator if you believe this is an error.</p>
+                            </td>
+                        </tr>
+                    <% end %>
+            </table>
+        </div>
+
+        <div class="buttonRow fR">
+            <%= link_to "Back", request.referer.present? ? request.referer : "/home", class: "formLink" %>
+            <%= button_tag "Save all changes", type: "submit", class: "formBtn formBtn_1" %>
+        </div>
+    </div>
+    <% end %>
+<% end %>
