@@ -34,7 +34,7 @@ Keyword.create([
 ])
 
 Author.create([
-    { firstname:"Jeffrey", lastname:"Masek", user_id:nil }
+    { firstname:"Eddard", lastname:"Stark", user_id:nil }
     # { firstname:"George", lastname:"Bush", user_id:nil },
     # { firstname:"Jimmy", lastname:"Carter", user_id:nil },
     # { firstname:"Donald", lastname:"Trump", user_id:nil },
@@ -42,7 +42,7 @@ Author.create([
 ])
 
 Affiliation.create([
-    { institution:"NASA", department:"Goddard" }
+    { institution:"Winterfell", department:"Royalty" }
     # { institution:"Texas Tech", department:"Business" },
     # { institution:"Georgia Tech", department:"Engineering" },
     # { institution:"NYU", department:"Real Estate" },
