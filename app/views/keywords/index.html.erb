@@ -1,0 +1,65 @@
+<div class="dataBox">
+    <div class="dataRow fR_1">
+        <h2 class="dataTitle">Keywords</h2>
+    </div>
+    <div id="abstractsHead">
+        <table id="keywordsStaticTable">
+            <thead>
+                <tr>
+                    <th>keyword</th>
+                    <th>category</th>
+                    <th class="adminCell" colspan="2"><%= "edit / delete" %></th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+
+    <div id="abstractsBody">
+        <div class="adminScrollBox">
+            <table id="keywordsScrollTable">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <!-- ======= loop through all abstracts ======= -->
+                    <% puts "@keywords.length: #{@keywords.length.inspect}" %>
+                    <% if @keywords.length > 0 %>
+                        <% @keywords.each do |keyword| %>
+                            <tr>
+                                <td><%= keyword[:keyword_name] %></td>
+                                <td><%= keyword[:keyword_category] %></td>
+                                <% if current_user[:admin] == true %>
+                                    <td class="EDlink"><%= link_to 'E', edit_keyword_path(keyword) %></td>
+                                    <td class="EDlink"><%= link_to 'D', keyword_path(keyword), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                                <% else %>
+                                    <td></td>
+                                    <td></td>
+                                <% end %>
+                            </tr>
+                        <% end %>
+                    <% else %>
+                        <p>There are currently no keywords entered into the database.</p>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <div id="roomsIndexSpacer" class="dataSpacer">
+        &nbsp;
+    </div>
+
+    <div class="buttonRow fR">
+        <%= link_to "Back", request.referer.present? ? request.referer : "/home", class: "formLink" %>
+        <% if current_user[:admin] == true %>
+            <%= link_to 'Add Keywords', new_keyword_path, class: "formLink" %>
+        <% end %>
+    </div>
+</div>

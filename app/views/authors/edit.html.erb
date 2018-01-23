@@ -1,0 +1,71 @@
+<%= form_with(model: @author, local: true) do |form| %>
+
+    <div class="dataBox">
+
+        <% puts "@author_data_values[:firstname]: #{@author_data_values[:firstname].inspect}" %>
+        <% puts "@author_data_values[:institutions]: #{@author_data_values[:institutions].inspect}" %>
+
+        <!-- ======= ======= ======= title ======= ======= ======= -->
+        <div class="dataRow fR_1">
+            <h2 class="dataTitle"><%= @author_data_values[:firstname] + " " + @author_data_values[:lastname] %></h2>
+        </div>
+
+        <!-- ======= ======= ======= data ======= ======= ======= -->
+        <%= fields_for :author do |auth| %>
+            <div class="dataRow">
+                <div class="formLabel">firstname</div>
+                <div class="formValue">
+                    <%= text_field_tag "author[firstname]", @author_data_values[:firstname], class: "authorName firstname" %></span>
+                </div>
+            </div>
+            <div class="dataRow">
+                <div class="formLabel">lastname</div>
+                <div class="formValue">
+                    <%= text_field_tag "author[lastname]", @author_data_values[:lastname], class: "authorName lastname" %></span>
+                </div>
+            </div>
+        <% end %>
+
+        <%= fields_for :affiliation do |affl| %>
+
+            <% @author_data_values[:institutions].each_with_index do |institution, index| %>
+                <% affl_id = @author_data_values[:affl_ids][index] %>
+                <% department = @author_data_values[:departments][index] %>
+                <% puts "institution: #{index} #{institution.inspect} #{department.inspect}" %>
+
+                <div class="dataRow">
+                    <% if index == 0 %>
+                        <div class="formLabel">affiliations</div>
+                    <% else %>
+                        <div class="formLabel">&nbsp;</div>
+                    <% end %>
+                    <div class="formValue">
+                        <%= hidden_field_tag "affiliation[affl_ids][]", affl_id, class: "authorName institution" %>
+                        <span>
+                            <%= text_field_tag "affiliation[institutions][]", institution, class: "authorName institution" %>
+                            <%= text_field_tag "affiliation[departments][]", department, class: "authorName department" %>
+                            <%= check_box_tag "affiliation[delete_affiliation][]", affl_id %>
+                            <i>check to remove</i>
+                        </span>
+                    </div>
+                </div>
+            <% end %>
+
+            <div class="dataRow">
+                <div class="formLabel">&nbsp;</div>
+                <div class="formValue">
+                    <span>
+                        <%= text_field_tag "affiliation[new_institution]", "", class: "authorName institution" %>
+                        <%= text_field_tag "affiliation[new_department]", "", class: "authorName department" %>
+                        <i>add new affiliation</i>
+                    </span>
+                </div>
+            </div>
+        <% end %>
+
+        <div class="buttonRow fR">
+          <%= link_to "Back", request.referer.present? ? request.referer : "/home", class: "formLink" %>
+          <%= button_tag "Update", type: "submit", id: "update_author",  class: "formBtn formBtn_1" %>
+        </div>
+    </div>
+<% end %>

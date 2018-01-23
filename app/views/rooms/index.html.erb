@@ -1,0 +1,68 @@
+<div class="dataBox">
+    <div class="dataRow fR_1">
+        <h2 class="dataTitle">Rooms</h2>
+    </div>
+    <div id="abstractsHead">
+        <table id="roomsStaticTable">
+            <thead>
+                <tr>
+                    <th>room</th>
+                    <th>floor</th>
+                    <th>type</th>
+                    <td class="adminCell" colspan="2"><%= "edit / delete" %></td>
+                </tr>
+            </thead>
+        </table>
+    </div>
+
+    <div id="abstractsBody">
+        <div class="adminScrollBox">
+            <table id="roomsScrollTable">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <!-- ======= loop through all abstracts ======= -->
+                    <% puts "@rooms.length: #{@rooms.length.inspect}" %>
+                    <% if @rooms.length > 0 %>
+                        <% @rooms.each do |room| %>
+                            <tr>
+                                <td><%= room[:room_name] %></td>
+                                <td><%= room[:room_floor] %></td>
+                                <td><%= room[:room_type] %></td>
+                                <% if current_user[:admin] == true %>
+                                    <td class="EDlink"><%= link_to 'E', edit_room_path(room) %></td>
+                                    <td class="EDlink"><%= link_to 'D', room_path(room), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                                <% else %>
+                                    <td></td>
+                                    <td></td>
+                                <% end %>
+                            </tr>
+                        <% end %>
+                    <% else %>
+                        <p>There are currently no rooms entered into the database.</p>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <div id="roomsIndexSpacer" class="dataSpacer">
+        &nbsp;
+    </div>
+
+    <div class="buttonRow fR">
+        <%= link_to "Back", request.referer.present? ? request.referer : "/home", class: "formLink" %>
+        <% if current_user[:admin] == true %>
+            <%= link_to 'Add Rooms', new_room_path, class: "formLink" %>
+        <% end %>
+    </div>
+</div>

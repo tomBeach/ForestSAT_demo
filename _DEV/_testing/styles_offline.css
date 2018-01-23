@@ -1,0 +1,1152 @@
+
+
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    font-style: italic;
+    color: #cad0c8;
+    opacity: 1; /* Firefox */
+}
+#mainTitle {
+    float: right;
+    margin-top: 20px;
+    width: 180px;
+}
+.homeTitle {
+    margin: 100px auto;
+    text-align: center;
+}
+.sectionTitle {
+    margin: 10px;
+    text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+#user {
+    display: inline-block;
+    width: 240px;
+    float: right;
+}
+#yield {
+    margin: 0;
+    height: 480px;
+    /*overflow-y: scroll;*/
+}
+#messages {
+    height: 30px;
+    width: 938px;
+    margin-top: 4px;
+    margin-left: 6px;
+    padding: 5px;
+    background-color: #ebe0e0;
+    box-sizing: border-box;
+}
+.notice, .alert {
+    margin: 0;
+    margin-left: 20px;
+    text-align: center;
+    color: red;
+}
+.entryTitle {
+    margin: 20px;
+    width: 180px;
+}
+.toggle_input {
+    display: none;
+}
+
+/* ======= general ======= */
+.taskRow {
+    width: 670px;
+    height: 60px;
+    margin: 0 auto;
+    padding-top: 10px;
+    border: solid 1px red;
+}
+.adminTask {
+    float: left;
+    width: 120px;
+    text-align: right;
+}
+.adminData {
+    float: left;
+    width: 520px;
+    text-align: left;
+}
+.task {
+    margin: 10px;
+}
+.taskInputs > input[type=text] {
+    text-align: center;
+}
+.adminBtn {
+    width: 140px;
+    height: 28px;
+    margin: 5px;
+    font-size: 0.8em;
+    text-align: center;
+    text-decoration: none;
+    color: red;
+    border-radius: 4px;
+    border: solid 2px #813772;
+}
+.adminBtn:hover {
+    color: white;
+    background-color: #813772
+}
+.adminLink {
+    width: 140px;
+    height: 128px;
+    margin: 5px;
+    padding: 5px;
+    font-size: 0.8em;
+    text-align: center;
+    text-decoration: none;
+    color: red;
+    border-radius: 4px;
+    border: solid 2px #813772;
+}
+.adminLink:hover {
+    color: white;
+    background-color: #813772
+}
+.adminEntry {
+    width: 100px;
+    height: 20px;
+    font-size: 0.8em;
+}
+.adminTable {
+    margin: 20px auto;
+}
+
+/* ======= general ======= */
+.formData {
+    width: 720px;
+    height: 320px;
+    margin: 20px auto;
+    background-color: #cad0c8;
+    border: solid 2px #cad0c8;
+}
+.userFormData {
+    width: 720px;
+    margin: 20px auto;
+    background-color: #cad0c8;
+    border: solid 2px #cad0c8;
+}
+.dataRow {
+    height: 40px;
+}
+.dataLabel, .dataValue {
+    display: inline-block;
+    width: 49%;
+    height: 100%;
+    padding: 8px;
+    font-size: 1em;
+}
+.dataLabel {
+    text-align: right;
+}
+.dataLabel > a {
+    margin: 2px;
+    text-decoration: none;
+    font-size: 0.9em;
+}
+.dataValue > input[type=checkbox] {
+    width: 20px;
+    height: 20px;
+}
+.dataValue > input[type=submit] {
+    width: 120px;
+    height: 30px;
+    font-size: 1em;
+}
+.dataValue > input[type=submit]:hover {
+    background-color: #af473c;
+    color: white;
+}
+.dataSpacer {
+    height: 20px;
+}
+.linksRow {
+    height: 130px;
+    padding: 10px;
+    text-align: center;
+}
+.linksRow > a {
+    padding: 8px;
+    font-size: 0.9em;
+    text-decoration: none;
+    color: #af473c;
+}
+
+/* ======= general table displays headers ======= */
+#abstractsHead {
+    min-height: 100px;
+}
+#abstractsBody {
+    height: 280px;
+    width: 940px;
+    margin-left: 5px;
+    overflow-y: scroll;
+    border: solid 1px #626e60;
+}
+#abstractsStaticTable, #reviewersStaticTable, #revabsStaticTable {
+    background-color: #cad0c8;
+    width: 940px;
+}
+#assignScrollTable, #abstractsScrollTable, #reviewersScrollTable, #revabsScrollTable {
+    background-color: #cad0c8;
+    width: 940px;
+}
+#assignScrollTable > tbody > tr > td, #reviewersScrollTable > tbody > tr > td, #revabsScrollTable > tbody > tr > td {
+    border: 1px solid white;
+}
+/*#abstractsScrollTable > tbody > tr > td {
+    border: 1px solid white;
+}*/
+
+/* ======= abstracts/reviewers headers ======= */
+#abstractsStaticTable, #reviewersStaticTable {
+    margin-left: 5px;
+}
+#abstractsStaticTable > thead > tr, #reviewersStaticTable > thead > tr {
+    height: 40px;
+    background-color: #cad0c8;
+}
+#abstractsStaticTable > thead > tr > th:nth-of-type(1), #abstractsScrollTable > thead > tr > th:nth-of-type(1) {
+    width: 10%;
+    text-align: center;
+}
+#abstractsStaticTable > thead > tr > th:nth-of-type(2), #abstractsScrollTable > thead > tr > th:nth-of-type(2) {
+    width: 80%;
+    text-align: center;
+}
+#abstractsStaticTable > thead > tr > th:nth-of-type(3) {
+    width: 10%;
+    text-align: center;
+}
+
+/* ======= select_reviewers (4 columns) ======= */
+#abstractsScrollTable > thead > tr > th:nth-of-type(3) {
+    width: 5%;
+    text-align: center;
+}
+#abstractsScrollTable > thead > tr > th:nth-of-type(4) {
+    width: 5%;
+    text-align: center;
+}
+#abstractsScrollTable > tbody > tr:last-child {
+    background: white;
+}
+
+/* ======= select_reviewers  (3 columns) ======= */
+#reviewersStaticTable > thead > tr > th:nth-of-type(1), #reviewersScrollTable > thead > tr > th:nth-of-type(1) {
+    width: 40%;
+    text-align: center;
+}
+#reviewersStaticTable > thead > tr > th:nth-of-type(2), #reviewersScrollTable > thead > tr > th:nth-of-type(2) {
+    width: 30%;
+    text-align: center;
+}
+#reviewersStaticTable > thead > tr > th:nth-of-type(3), #reviewersScrollTable > thead > tr > th:nth-of-type(3) {
+    width: 30%;
+    text-align: center;
+}
+#reviewersStaticTable > thead > tr > #reviewersFilters {
+    height: 40px;
+    text-align: center;
+}
+
+/* ======= ... scroll  (3 columns) ======= */
+#reviewersScrollTable > tbody > tr > td:nth-of-type(1) {
+    max-width: 400px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#reviewersScrollTable > tbody > tr > td:nth-of-type(1) > a {
+    text-decoration: none;
+}
+#reviewersScrollTable > tbody > tr > td:nth-of-type(1) {
+    padding: 10px;
+    font-size: 0.9em;
+    text-align: right;
+    color: #999;
+}
+#reviewersScrollTable > tbody > tr > td:nth-of-type(2) {
+    padding: 10px;
+    font-size: 0.9em;
+    text-align: left;
+}
+#reviewersScrollTable > tbody > tr > td:nth-of-type(3) {
+    padding: 10px;
+    font-size: 0.9em;
+    text-align: left;
+}
+#reviewersScrollTable > tbody > tr > td:nth-of-type(3) > input[type=checkbox] {
+    width: 20px;
+    height: 20px;
+}
+#reviewersScrollTable > tbody > tr:last-child {
+    background: white;
+}
+
+/* ======= assign_reviewers (5 columns) ======= */
+#assignStaticTable, #assignScrollTable {
+    width: 940px;
+}
+#assignStaticTable {
+    margin-left: 5px;
+}
+#assignStaticTable > thead > tr {
+    height: 40px;
+    text-align: center;
+    background-color: #cad0c8;
+}
+#assignStaticTable > thead > tr > th:nth-of-type(1) {
+    width: 35%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    /*white-space: nowrap;*/
+}
+#assignStaticTable > thead > tr > th:nth-of-type(2) {
+    width: 15%;
+}
+#assignStaticTable > thead > tr > th:nth-of-type(3) {
+    width: 15%;
+}
+#assignStaticTable > thead > tr > th:nth-of-type(4) {
+    width: 15%;
+}
+#assignStaticTable > thead > tr > th:nth-of-type(5) {
+    width: 20%;
+}
+
+/* ======= ...scroll (5 columns) ======= */
+#assignScrollTable > tbody > tr > td {
+    padding: 10px;
+    font-size: 0.9em;
+    text-align: right;
+    color: #999;
+}
+#assignScrollTable > tbody > tr > td:nth-of-type(1) {
+    width: 35%;
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#assignScrollTable > tbody > tr > td:nth-of-type(1) > a {
+    text-decoration: none;
+}
+#assignScrollTable > tbody > tr > th:nth-of-type(1) {
+    width: 35%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    /*white-space: nowrap;*/
+}
+#assignScrollTable > tbody > tr > th:nth-of-type(2) {
+    width: 15%;
+}
+#assignScrollTable > tbody > tr > th:nth-of-type(3) {
+    width: 15%;
+}
+#assignScrollTable > tbody > tr > th:nth-of-type(4) {
+    width: 15%;
+}
+#assignScrollTable > tbody > tr > th:nth-of-type(5) {
+    width: 20%;
+}
+#assignScrollTable > tbody > tr > .buttonCell {
+    text-align: left;
+}
+#assignScrollTable > tbody > tr:last-child {
+    background: white;
+}
+
+/* ======= select_abstracts (7 columns)) ======= */
+#revabsStaticTable, #revabsScrollTable {
+    width: 940px;
+}
+#revabsStaticTable {
+    margin-left: 5px;
+}
+#revabsStaticTable > thead > tr {
+    height: 40px;
+    background-color: #cad0c8;
+}
+#revabsStaticTable > thead > tr > td {
+    text-align: center;
+}
+#revabsStaticTable > thead > tr > th {
+    padding-right: 5px;
+}
+#revabsStaticTable > thead > tr > th:nth-of-type(1) {
+    width: 35%;
+}
+#revabsStaticTable > thead > tr > th:nth-of-type(2) {
+    width: 15%;
+}
+#revabsStaticTable > thead > tr > th:nth-of-type(3) {
+    width: 15%;
+}
+#revabsStaticTable > thead > tr > th:nth-of-type(4) {
+    width: 5%;
+}
+#revabsStaticTable > thead > tr > th:nth-of-type(5) {
+    width: 5%;
+}
+#revabsStaticTable > thead > tr > th:nth-of-type(6) {
+    width: 10%;
+}
+#revabsStaticTable > thead > tr > th:nth-of-type(7) {
+    width: 20%;
+}
+
+/* ======= ... scroll (7 columns)) ======= */
+#revabsScrollTable > tbody > tr > td:nth-of-type(1) {
+    width: 35%;
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#revabsScrollTable > tbody > tr > td:nth-of-type(2) {
+    width: 15%;
+}
+#revabsScrollTable > tbody > tr > td:nth-of-type(3) {
+    width: 15%;
+}
+#revabsScrollTable > tbody > tr > td:nth-of-type(4) {
+    width: 5%;
+}
+#revabsScrollTable > tbody > tr > td:nth-of-type(5) {
+    width: 5%;
+}
+#revabsScrollTable > tbody > tr > td:nth-of-type(6) {
+    width: 10%;
+}
+#revabsScrollTable > tbody > tr > td:nth-of-type(7) {
+    width: 20%;
+}
+#revabsScrollTable > tbody > tr > td {
+    padding: 10px;
+    font-size: 0.9em;
+    text-align: right;
+    color: #999;
+}
+#revabsScrollTable > tbody > tr > td > a {
+    text-decoration: none;
+}
+#revabsScrollTable > tbody > tr > .buttonCell {
+    text-align: left;
+}
+#revabsScrollTable > tbody > tr:last-child {
+    background: white;
+}
+
+/* ======= my_abstracts (4 columns)) ======= */
+#abstractsScrollTable > tbody > tr > .idCell {
+    font-size: 0.9em;
+    text-align: center;
+    color: #999;
+}
+#abstractsScrollTable > tbody > tr > .titleCell {
+    height: 30px !important;
+    max-width: 820px;
+    text-align: left;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+#abstractsScrollTable > tbody > tr > .titleCell > a {
+    text-decoration: none;
+    margin-bottom: 10px;
+}
+#abstractsScrollTable > tbody > tr > .authorCell {
+    text-align: left;
+}
+#abstractsScrollTable > tbody > tr > .adminCell {
+    font-size: 0.7em;
+    text-align: center;
+}
+#abstractsScrollTable > tbody > tr > .EDlink {
+    font-size: 0.7em;
+    text-align: center;
+    text-decoration: none;
+    color: #626e60;
+}
+/*#abstractsScrollTable > tbody > tr > td:nth-of-type(4) {
+    font-size: 0.7em;
+    text-align: center;
+}*/
+/*#abstractsScrollTable > tbody > tr > td:nth-of-type(3) > a {
+    text-decoration: none;
+}*/
+.abstractTitle, .abstractAuthors {
+    background-color: #f2f2f2;
+}
+.abstractAuthors {
+    height: 10px !important;
+}
+.authorCell {
+    margin-bottom: 2px !important;
+}
+.titleCell > a {
+    font-size: 1em;
+    text-decoration: none;
+    color: #af473c;
+}
+.titleCell > a:hover {
+    color: #0040ff;
+}
+.authorCell > span > a {
+    font-size: 0.8em;
+    text-decoration: none;
+    color: #af473c;
+}
+.authorCell > span > a:hover {
+    color: #0040ff;
+}
+.authorCell > span:nth-of-type(2) {
+    margin-right: 20px;
+}
+.mainAuthLabel {
+    margin-left: 8px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #626e60
+}
+.authorText {
+    margin: 2px;
+    font-size: 0.8em;
+    color: #626e60;
+}
+.authorText > span:nth-of-type(2) > a {
+    text-decoration: none;
+    color: #626e60;
+}
+.tableSpacer > td {
+    height: 5px !important;
+    font-size: 1px;
+    line-height: 1px;
+}
+.formBtn {
+    width: 120px;
+    height: 32px;
+    margin: 5px;
+    font-size: 1em;
+    text-align: center;
+    text-decoration: none;
+    color: red;
+    border-radius: 4px;
+    border: solid 2px #813772;
+}
+
+/* ======= abstract entries ======= */
+.new_abstract {
+    min-width: 960px;
+    height: 400px;
+}
+.abstractEntryBox {
+    width: 720px;
+    height: 320px;
+    margin: 20px auto;
+    background-color: #cad0c8;
+    border: solid 2px #cad0c8;
+}
+.entry {
+    float: left;
+    height: 26px;
+    margin-left: 10px;
+    padding-left: 10px;
+    font-size: 0.8em;
+    color: black;
+    border-radius: 4px;
+}
+.abstractBtn {
+    -webkit-appearance: none;
+    position: absolute;
+    width: 120px;
+    height: 32px;
+    margin: 5px;
+    bottom: 10px;
+    font-size: 1em;
+    text-align: center;
+    text-decoration: none;
+    color: red;
+    border-radius: 4px;
+    border: solid 2px #813772;
+}
+.abstractBtn:hover {
+    color: white;
+    background-color: #813772
+}
+
+/* ======= labels ======= */
+.abstractLabel_1, .abstractLabel_2 {
+    margin: 16px 20px;
+    text-align: left;
+    font-size: 1em;
+    font-style: italic;
+    color: #626e60;
+}
+.abstractLabel_2 {
+    margin: 0 20px;
+}
+#abstract_abs_title {
+    width: 90%;
+    height: 30px;
+    margin: -5px auto;
+    padding: 10px;
+    font-size: 0.8em;
+    text-align: left;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+#abstract_abs_text {
+    width: 90%;
+    margin: 10px auto;
+    padding: 10px;
+    font-size: 0.8em;
+    text-align: left;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* ======= abstract show ======= */
+.abstractShowBox {
+    width: 720px;
+    height: 320px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #cad0c8;
+    overflow-y: scroll;
+}
+.show_text {
+    text-align: left;
+}
+
+/* ======= title ======= */
+.titleRow_1, .titleRow_2, .titleRow_3 {
+    width: 100%;
+}
+.titleRow_1 {
+    height: 80px;
+    text-align: center;
+}
+.titleRow_2 {
+    height: 140px;
+    text-align: center;
+}
+.titleRow_3 {
+    position: relative;
+    height: 84px;
+    width: 100%;
+    text-align: left;
+}
+
+/* ======= title buttons ======= */
+.titleRow_3 > button:nth-of-type(1) {
+    margin-left: 20px;
+}
+.titleRow_3 > button:nth-of-type(2) {
+    margin-left: 560px;
+}
+
+/* ======= text ======= */
+.textRow_1, .textRow_2, .textRow_3 {
+    width: 100%;
+}
+.textRow_1 {
+    height: 80px;
+    text-align: center;
+}
+.textRow_2 {
+    height: 156px;
+    text-align: center;
+}
+.textRow_3 {
+    position: relative;
+    height: 84px;
+    width: 100%;
+    text-align: left;
+}
+
+/* ======= text buttons ======= */
+.textRow_3 > button:nth-of-type(1) {
+    margin-left: 20px;
+}
+.textRow_3 > button:nth-of-type(2) {
+    margin-left: 420px;
+}
+.textRow_3 > button:nth-of-type(3) {
+    margin-left: 560px;
+}
+
+/* ======= authors ======= */
+.authorRow_1, .authorRow_2, .authorRow_3 {
+    width: 100%;
+}
+.authorRow_1 {
+    height: 130px;
+    text-align: center;
+}
+.authorRow_2 {
+    height: 120px;
+    width: 680px;
+    margin: 0 auto;
+    border: solid 1px #626e60;
+    text-align: center;
+    overflow-y: scroll;
+}
+.authorRow_3 {
+    position: relative;
+    height: 70px;
+    width: 100%;
+    text-align: left;
+}
+.authorLabel_1, .authorLabel_2 {
+    width: 680px;
+    margin: 10px auto;
+    font-size: 1em;
+    font-style: italic;
+    text-align: center;
+    color: #626e60;
+    background-color: #d7dcd6;
+}
+.authorLabel_1 > span {
+    text-align: left;
+}
+#primary_firstname {
+    margin-left: 12px;
+}
+.primaryAuthor {
+    font-weight: bold;
+}
+.authorEntryGrp {
+    display: inline-block;
+    margin: 5px 0;
+    text-align: left;
+}
+#abstract_corr_author_id {
+    margin-left: 40px;
+}
+#abstract_pres_author_id {
+    margin-left: 40px;
+}
+.authorName {
+    width: 80px;
+}
+.affiliation {
+    width: 120px;
+}
+.radio {
+    float: left;
+    width: 160px;
+    height: 26px;
+    margin-top: 10px;
+    margin-left: 10px;
+    font-size: 1em;
+    text-align: left;
+    color: #626e60;
+}
+.admin-status {
+    color: red;
+}
+.authorLabels {
+    margin: 2px 25px;
+    font-size: 0.9em;
+    font-style: italic;
+    text-align: center;
+    color: #626e60;
+}
+.authorLabels:first {
+    margin-left: 40px;
+}
+.authorRow {
+    height: 100px;
+    overflow-y: scroll;
+    border: solid 1px #626e60;
+}
+.secAuthors, .secAffiliations {
+    display: inline-block;
+    height: 30px;
+    padding: 8px;
+    font-size: 1em;
+}
+.secAuthors {
+    width: 30%;
+    text-align: right;
+}
+.secAffiliations {
+    width: 65%;
+    text-align: left;
+}
+.authorInfo {
+    margin: 1px;
+    font-size: 1em;
+    text-align: center;
+    color: #af473c;
+}
+.authorInfo_1 {
+    margin-left: 40px;
+    font-size: 1em;
+    text-align: center;
+    color: #af473c;
+}
+.authorFields {
+    height: 40px;
+}
+.authorFields > span:nth-of-type(1) > input[type=text] {
+    margin-left: 20px;
+}
+.authorFields > span:nth-of-type(3) > input[type=text] {
+    margin-left: 20px;
+}
+
+/* ======= author buttons ======= */
+.authorRow_3 > button:nth-of-type(1) {
+    margin-left: 20px;
+}
+.authorRow_3 > button:nth-of-type(2) {
+    margin-left: 280px;
+}
+.authorRow_3 > button:nth-of-type(3) {
+    margin-left: 420px;
+}
+.authorRow_3 > button:nth-of-type(4) {
+    margin-left: 560px;
+}
+
+/* ======= keywords ======= */
+.keyRow_1, .keyRow_2, .keyRow_3 {
+    width: 100%;
+}
+.keyRow_1 {
+    height: 120px;
+    text-align: center;
+}
+.keyRow_2 {
+    height: 130px;
+    text-align: center;
+}
+.keyRow_3 {
+    position: relative;
+    height: 70px;
+    margin: 0;
+    text-align: left;
+}
+.keyGrp_1 {
+    display: inline-block;
+    width: 100%;
+    margin: 5px 0;
+    text-align: center;
+}
+.keyLabel_1, .keyLabel_2, .keyLabel_3 {
+    float: left;
+    margin: 10px;
+    margin-left: 20px;
+    font-size: 1em;
+    font-style: italic;
+    color: #626e60;
+    background-color: #d7dcd6;
+}
+.keyLabel_1 {
+    width: 360px;
+}
+.keyLabel_2 {
+    width: 100px;
+}
+.keyLabel_3 {
+    width: 160px;
+}
+.keywordLabel {
+    margin: 0 20px;
+}
+.keywordLabel_2 {
+    margin: 0 5px;
+}
+.keywords {
+    margin-top: 30px;
+    padding-left: 36px;
+    text-align: left;
+}
+.keyword {
+    float: left;
+    height: 26px;
+    width: 125px;
+    margin-top: 10px;
+    padding-left: 10px;
+    font-size: 1em;
+    font-style: italic;
+    color: #cad0c8;
+    border-radius: 4px;
+}
+#abstract_keyword_1 {
+    margin-left: 20px;
+}
+
+/* ======= keyword buttons ======= */
+.keyRow_3 > button:nth-of-type(1) {
+    margin-left: 20px;
+}
+.keyRow_3 > button:nth-of-type(2) {
+    margin-left: 420px;
+}
+.keyRow_3 > button:nth-of-type(3) {
+    margin-left: 560px;
+}
+
+
+/* ======= keyword selectboxes ======= */
+.select {
+    float: left;
+    display: inline-block;
+    height: 26px;
+    width: 140px;
+    margin-top: 0;
+    margin-left: 5px;
+    padding-left: 10px;
+    font-size: 1em;
+    font-style: italic;
+    color: #cad0c8;
+    border-radius: 4px;
+}
+.keywordSelect {
+    float: left;
+    display: inline-block;
+    height: 26px;
+    width: 120px;
+    margin-top: 0;
+    margin-left: 5px;
+    padding-left: 10px;
+    font-size: 1em;
+    font-style: italic;
+    color: #cad0c8;
+    border-radius: 4px;
+}
+#abstract_invited {
+    float: left;
+    display: inline-block;
+    float: left;
+    width: 20px;
+    height: 20px;
+    margin-left: 40px;
+}
+#keyCheckLabel {
+    display: inline-block;
+    width: 50px;
+    margin-top: 4px;
+    margin-left: -420px;
+    text-align: left;
+    color: #626e60;
+}
+#abstract_present_request {
+    height: 26px;
+    width: 140px;
+    margin-top: 0;
+    margin-left: 100px;
+    padding-left: 10px;
+    font-size: 1em;
+    font-style: italic;
+    color: #cad0c8;
+    border-radius: 4px;
+}
+
+.groupRow {
+    width: 100%;
+    height: 80px;
+    padding: 20px;
+}
+.groupRow > select:first-of-type {
+    margin-left: -10px;
+}
+.groupRow > input:first-of-type {
+    margin-left: 40px;
+}
+.spacerRow {
+    height: 100px;
+}
+.keywordInfo {
+    float: left;
+    width: 230px;
+    margin: 10px;
+    vertical-align: top;
+    color: #626e60;
+}
+.primaryRow > .keywordInfo:nth-of-type(1) {
+    margin-top: 24px;
+}
+.groupRow > .keywordInfo:nth-of-type(1) {
+    margin-top: -1px;
+}
+
+/* ======= reviewers ======= */
+.reviewRow_1, .reviewRow_2, .reviewRow_3 {
+    width: 100%;
+    text-align: center;
+}
+.reviewRow_1 {
+    height: 120px;
+}
+.reviewRow_2 {
+    height: 60px;
+}
+.reviewRow_3 {
+    height: 80px;
+    text-align: left;
+}
+.reviewRow_4 {
+    position: relative;
+    height: 60px;
+    width: 100%;
+    padding-left: 20px;
+}
+.reviewGrp_1 {
+    display: inline-block;
+    width: 100%;
+    margin: 5px 0;
+    text-align: center;
+}
+.reviewLabel {
+    display: inline-block;
+    float: left;
+    width: 320px;
+    margin: 10px 20px;
+    font-size: 1em;
+    font-style: italic;
+    text-align: left;
+    color: #626e60;
+    background-color: #eee;
+}
+.reviews {
+    margin-top: 30px;
+    padding-left: 36px;
+    text-align: left;
+}
+.reviewEntry {
+    float: left;
+    height: 26px;
+    width: 125px;
+    margin: 5px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    font-size: 1em;
+    font-style: italic;
+    color: #cad0c8;
+    border-radius: 4px;
+}
+.reviewRow_1 > input[type=text]:nth-of-type(1) {
+    margin-left: 40px;
+}
+.reviewRow_1 > input[type=text]:nth-of-type(3) {
+    margin-left: 60px;
+}
+.reviewerInfo {
+    clear: both;
+    margin: 10px 20px;
+    text-align: left;
+    color: #626e60;
+}
+.reviewSelect {
+    float: left;
+    height: 26px;
+    width: 220px;
+    margin-top: 5px;
+    margin-left: 20px;
+    padding-left: 10px;
+    font-size: 1em;
+    font-style: italic;
+    color: #cad0c8;
+    border-radius: 4px;
+}
+.reviewRow_2 > select:nth-of-type(1) {
+    margin-left: 40px;
+}
+.reviewRow_2 > select:nth-of-type(2) {
+    margin-left: 140px;
+}
+.reviewRadio {
+    float: left;
+    width: 120px;
+    height: 26px;
+    margin-top: 0;
+    margin-left: 20px;
+    font-size: 1em;
+    text-align: left;
+    color: #626e60;
+}
+.reviewRow_3 > .reviewRadio:nth-of-type(1) {
+    margin-left: 40px;
+}
+.reviewRow_3 > .reviewRadio:nth-of-type(3) {
+    margin-left: 100px;
+}
+
+
+/* ======= widgets ======= */
+// buttons
+// - prev
+// - next
+// - author
+// - new_keyword
+// - save_keyword
+// - cancel
+// - admin_review
+// - review_save
+// - admin_session
+// - session_save
+// authors
+// - firstnames
+// - lastname
+// radiobuttons
+// - presenting
+// - reviewer_recommend
+// - actual_recommend
+// - actual_accept
+// affiliations
+// - institutions
+// - departments
+// scroll_boxes
+// - secondary_authors
+// selectboxes
+// - keyword_1 (corr_author, admin)
+// - keyword_2 (corr_author, admin)
+// - keyword_3 (corr_author, admin)
+// - reviewer_1
+// - reviewer_2
+// new_keywords
+// - keyword_1
+// - keyword_2
+// - keyword_3
+
+/* ======= structures ======= */
+// button_bar
+// author_grid
+// author_scroll
+// keyword_grid
+// session_grid
+// reviewer_grid
+// show_view_toggle
+// admin_view_toggle
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ======= widgets ======= */

@@ -1,0 +1,63 @@
+<!-- authors/new.html.erb -->
+
+<%= form_with(model: @author, local: true) do |f| %>
+    <% if @author.errors.any? %>
+        <div id="error_explanation">
+            <h2><%= pluralize(@author.errors.count, "error") %> prohibited this author from being saved:</h2>
+            <ul>
+                <% @author.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+
+    <div class="dataBox">
+
+        <!-- ======= ======= ======= title ======= ======= ======= -->
+        <div class="dataRow fR_1">
+            <h2 class="dataTitle">Add Author</h2>
+        </div>
+
+        <!-- ======= ======= ======= data ======= ======= ======= -->
+        <%= fields_for :author do |author| %>
+            <div class="dataRow">
+                <div class="formLabel">firstname</div>
+                <div class="formValue">
+                    <%= author.text_field :firstname, autofocus: true %>
+                </div>
+            </div>
+            <div class="dataRow">
+                <div class="formLabel">lastname</div>
+                <div class="formValue">
+                    <%= author.text_field :lastname, autofocus: true %>
+                </div>
+            </div>
+        <% end %>
+
+        <!-- ======= ======= ======= data ======= ======= ======= -->
+        <%= fields_for :affiliation do |auth| %>
+            <div class="dataRow">
+                <div class="formLabel">institution</div>
+                <div class="formValue">
+                    <%= text_field_tag "affiliation[institution]", "", autofocus: true %>
+                </div>
+            </div>
+            <div class="dataRow">
+                <div class="formLabel">department</div>
+                <div class="formValue">
+                    <%= text_field_tag "affiliation[department]", "", autofocus: true %>
+                </div>
+            </div>
+        <% end %>
+
+        <div class="dataRow">
+            <div class="formLabel">
+                <%= link_to "Back", request.referer.present? ? request.referer : "/home" %>
+            </div>
+            <div class="formValue">
+                <%= f.submit %>
+            </div>
+        </div>
+    </div>
+<% end %>

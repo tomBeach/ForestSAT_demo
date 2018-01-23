@@ -1,0 +1,65 @@
+<div class="dataBox">
+    <div class="dataRow fR_1">
+        <h2 class="dataTitle">Affiliations</h2>
+    </div>
+    <div id="abstractsHead">
+        <table id="affiliationsStaticTable">
+            <thead>
+                <tr>
+                    <th>institution</th>
+                    <th>department</th>
+                    <th class="adminCell" colspan="2"><%= "edit / delete" %></th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+
+    <div id="abstractsBody">
+        <div class="adminScrollBox">
+            <table id="affiliationsScrollTable">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <!-- ======= loop through all abstracts ======= -->
+                    <% puts "@affiliations.length: #{@affiliations.length.inspect}" %>
+                    <% if @affiliations.length > 0 %>
+                        <% @affiliations.each do |affiliation| %>
+                            <tr>
+                                <td><%= affiliation[:institution] %></td>
+                                <td><%= affiliation[:department] %></td>
+                                <% if current_user[:admin] == true %>
+                                    <td class="EDlink"><%= link_to 'E', edit_affiliation_path(affiliation) %></td>
+                                    <td class="EDlink"><%= link_to 'D', affiliation_path(affiliation), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                                <% else %>
+                                    <td></td>
+                                    <td></td>
+                                <% end %>
+                            </tr>
+                        <% end %>
+                    <% else %>
+                        <p>There are currently no affiliations entered into the database.</p>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <div id="roomsIndexSpacer" class="dataSpacer">
+        &nbsp;
+    </div>
+
+    <div class="buttonRow fR">
+        <%= link_to "Back", request.referer.present? ? request.referer : "/home", class: "formLink" %>
+        <% if current_user[:admin] == true %>
+            <%= link_to 'Add Affiliation', new_affiliation_path, class: "formLink" %>
+        <% end %>
+    </div>
+</div>

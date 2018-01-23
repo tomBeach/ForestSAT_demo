@@ -1,0 +1,27 @@
+<!-- ======= devise/passwords/new.html.erb ======= -->
+
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+
+    <div class="dataBox">
+        <div class="dataRow fR_1">
+            <h2 class="dataTitle">Forgot your password?</h2>
+        </div>
+        <div class="dataRow">
+            <div class="formLabel"><%= label(:username, "username") %></div>
+            <div class="formValue"><%= f.text_field :username, value: "", autofocus: true %></div>
+        </div>
+        <div class="dataRow">
+            <div class="formLabel"><%= label(:email, "email") %></div>
+            <div class="formValue"><%= f.email_field :email, value: "", autofocus: true %></div>
+        </div>
+
+        <div class="buttonRow">
+            <%= link_to "Back", request.referer.present? ? request.referer : "/home", class: "formLink" %>
+            <span>
+                <%= f.submit "Reset Password", class: "formBtn formBtn_1" %>
+                <i>Send me reset password instructions</i>
+            </span>
+        </div>
+    </div>
+    
+<% end %>

@@ -1,0 +1,6 @@
+<h1>Editing Affiliation</h1>
+
+<%= render 'form', affiliation: @affiliation %>
+
+<%= link_to 'Show', @affiliation %> |
+<%= link_to "Back", request.referer.present? ? request.referer : "/home" %>

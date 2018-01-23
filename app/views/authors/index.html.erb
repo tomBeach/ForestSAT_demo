@@ -1,0 +1,65 @@
+<div class="dataBox">
+    <div class="dataRow fR_1">
+        <h2 class="dataTitle">Authors</h2>
+    </div>
+    <div id="abstractsHead">
+        <table id="authorsStaticTable">
+            <thead>
+                <tr>
+                    <th>first name</th>
+                    <th>last name</th>
+                    <th class="adminCell" colspan="2"><%= "edit / delete" %></th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+
+    <div id="abstractsBody">
+        <div class="adminScrollBox">
+            <table id="authorsScrollTable">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <!-- ======= loop through all abstracts ======= -->
+                    <% puts "@authors.length: #{@authors.length.inspect}" %>
+                    <% if @authors.length > 0 %>
+                        <% @authors.each do |author| %>
+                            <tr>
+                                <td><%= author[:firstname] %></td>
+                                <td><%= author[:lastname] %></td>
+                                <% if current_user[:admin] == true %>
+                                    <td class="EDlink"><%= link_to 'E', edit_author_path(author) %></td>
+                                    <td class="EDlink"><%= link_to 'D', author_path(author), method: :delete, data: { confirm: 'This action removes the author from ALL associated abstracts and affiliations. To modify associations with a specific abstract only, choose the All Abstracts menu option, then edit the appropriate abstract.  Are you sure?' } %></td>
+                                <% else %>
+                                    <td></td>
+                                    <td></td>
+                                <% end %>
+                            </tr>
+                        <% end %>
+                    <% else %>
+                        <p>There are currently no authors entered into the database.</p>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <div id="roomsIndexSpacer" class="dataSpacer">
+        &nbsp;
+    </div>
+
+    <div class="buttonRow fR">
+        <%= link_to "Back", request.referer.present? ? request.referer : "/home", class: "formLink" %>
+        <% if current_user[:admin] == true %>
+            <%= link_to 'Add Author', new_author_path, class: "formLink" %>
+        <% end %>
+    </div>
+</div>

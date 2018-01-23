@@ -1,0 +1,920 @@
+// ======= partials ======= //
+@import 'theme_colors';
+
+// ======= ======= ======= GENERAL TABLES ======= ======= ======= //
+// ======= ======= ======= GENERAL TABLES ======= ======= ======= //
+// ======= ======= ======= GENERAL TABLES ======= ======= ======= //
+
+/* ======= general table displays headers ======= */
+.absRevBox {
+    width: 95%;
+    min-width: 720px;
+    height: 420px;
+    margin: 20px auto;
+    padding-bottom: 20px;
+    background-color: $dataBox;
+}
+#abstractsHead {
+    margin: 0 auto;
+    width: 95%;
+}
+#abstractsBody {
+    height: 240px;
+    width: 95%;
+    margin: 0 auto;
+    overflow-y: scroll;
+}
+#revAbsBody {
+    height: 180px;
+    width: 95%;
+    margin: 0 auto;
+    overflow-y: scroll;
+}
+#selAbsBody {
+    height: 200px;
+    width: 95%;
+    margin: 0 auto;
+    overflow-y: scroll;
+}
+#selrevStaticTable, #assignStaticTable, #abstractsStaticTable, #revabsStaticTable, #selabsStaticTable, #roomsStaticTable, #keywordsStaticTable, #affiliationsStaticTable, #authorsStaticTable, #usersStaticTable {
+    width: 100%;
+    height: 40px;
+    margin: 0 auto;
+    font-size: 0.8em;
+    font-style: normal;
+    text-align: center;
+    color: $dataText;
+    background-color: $label_accent;
+}
+#selrevScrollTable, #assignScrollTable, #abstractsScrollTable, #revabsScrollTable, #selabsScrollTable, #roomsScrollTable, #keywordsScrollTable, #affiliationsScrollTable, #authorsScrollTable, #usersScrollTable {
+    background-color: $color_P_3;
+    width: 100%;
+    font-size: 0.8em;
+    border: solid 1px $label_accent;
+}
+#selrevStaticTable > thead > tr {
+    height: 40px;
+}
+#assignStaticTable > thead > tr {
+    height: 40px;
+}
+#revabsStaticTable > thead > tr {
+    height: 40px;
+}
+#selabsStaticTable > thead > tr {
+    height: 40px;
+}
+
+// ======= ======= ======= ADMIN TABLES ======= ======= ======= //
+// ======= ======= ======= ADMIN TABLES ======= ======= ======= //
+// ======= ======= ======= ADMIN TABLES ======= ======= ======= //
+
+/* ======= rooms (5 columns) ======= */
+#roomsStaticTable > thead > tr > th:nth-of-type(1), #roomsScrollTable > tbody > tr > td:nth-of-type(1) {
+    width: 40%;
+    text-align: center;
+}
+#roomsStaticTable > thead > tr > th:nth-of-type(2), #roomsScrollTable > tbody > tr > td:nth-of-type(2) {
+    width: 10%;
+    text-align: center;
+}
+#roomsStaticTable > thead > tr > th:nth-of-type(3), #roomsScrollTable > tbody > tr > td:nth-of-type(3) {
+    width: 30%;
+    text-align: center;
+}
+#roomsStaticTable > thead > tr > th:nth-of-type(4), #roomsScrollTable > tbody > tr > td:nth-of-type(4) {
+    width: 10%;
+    padding-right: 10px;
+    text-align: right;
+}
+#roomsStaticTable > thead > tr > th:nth-of-type(5), #roomsScrollTable > tbody > tr > td:nth-of-type(5) {
+    width: 10%;
+    padding-left: 10px;
+    text-align: left;
+}
+
+/* ======= keywords (4 columns) ======= */
+#keywordsStaticTable > thead > tr > th:nth-of-type(1), #keywordsScrollTable > tbody > tr > td:nth-of-type(1) {
+    width: 60%;
+    text-align: right;
+}
+#keywordsStaticTable > thead > tr > th:nth-of-type(2), #keywordsScrollTable > tbody > tr > td:nth-of-type(2) {
+    width: 20%;
+    text-align: center;
+}
+#keywordsStaticTable > thead > tr > th:nth-of-type(3) {
+    width: 20%;
+    text-align: center;
+}
+#keywordsScrollTable > tbody > tr > td:nth-of-type(3) {
+    width: 10%;
+    padding-right: 10px;
+    text-align: right;
+}
+#keywordsStaticTable > thead > tr > th:nth-of-type(4), #keywordsScrollTable > tbody > tr > td:nth-of-type(4) {
+    width: 10%;
+    padding-left: 10px;
+    text-align: left;
+}
+
+/* ======= affiliations (4 columns) ======= */
+#affiliationsStaticTable > thead > tr > th:nth-of-type(1), #affiliationsScrollTable > tbody > tr > td:nth-of-type(1) {
+    width: 40%;
+    padding-right: 10px;
+    text-align: right;
+}
+#affiliationsStaticTable > thead > tr > th:nth-of-type(2), #affiliationsScrollTable > tbody > tr > td:nth-of-type(2) {
+    width: 40%;
+    padding-left: 10px;
+    text-align: left;
+}
+#affiliationsStaticTable > thead > tr > th:nth-of-type(3) {
+    width: 20%;
+    text-align: center;
+}
+#affiliationsScrollTable > tbody > tr > td:nth-of-type(3) {
+    width: 10%;
+    padding-right: 10px;
+    text-align: right;
+}
+#affiliationsStaticTable > thead > tr > th:nth-of-type(4), #affiliationsScrollTable > tbody > tr > td:nth-of-type(4) {
+    width: 10%;
+    padding-left: 10px;
+    text-align: left;
+}
+
+/* ======= authors (4 columns) ======= */
+#authorsStaticTable > thead > tr > th:nth-of-type(1), #authorsScrollTable > tbody > tr > td:nth-of-type(1) {
+    width: 40%;
+    padding-right: 10px;
+    text-align: right;
+}
+#authorsStaticTable > thead > tr > th:nth-of-type(2), #authorsScrollTable > tbody > tr > td:nth-of-type(2) {
+    width: 40%;
+    padding-left: 10px;
+    text-align: left;
+}
+#authorsStaticTable > thead > tr > th:nth-of-type(3) {
+    width: 20%;
+    text-align: center;
+}
+#authorsScrollTable > tbody > tr > td:nth-of-type(3) {
+    width: 10%;
+    padding-right: 10px;
+    text-align: right;
+}
+#authorsStaticTable > thead > tr > th:nth-of-type(4), #authorsScrollTable > tbody > tr > td:nth-of-type(4) {
+    width: 10%;
+    padding-left: 10px;
+    text-align: left;
+}
+
+/* ======= users (3 columns) ======= */
+#usersStaticTable > thead > tr > th:nth-of-type(1) {
+    width: 40%;
+    padding-right: 60px;
+    text-align: right;
+}
+#usersScrollTable > tbody > tr > td:nth-of-type(1) {
+    width: 40%;
+    padding-right: 30px;
+    text-align: right;
+}
+#usersStaticTable > thead > tr > th:nth-of-type(2), #usersScrollTable > tbody > tr > td:nth-of-type(2) {
+    width: 10%;
+    text-align: center;
+}
+#usersStaticTable > thead > tr > th:nth-of-type(3), #usersScrollTable > tbody > tr > td:nth-of-type(3) {
+    width: 10%;
+    text-align: center;
+}
+#usersStaticTable > thead > tr > th:nth-of-type(4), #usersScrollTable > tbody > tr > td:nth-of-type(4) {
+    width: 10%;
+    text-align: center;
+}
+#usersStaticTable > thead > tr > th:nth-of-type(5) {
+    width: 20%;
+    text-align: center;
+}
+#usersScrollTable > tbody > tr > td:nth-of-type(5) {
+    width: 10%;
+    padding-right: 10px;
+    text-align: right;
+}
+#usersScrollTable > tbody > tr > td:nth-of-type(6) {
+    width: 10%;
+    padding-left: 10px;
+    text-align: left;
+}
+
+
+
+// ======= ======= ======= REVIEWERS TABLES ======= ======= ======= //
+// ======= ======= ======= REVIEWERS TABLES ======= ======= ======= //
+// ======= ======= ======= REVIEWERS TABLES ======= ======= ======= //
+
+/* ======= select_reviewers  (3 columns) ======= */
+#selrevStaticTable > thead > tr > th:nth-of-type(1), #selrevScrollTable > thead > tr > th:nth-of-type(1) {
+    width: 40%;
+    padding-right: 20px;
+    text-align: right;
+}
+#selrevStaticTable > thead > tr > th:nth-of-type(2), #selrevScrollTable > thead > tr > th:nth-of-type(2) {
+    width: 30%;
+    padding-left: 10px;
+    text-align: left;
+}
+#selrevStaticTable > thead > tr > th:nth-of-type(3), #selrevScrollTable > thead > tr > th:nth-of-type(3) {
+    width: 30%;
+    padding-left: 40px;
+    text-align: left;
+}
+
+/* ======= ... scroll  (3 columns) ======= */
+#selrevScrollTable > tbody > tr > td:nth-of-type(1) {
+    max-width: 400px;
+    padding-right: 10px;
+    overflow: hidden;
+    text-align: right;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#selrevScrollTable > tbody > tr > td:nth-of-type(1) > a {
+    text-decoration: none;
+}
+#selrevScrollTable > tbody > tr > td:nth-of-type(1) {
+    padding: 10px;
+    font-size: 0.9em;
+    text-align: right;
+    color: $form_label;
+}
+#selrevScrollTable > tbody > tr > td:nth-of-type(2) {
+    padding: 10px;
+    font-size: 0.9em;
+    text-align: left;
+}
+#selrevScrollTable > tbody > tr > td:nth-of-type(3) {
+    padding: 10px;
+    font-size: 0.9em;
+    text-align: left;
+}
+#selrevScrollTable > tbody > tr > td:nth-of-type(3) > input[type=checkbox] {
+    width: 20px;
+    height: 20px;
+}
+
+// ======= ======= ======= ASSIGN REVIEWERS TABLES ======= ======= ======= //
+// ======= ======= ======= ASSIGN REVIEWERS TABLES ======= ======= ======= //
+// ======= ======= ======= ASSIGN REVIEWERS TABLES ======= ======= ======= //
+
+/* ======= assign_reviewers (5 columns) ======= */
+#assignStaticTable, #assignScrollTable {
+    width: 100%;
+}
+#assignStaticTable > thead > tr > th:nth-of-type(1) {
+    width: 40%;
+    padding-left: 10px;
+    text-align: center;
+}
+#assignStaticTable > thead > tr > th:nth-of-type(2) {
+    width: 20%;
+    text-align: center;
+}
+#assignStaticTable > thead > tr > th:nth-of-type(3) {
+    width: 10%;
+    text-align: center;
+}
+#assignStaticTable > thead > tr > th:nth-of-type(4) {
+    width: 10%;
+    text-align: center;
+}
+#assignStaticTable > thead > tr > th:nth-of-type(5) {
+    width: 10%;
+    text-align: center;
+}
+
+/* ======= ...scroll (5 columns) ======= */
+#assignScrollTable {
+    // height: 180px;
+    overflow-y: scroll;
+}
+#assignScrollTable > tbody > tr > td:nth-of-type(1) {
+    width: 50%;
+    text-align: left;
+}
+#assignScrollTable > tbody > tr > td:nth-of-type(2) {
+    width: 20%;
+    text-align: center;
+}
+#assignScrollTable > tbody > tr > td:nth-of-type(3) {
+    width: 10%;
+    text-align: center;
+}
+#assignScrollTable > tbody > tr > td:nth-of-type(4) {
+    width: 10%;
+    text-align: center;
+}
+#assignScrollTable > tbody > tr > td:nth-of-type(5) {
+    width: 10%;
+    text-align: center;
+}
+#assignScrollTable > tbody > tr > td:nth-of-type(3) > select {
+    width: 100px;
+}
+#assignScrollTable > tbody > tr > td:nth-of-type(4) > select {
+    width: 100px;
+}
+#assignScrollTable > tbody > tr > td {
+    padding: 10px 5px;
+    font-size: 0.9em;
+    text-align: center;
+    color: $form_label;
+}
+#assignScrollTable > tbody > tr > td:nth-of-type(1) {
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    /*white-space: nowrap;*/
+}
+#assignScrollTable > tbody > tr > td:nth-of-type(1) > a {
+    text-decoration: none;
+}
+
+// ======= ======= ======= SELECT ABSTRACT TABLES ======= ======= ======= //
+// ======= ======= ======= SELECT ABSTRACT TABLES ======= ======= ======= //
+// ======= ======= ======= SELECT ABSTRACT TABLES ======= ======= ======= //
+
+// /* ======= select_abstracts (7 columns)) ======= */
+#selabsStaticTable > thead > tr > th:nth-of-type(1) {
+    width: 45%;
+    text-align: center;
+}
+#selabsStaticTable > thead > tr > th:nth-of-type(2) {
+    width: 12%;
+    text-align: center;
+}
+#selabsStaticTable > thead > tr > th:nth-of-type(3) {
+    width: 12%;
+    text-align: center;
+}
+#selabsStaticTable > thead > tr > th:nth-of-type(4) {
+    width: 12%;
+    text-align: center;
+}
+#selabsStaticTable > thead > tr > th:nth-of-type(5) {
+    width: 5%;
+    text-align: center;
+}
+#selabsStaticTable > thead > tr > th:nth-of-type(6) {
+    width: 5%;
+    text-align: center;
+}
+#selabsStaticTable > thead > tr > th:nth-of-type(7) {
+    width: 10%;
+    text-align: center;
+    padding-right: 5px;
+}
+#selabsStaticTable > thead > tr > #reviewersFilters > select {
+    width: 100px;
+}
+#selabsStaticTable > thead > tr > th {
+    text-align: center;
+}
+
+/* ======= ... scroll (7 columns)) ======= */
+#selabsScrollTable {
+    // height: 180px;
+    overflow-y: scroll;
+}
+#selabsScrollTable > tbody > tr > td:nth-of-type(1) {
+    width: 45%;
+    text-align: left;
+}
+#selabsScrollTable > tbody > tr > td:nth-of-type(2) {
+    width: 12%;
+    text-align: center;
+}
+#selabsScrollTable > tbody > tr > td:nth-of-type(3) {
+    width: 12%;
+    text-align: center;
+}
+#selabsScrollTable > tbody > tr > td:nth-of-type(4) {
+    width: 12%;
+    text-align: center;
+}
+#selabsScrollTable > tbody > tr > td:nth-of-type(5) {
+    width: 5%;
+    text-align: center;
+}
+#selabsScrollTable > tbody > tr > td:nth-of-type(6) {
+    width: 5%;
+    text-align: center;
+}
+#selabsScrollTable > tbody > tr > td:nth-of-type(7) {
+    width: 10%;
+    text-align: center;
+}
+#selabsScrollTable > tbody > tr > td:nth-of-type(1) {
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#selabsScrollTable > tbody > tr > td {
+    height: 15px;
+    padding: 5px;
+    font-size: 0.9em;
+    text-align: right;
+    color: $form_label;
+}
+#selabsScrollTable > tbody > tr > td > a {
+    text-decoration: none;
+}
+
+// ======= ======= ======= REVIEW ABSTRACT TABLE ======= ======= ======= //
+// ======= ======= ======= REVIEW ABSTRACT TABLE ======= ======= ======= //
+// ======= ======= ======= REVIEW ABSTRACT TABLE ======= ======= ======= //
+
+// /* ======= select_abstracts (7 columns)) ======= */
+#revabsStaticTable > thead > tr > th:nth-of-type(1) {
+    width: 35%;
+    text-align: center;
+}
+#revabsStaticTable > thead > tr > th:nth-of-type(2) {
+    width: 12%;
+    text-align: center;
+}
+#revabsStaticTable > thead > tr > th:nth-of-type(3) {
+    width: 12%;
+    text-align: center;
+}
+#revabsStaticTable > thead > tr > th:nth-of-type(4) {
+    width: 12%;
+    text-align: center;
+}
+#revabsStaticTable > thead > tr > th:nth-of-type(5) {
+    width: 10%;
+    text-align: center;
+}
+#revabsStaticTable > thead > tr > th:nth-of-type(6) {
+    width: 4%;
+    text-align: center;
+    padding-right: 5px;
+}
+#revabsStaticTable > thead > tr > th:nth-of-type(7) {
+    width: 10%;
+    text-align: center;
+}
+#revabsStaticTable > thead > tr > #reviewersFilters > select {
+    width: 100px;
+}
+#revabsStaticTable > thead > tr > th {
+    text-align: center;
+}
+
+/* ======= ... scroll (7 columns)) ======= */
+#revabsScrollTable {
+    // height: 180px;
+    // overflow-y: scroll;
+}
+#revabsScrollTable > tbody > tr > td:nth-of-type(1) {
+    width: 35%;
+    text-align: left;
+}
+#revabsScrollTable > tbody > tr > td:nth-of-type(2) {
+    width: 12%;
+    text-align: center;
+}
+#revabsScrollTable > tbody > tr > td:nth-of-type(3) {
+    width: 12%;
+    text-align: center;
+}
+#revabsScrollTable > tbody > tr > td:nth-of-type(4) {
+    width: 12%;
+    text-align: center;
+}
+#revabsScrollTable > tbody > tr > td:nth-of-type(5) {
+    width: 10%;
+    text-align: center;
+}
+#revabsScrollTable > tbody > tr > td:nth-of-type(6) {
+    width: 4%;
+    text-align: center;
+}
+#revabsScrollTable > tbody > tr > td:nth-of-type(7) {
+    width: 10%;
+    text-align: center;
+}
+#revabsScrollTable > tbody > tr > td:nth-of-type(1) {
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#revabsScrollTable > tbody > tr > td {
+    height: 20px;
+    padding: 5px;
+    font-size: 0.9em;
+    text-align: right;
+    color: $form_label;
+}
+#revabsScrollTable > tbody > tr > td > a {
+    text-decoration: none;
+}
+#revabsScrollTable > tbody > .tableSpacer {
+    height: 1px;
+    background-color: $label_accent;
+}
+.commentBox {
+    visibility: hidden;
+    height: 80px;
+    margin: 0 22px;
+}
+.commentEntry {
+    float: left;
+    width: 80%;
+    margin: 5px 0;
+}
+.commentBtn {
+    margin: 5px 10px;
+    background-color: $color_Sa_3;
+}
+.commentBox > .commentBtn:nth-of-type(1) {
+    margin-top: 10px;
+}
+.keywordCheck {
+    width: 20px;
+    height: 20px;
+}
+
+
+// ======= ======= ======= MY ABSTRACT TABLES ======= ======= ======= //
+// ======= ======= ======= MY ABSTRACT TABLES ======= ======= ======= //
+// ======= ======= ======= MY ABSTRACT TABLES ======= ======= ======= //
+
+/* ======= abstracts/reviewers headers ======= */
+#abstractsStaticTable > thead > tr, #reviewersStaticTable > thead > tr {
+    height: 40px;
+    // background-color: $label_accent;
+}
+#abstractsStaticTable > thead > tr > th:nth-of-type(1), #abstractsScrollTable > thead > tr > th:nth-of-type(1) {
+    width: 10%;
+    text-align: center;
+}
+#abstractsStaticTable > thead > tr > th:nth-of-type(2), #abstractsScrollTable > thead > tr > th:nth-of-type(2) {
+    width: 80%;
+    text-align: center;
+}
+#abstractsStaticTable > thead > tr > th:nth-of-type(3) {
+    width: 10%;
+    text-align: center;
+}
+
+/* ======= my_abstracts (4 columns)) ======= */
+#abstractsScrollTable > tbody > tr > .idCell {
+    font-size: 0.9em;
+    text-align: center;
+    color: $form_label;
+}
+#abstractsScrollTable > tbody > tr > .titleCell {
+    height: 30px !important;
+    max-width: 820px;
+    text-align: left;
+}
+#abstractsScrollTable > tbody > tr > .titleCell > a {
+    text-decoration: none;
+    margin-bottom: 10px;
+}
+#abstractsScrollTable > tbody > tr > .authorCell {
+    text-align: left;
+}
+#abstractsScrollTable > tbody > tr > .adminCell {
+    font-size: 0.7em;
+    text-align: center;
+}
+#abstractsScrollTable > tbody > tr > .EDlink {
+    font-size: 0.7em;
+    text-align: center;
+    text-decoration: none;
+    color: #626e60;
+}
+.abstractAuthors {
+    height: 10px !important;
+}
+.abstractMessage {
+    background-color: $label_accent;
+}
+.abstractMessage > td > p {
+    width: 80%;
+    height: 40px;
+    margin: 40px auto;
+}
+.authorCell {
+    margin-bottom: 2px !important;
+}
+.titleCell > a {
+    font-size: 1em;
+    text-decoration: none;
+    color: #af473c;
+}
+.titleCell > a:hover {
+    color: #0040ff;
+}
+.authorCell > span > a {
+    font-size: 0.8em;
+    text-decoration: none;
+    color: #af473c;
+}
+.authorCell > span > a:hover {
+    color: #0040ff;
+}
+.authorCell > span:nth-of-type(2) {
+    margin-right: 20px;
+}
+.mainAuthLabel {
+    margin-left: 8px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #626e60
+}
+.authorText {
+    margin: 2px;
+    font-size: 0.8em;
+    color: #626e60;
+}
+.authorText > span:nth-of-type(2) > a {
+    text-decoration: none;
+    color: #626e60;
+}
+
+.tableSpacer > td {
+    height: 5px !important;
+    padding: 0 !important;
+    background-color: $label_accent;
+}
+
+
+// ======= ======= ======= NEW ABSTRACT ======= ======= ======= //
+// ======= ======= ======= NEW ABSTRACT ======= ======= ======= //
+// ======= ======= ======= NEW ABSTRACT ======= ======= ======= //
+
+/* ======= row height ======= */
+.aR_1 {
+    height: 60px;
+    padding-top: 20px;
+}
+.aR_2 {
+    height: 80px;
+}
+.aR_3 {
+    height: 220px;
+}
+.aR_4 {
+    height: 40px;
+}
+.aR_4 {
+    width: 95%;
+    margin: 0 auto;
+    padding-top: 5px;
+    background-color: $label_accent;
+}
+.scrollBox, .adminScrollBox, .affiliationScrollBox {
+    width: 90%;
+    height: 140px;
+    margin-left: 20px;
+    padding: 5px;
+    background-color: $color_P_3;
+    border: solid 1px $label_accent;
+    overflow-y: scroll;
+}
+.adminScrollBox {
+    width: 100%;
+    margin-left: 0;
+    height: auto;
+}
+.affiliationScrollBox {
+    width: 95%;
+    height: 210px;
+    margin-bottom: 20px;
+    background-color: $dataBox;
+}
+
+/* ======= button row ======= */
+.titleRow_4, .authorRow_4, .textRow_4, .keywordRow_4 {
+    display: none;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.newAbsLink {
+    height: 18px;
+    width: 120px;
+    margin: 0 10px;
+    padding-top: 2px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 0.8em;
+    border-radius: 4px;
+    color: white;
+    background-color: $secB_grad_1;
+    // -webkit-box-shadow: 2px 2px 2px #666;
+    // -moz-box-shadow: 2px 2px 2px #666;
+    // box-shadow: 2px 2px 2px #666;
+}
+.blankBtn {
+    visibility: hidden;
+}
+.newAbsLink:hover {
+    background-color: $bright_accent;
+}
+
+// ======= ======= ======= NEW ABSTRACT DETAILS ======= ======= ======= //
+// ======= ======= ======= NEW ABSTRACT DETAILS ======= ======= ======= //
+// ======= ======= ======= NEW ABSTRACT DETAILS ======= ======= ======= //
+
+/* ======= newAbstract/text/textarea ======= */
+#abstract_abs_title {
+    width: 90%;
+    height: 30px;
+    margin-left: 30px;
+    padding: 10px;
+    font-size: 0.8em;
+    text-align: left;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+#abstract_abs_text {
+    width: 90%;
+    margin: 20px;
+    margin-left: 30px;
+    padding: 10px;
+    font-size: 0.8em;
+    text-align: left;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.sec_2 {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.sec_3 {
+    margin-right: 80px;
+}
+.sec_3 > i {
+    margin-left: 40px;
+}
+.sec_4 {
+    margin-left: 35px;
+}
+
+/* ======= newAbstract/buttons ======= */
+.abstractBtn {
+    position: absolute;
+    width: 120px;
+    height: 20px;
+    margin: 5px;
+    padding-top: 4px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 0.9em;
+    color: white;
+    background-color: $color_Sa_3;
+    border-radius: 4px;
+}
+.abstractBtn:hover {
+    background-color: $bright_accent;
+}
+
+/* ======= newAbstract/keywords ======= */
+.keywordLabel {
+    width: 360px;
+}
+.keywordLabel > span:nth-of-type(2), .keywordLabel > span:nth-of-type(3) {
+    margin-left: 70px;
+}
+.keyword_entries {
+    height: 40px;
+}
+
+/* ======= invited/session labels ======= */
+.invitedLabel, .sessionLabel {
+    display: block;
+    width: 360px;
+}
+.sessionLabel {
+    margin-top: 20px;
+}
+
+/* ======= invited/session containers ======= */
+.invited_entries {
+    height: 80px;
+}
+.invited_entries > span:nth-of-type(1) > input {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-left: 30px;
+    vertical-align: text-top;
+}
+.invited_entries > span:nth-of-type(1) > i {
+    display: inline-block;
+}
+#abstract_presentation_id {
+    width: 80px;
+    margin-left: 30px;
+}
+
+/* ======= browser text entry adjustments ======= */
+@-moz-document url-prefix() {
+    #abstract_abs_title, #abstract_abs_text, .dataEntry {
+        padding: 2px 10px;
+    }
+}
+@-moz-document url-prefix() {
+    .selectEntry {
+        padding: 0 1px;
+    }
+}
+
+// ======= ======= ======= ADMIN TASKS ======= ======= ======= //
+// ======= ======= ======= ADMIN TASKS ======= ======= ======= //
+// ======= ======= ======= ADMIN TASKS ======= ======= ======= //
+
+/* ======= admin tasks ======= */
+.taskRow {
+    width: 670px;
+    height: 60px;
+    margin: 0 auto;
+    padding-top: 10px;
+    border: solid 1px red;
+}
+.dataBox > form:nth-of-type(1) > .taskRow {
+    border-top: solid 2px red;
+}
+.dataBox > .taskRow {
+    border-bottom: solid 2px red;
+}
+.adminTask {
+    float: left;
+    width: 120px;
+    text-align: right;
+}
+.adminData, .adminBtns {
+    float: left;
+    width: 520px;
+    text-align: left;
+}
+.adminBtns {
+    padding-top: 10px;
+}
+.task {
+    margin: 10px;
+}
+.taskInputs > input[type=text] {
+    text-align: center;
+}
+.adminBtn {
+    width: 140px;
+    height: 28px;
+    margin: 5px;
+    font-size: 0.8em;
+    text-align: center;
+    text-decoration: none;
+    color: red;
+    border-radius: 4px;
+    border: solid 2px #813772;
+}
+.adminBtn:hover {
+    color: white;
+    background-color: #813772
+}
+.adminLink {
+    width: 140px;
+    height: 128px;
+    margin: 5px;
+    margin-top: 10px;
+    padding: 5px;
+    vertical-align: baseline;
+    font-size: 0.8em;
+    text-align: center;
+    text-decoration: none;
+    color: red;
+    border-radius: 4px;
+    border: solid 2px #813772;
+}
+.adminLink:hover {
+    color: white;
+    background-color: #813772
+}
+.adminEntry {
+    width: 100px;
+    height: 20px;
+    font-size: 0.8em;
+}
+.adminTable {
+    margin: 20px auto;
+}

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  room: one
+  user: one
+  session_start: 2017-11-05 08:25:00
+  session_type: MyString
+
+two:
+  room: two
+  user: two
+  session_start: 2017-11-05 08:25:00
+  session_type: MyString

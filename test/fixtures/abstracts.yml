@@ -1,0 +1,35 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  user: one
+  session: one
+  session_sequence: MyString
+  abs_title: MyString
+  abs_text: MyString
+  keyword_1: MyString
+  keyword_2: MyString
+  keyword_3: MyString
+  present_request: MyString
+  present_assigned: MyString
+  reviewer1_rec: MyString
+  reviewer2_rec: MyString
+  invited: false
+  paper: false
+
+two:
+  user: two
+  user: two
+  session: two
+  session_sequence: MyString
+  abs_title: MyString
+  abs_text: MyString
+  keyword_1: MyString
+  keyword_2: MyString
+  keyword_3: MyString
+  present_request: MyString
+  present_assigned: MyString
+  reviewer1_rec: MyString
+  reviewer2_rec: MyString
+  invited: false
+  paper: false

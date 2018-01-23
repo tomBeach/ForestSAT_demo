@@ -1,0 +1,223 @@
+/* ======= testing ======= */
+/* ======= dark accents ======= */
+/* ======= generated orange ======= */
+/* ======= modified orange ======= */
+/* ======= generated blue ======= */
+/* ======= modified blue ======= */
+/* ======= generated green ======= */
+/* ======= modified green ======= */
+/* ======= green gradient ======= */
+/* ======= purple gradient ======= */
+/* ======= blue gradient ======= */
+/*font-family: 'Raleway', sans-serif;*/
+/*font-family: 'Comfortaa', sans-serif;*/
+/*font-family: 'Jura', sans-serif;*/
+/*font-family: 'Poiret One', sans-serif;*/
+/*font-family: 'Dosis', sans-serif;*/
+/* ======= general ======= */
+body {
+  font-family: "Ariel", sans-serif; }
+
+div {
+  box-sizing: border-box; }
+
+table {
+  border-collapse: collapse; }
+
+i {
+  font-size: 1em;
+  font-style: italic;
+  color: #94a092; }
+
+#pageWrap {
+  display: flex;
+  flex-direction: row;
+  height: 100%; }
+
+/* ======= sections ======= */
+#sidebar, #menuBox, #contentBox {
+  margin: 0;
+  height: 100vh; }
+
+#sidebar {
+  width: 14%;
+  background: url(forest_banner.jpg) no-repeat;
+  background-size: cover;
+  z-index: -1; }
+
+#menuBox {
+  width: 14%;
+  background-color: #BD563B; }
+
+#contentBox {
+  width: 74%;
+  background-color: #731C05;
+  min-width: 400px; }
+
+.clearfix::after {
+  display: table;
+  clear: both;
+  content: ""; }
+
+/* ======= messages ======= */
+#messages {
+  height: 30px;
+  width: 80%;
+  margin: 20px auto;
+  margin-top: 60px;
+  background-color: #9E391F; }
+
+.notice {
+  margin: 5px;
+  margin-left: 10px;
+  text-align: center;
+  color: red; }
+
+/* ======= accent ======= */
+.titleBox, .title_stripe {
+  width: 90%;
+  height: 80px;
+  text-align: right;
+  border-bottom: solid 8px #295E78; }
+
+.title_stripe {
+  margin: 0;
+  margin-top: 16px;
+  width: 100%; }
+
+.sidebar_stripe {
+  float: right;
+  width: 40%;
+  clear: both; }
+
+/* ======= titles ======= */
+.titleBox > p > span:nth-of-type(1) {
+  margin: 0;
+  width: 100%;
+  font-family: 'Raleway', sans-serif;
+  font-size: 65px;
+  color: #f0552e; }
+
+.titleBox > p > span:nth-of-type(2) {
+  margin: 0;
+  width: 100%;
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 65px;
+  color: white; }
+
+/* ======= menu ======= */
+.menuGroup {
+  width: 90%;
+  margin: 10px auto;
+  text-align: right; }
+
+.menuLabel {
+  margin: 2px;
+  padding: 2px;
+  padding-left: 10px;
+  text-align: left;
+  color: #5A8F1C;
+  background-color: #ed4c2c; }
+
+#menuBox > div:nth-of-type(2) > p:nth-of-type(1) {
+  margin-top: 75px; }
+
+.menuItem {
+  display: block;
+  height: 20px;
+  width: 80%;
+  margin: 10px;
+  margin-left: 20%;
+  padding-top: 5px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 0.9em;
+  color: white;
+  border-radius: 4px; }
+
+.signin > a {
+  background-color: #8585e0; }
+
+.users > a {
+  background-color: #7070db; }
+
+.abstracts > a {
+  background-color: #5c5cd6; }
+
+.admin > a {
+  background-color: #4747d1; }
+
+.menuItem:hover {
+  background-color: #75AC36; }
+
+/* ======= dataBox ======= */
+#dataBox {
+  width: 80%;
+  height: 420px;
+  margin: 20px auto;
+  background-color: #f0552e;
+  border: solid 2px #f0552e; }
+
+.dataTitle {
+  width: 95%;
+  margin: 0 auto;
+  padding: 20px;
+  font-size: 1.8em;
+  text-align: center;
+  font-family: 'Raleway', sans-serif;
+  color: #033249; }
+
+.dataTitle > span:nth-of-type(1) {
+  color: #88DA2A; }
+
+.dataText, .dataInfo {
+  width: 80%;
+  margin: 20px auto;
+  font-size: 1.2em;
+  text-align: left;
+  color: #033249; }
+
+.dataInfo {
+  width: 70%;
+  list-style-type: square; }
+
+.dataInfo > li > span:nth-of-type(1) {
+  color: #295E78; }
+
+.dataLabel {
+  width: 100px;
+  margin: 20px;
+  margin-top: 0;
+  padding: 2px 10px;
+  text-align: left;
+  color: #5A8F1C;
+  background-color: #ed4c2c; }
+
+.dataEntry {
+  margin: 0;
+  padding: 10px;
+  font-size: 0.8em;
+  text-align: left;
+  border-radius: 4px;
+  box-sizing: border-box; }
+
+.textEntry {
+  width: 95%;
+  height: 30px;
+  margin: 0 5px; }
+
+.areaEntry {
+  width: 95%; }
+
+.authorEntry {
+  width: 20%;
+  height: 30px; }
+
+.afflEntry {
+  width: 20%;
+  height: 30px;
+  margin: 0 5px; }
+
+/* ======= general details ======= */
+
+/*# sourceMappingURL=styles_6_dev.css.map */

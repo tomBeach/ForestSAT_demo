@@ -1,0 +1,58 @@
+<!-- ======= devise/registrations/new.html.erb ======= -->
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), id: "new_user") do |f| %>
+
+    <div class="dataBox">
+        <div class="dataRow fR_1">
+            <h2 class="dataTitle">Register</h2>
+        </div>
+        <div class="dataRow">
+            <div class="formLabel">firstname</div>
+            <div class="formValue"><%= f.text_field :firstname, autofocus: true, value: "Thomas" %></div>
+        </div>
+        <div class="dataRow">
+            <div class="formLabel">lastname</div>
+            <div class="formValue"><%= f.text_field :lastname, autofocus: true, value: "Beach" %></div>
+        </div>
+        <div class="dataRow">
+            <div class="formLabel">username</div>
+            <div class="formValue"><%= f.text_field :username, autofocus: true, value: "teb" %></div>
+        </div>
+        <div class="dataRow">
+            <div class="formLabel">email</div>
+            <div class="formValue"><%= f.email_field :email, autofocus: true, value: "tbeach2k@gmail.com" %></div>
+        </div>
+        <div class="dataRow">
+            <div class="formLabel">password</div>
+            <div class="formValue">
+                <%= f.password_field :password, autocomplete: "off", value: "teb123" %>
+                <% if @minimum_password_length %>
+                    <i><%= @minimum_password_length %> characters minimum</i>
+                <% end %>
+            </div>
+        </div>
+        <div class="dataRow">
+            <div class="formLabel">password confirm</div>
+            <div class="formValue"><%= f.password_field :password_confirmation, autocomplete: "off", value: "teb123" %></div>
+        </div>
+        <div class="dataRow">
+            <div class="formLabel">&nbsp;</div>
+            <div class="formValue"><%= f.submit "Register", id: "signup", class: "formBtn formBtn_1" %></div>
+        </div>
+
+        <div id="newUserSpacer" class="dataSpacer">
+            &nbsp;
+        </div>
+
+        <div class="buttonRow">
+            <%= link_to "Back", request.referer.present? ? request.referer : "/home", class: "formLink" %>
+            <%- if controller_name != 'sessions' %>
+                <%= link_to "Log in", new_session_path(resource_name), class: "formLink" %>
+            <% end -%>
+            <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+                <%= link_to "Resend confirm", new_confirmation_path(resource_name), class: "formLink_wide" %>
+                <i>resend confirmation instructions</i>
+            <% end -%>
+        </div>
+    </div>
+<% end %>

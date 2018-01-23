@@ -1,0 +1,201 @@
+<!-- ======= abstracts edit_form ======= -->
+
+<!-- ======= presenting uthor ======= -->
+<% selected_pres_author = nil %>
+<% if @abstract[:pres_author_id] %>
+    <% selected_pres_author = @abstract[:pres_author_id] %>
+<% end %>
+
+<!-- ======= users selectbox ======= -->
+<% user_name_ids = [] %>
+<% @users.each_with_index do |user, index| %>
+    <% fullname = user[:firstname] + " " + user[:lastname] %>
+    <% user_name_ids << [fullname, user[:id]] %>
+<% end %>
+
+<!-- ======= authors selectbox ======= -->
+<% author_name_ids = [] %>
+<% @authors_data_array.each do |author| %>
+    <% author_name = author["firstname"] + " " + author["lastname"] %>
+    <% author_name_ids << [author_name, author["id"]] %>
+<% end %>
+
+<!-- ======= init keywords ======= -->
+<% selected_keyword1 = nil %>
+<% if @abstract[:keyword_1] %>
+    <% puts "@abstract[:keyword_1]: #{@abstract[:keyword_1].inspect}" %>
+    <% selected_keyword1 = @abstract[:keyword_1] %>
+<% end %>
+<% selected_keyword2 = nil %>
+<% if @abstract[:keyword_2] %>
+    <% selected_keyword2 = @abstract[:keyword_2] %>
+<% end %>
+<% selected_keyword3 = nil %>
+<% if @abstract[:keyword_3] %>
+    <% selected_keyword3 = @abstract[:keyword_3] %>
+<% end %>
+
+<% keywords = [nil, nil] %>
+<% @keywords.each_with_index do |keyword, index| %>
+    <% keywords << [keyword[:keyword_name], keyword[:id]] %>
+<% end %>
+<% puts "keywords: #{keywords.inspect}" %>
+
+<% request_select = [["oral", "oral"], ["poster", "poster"], ["no preference", "no preference"]] %>
+<% present_request = @abstract[:present_request] %>
+
+<%= form_for(@abstract, url: "/save_abstract") do |f| %>
+
+    <!-- ======= abstracts/show.html.erb ======= -->
+
+    <div class="editAbstractBox">
+
+        <!-- ======= ======= ======= title ======= ======= ======= -->
+        <div class="editAbstractRow_1">
+            <h2 class="dataTitle">Edit Abstract</h2>
+        </div>
+
+        <!-- ======= ======= ======= scroll ======= ======= ======= -->
+        <div class="editAbstractScroll">
+
+            <!-- ======= ======= ======= title ======= ======= ======= -->
+            <div class="editAbstractRow_2">
+                <p class="dataLabel">title</p>
+                <%= f.hidden_field :id, value: @abstract[:id] %>
+                <%= f.text_field :abs_title, class: "title", class: "textEntry leftEntry" %>
+            </div>
+
+            <!-- ======= ======= ======= title ======= ======= ======= -->
+            <div class="editAbstractRow_2_1">
+                <p class="dataLabel">text</p>
+                <%= f.text_area :abs_text, maxlength: "2500", placeholder: "Abstract Text", class: "areaEntry leftEntry", cols: "30", rows: "6" %>
+            </div>
+
+            <!-- ======= presenting ======= -->
+            <div class="editAbstractRow_3">
+                <p class="dataLabel">presenting author</p>
+                <p class="dataLabel submitter">submitter</p>
+                <p class="showPresentingAuthor">
+                    <%= f.select(:pres_author_id, options_for_select(author_name_ids, @abstract[:pres_author_id])) %>
+                </p>
+                <p class="showSubmitter">
+                    <%= f.select(:corr_author_id, options_for_select(user_name_ids, @abstract[:corr_author_id])) %>
+                </p>
+            </div>
+
+            <!-- ======= authors ======= -->
+            <div class="editAbstractRow_4">
+                <p class="dataLabel">authors</p>
+                <% puts "@authors_data: #{@authors_data.inspect}" %>
+
+                <% author_index = 0 %>
+                <% @authors_data.each do |key, value| %>
+                    <div class="authors">
+                        <p class="authorInfo">
+                            <span><%= value[:name] %></span>
+                            <%= fields_for :author do |auth| %>
+                                <span><%= check_box_tag "author[delete_authors][]", value[:id] %></span>
+                                <i>check to remove author with this affiliation from abstract</i>
+                            <% end %>
+                        </p>
+                    </div>
+                <% end %>
+            </div>
+
+            <!-- ======= add author ======= -->
+            <div class="editAbstractRow_5 newAuthorButton">
+                <p class="dataLabel authorLabels">
+                    <span><%= button_tag "Add author", type: "button", id: "add_author",  class: "formBtn formBtn_1" %></span>
+                    <span> <i>click to add new author data</i></span>
+                </p>
+            </div>
+            <div class="editAbstractRow_5 newAuthorEntries">
+                <p class="dataLabel authorLabels">
+                    <span>firstname</span>
+                    <span>lastname</span>
+                    <span>institution</span>
+                    <span>department</span>
+                </p>
+                <p>
+                    <%= fields_for :author do |auth| %>
+                        <span><%= text_field_tag "author[new_firstname]", "", class: "authorName entry firstname" %></span>
+                        <span><%= text_field_tag "author[new_lastname]", "", class: "authorName entry lastname" %></span>
+                    <% end %>
+                    <%= fields_for :affiliation do |aff| %>
+                        <span><%= text_field_tag "affiliation[new_institution]", "", class: "authorName entry firstname" %></span>
+                        <span><%= text_field_tag "affiliation[new_department]", "", class: "authorName entry lastname" %></span>
+                    <% end %>
+                    <%= fields_for :abstract_author do |abstract_author| %>
+                        <%= hidden_field_tag "abstract_author[new_author_type]", "secondary", class: "author author_type" %>
+                    <% end %>
+                    <span> <i> enter new author info</i> </span>
+                </p>
+            </div>
+
+            <!-- ======= keywords ======= -->
+            <div class="editAbstractRow_6">
+                <p class="dataLabel keywordLabels">
+                    <span>keyword 1</span>
+                    <span>keyword 2</span>
+                    <span>keyword 3</span>
+                </p>
+                    <% puts "selected_keyword1: #{selected_keyword1.inspect}" %>
+                    <% puts "selected_keyword2: #{selected_keyword2.inspect}" %>
+                    <% puts "selected_keyword3: #{selected_keyword3.inspect}" %>
+                    <%= f.select(:keyword_1, options_for_select(keywords, selected_keyword1), {}, { :class => "keywordSelect" }) %>
+                    <%= f.select(:keyword_2, options_for_select(keywords, selected_keyword2), {}, { :class => "keywordSelect" }) %>
+                    <%= f.select(:keyword_3, options_for_select(keywords, selected_keyword3), {}, { :class => "keywordSelect" }) %>
+            </div>
+
+            <!-- ======= admin: sessons, recommendations ======= -->
+            <% if current_user[:admin] %>
+
+                <%= fields_for :abstract do |auth| %>
+                  <div>
+                    <p class="dataLabel adminLabels">admin parameters</p>
+                    <div class="dataRow">
+                        <div class="formLabel">Session:</div>
+                        <div class="formValue"><%= @present %>[future function]</div>
+                    </div>
+                    <div class="dataRow">
+                        <div class="formLabel">Session Sequence:</div>
+                        <div class="formValue"><%= @abstract[:session_sequence] %>[future function]</div>
+                    </div>
+                    <div class="dataRow">
+                        <div class="formLabel">Assigned Session Type:</div>
+                        <div class="formValue"><%= @abstract[:present_assigned] %>[future function]</div>
+                    </div>
+                    <div class="dataRow">
+                        <div class="formLabel">Reviewer1 Recommendation:</div>
+                        <div class="formValue"><%= @abstract[:reviewer1_rec] %>&nbsp;</div>
+                    </div>
+                    <div class="dataRow">
+                        <div class="formLabel">Reviewer2 Recommendation:</div>
+                        <div class="formValue"><%= @abstract[:reviewer2_rec] %>&nbsp;</div>
+                    </div>
+                    <div class="dataRow">
+                        <div class="formLabel">Paper Candidate?:</div>
+                        <div class="formValue">
+                            <span><%= check_box_tag "abstract[paper]", true, @abstract[:paper] %></span>
+                            <i>check if a paper candidate</i>
+                        </div>
+                    </div>
+                    <div class="dataRow">
+                        <div class="formLabel">Invited?:</div>
+                        <div class="formValue">
+                            <span><%= check_box_tag "abstract[invited]", true, @abstract[:invited] %></span>
+                            <i>check if abstract was invited</i>
+                        </div>
+                    </div>
+                  </div>
+                <% end %>
+            <% end %>
+        </div>
+
+        <div class="buttonRow fR">
+            <%= link_to "Back", request.referer.present? ? request.referer : "/home", class: "formLink" %>
+            <%= button_tag "Save", type: "submit", id: "save_abstract",  class: "formBtn formBtn_1" %>
+        </div>
+
+    </div>
+<% end %>

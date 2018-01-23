@@ -1,0 +1,47 @@
+<!-- ======= authors/show.html.erb ======= -->
+
+<div class="dataBox">
+
+    <!-- ======= ======= ======= title ======= ======= ======= -->
+    <div class="dataRow fR_1">
+        <h2 class="dataTitle"><%= @author_data_values[:firstname] + " " + @author_data_values[:lastname] %></h2>
+    </div>
+    <div class="dataRow">
+        <div class="formLabel">firstname</div>
+        <div class="formValue"><%= @author_data_values[:firstname] %></div>
+    </div>
+    <div class="dataRow">
+        <div class="formLabel">lastname</div>
+        <div class="formValue"><%= @author_data_values[:lastname] %></div>
+    </div>
+
+    <div class="affiliationScrollBox">
+
+        <% @author_data_values[:institutions].each_with_index do |institution, index| %>
+            <% affl_id = @author_data_values[:affl_ids][index] %>
+            <% department = @author_data_values[:departments][index] %>
+            <% puts "institution: #{index} #{institution.inspect} #{department.inspect}" %>
+
+            <div class="dataRow">
+                <% if index == 0 %>
+                    <div class="formLabel">affiliations</div>
+                <% else %>
+                    <div class="formLabel">&nbsp;</div>
+                <% end %>
+                <div class="formValue">
+                    <span>
+                        <%= institution %> / <%= department %>
+                    </span>
+                </div>
+            </div>
+        <% end %>
+
+    </div>
+
+    <div class="buttonRow fR">
+        <%= link_to "Back", request.referer.present? ? request.referer : "/home", class: "formLink" %>
+        <% if current_user[:admin] %>
+            <%= link_to 'Edit', edit_author_path(@author), class: "formLink" %>
+        <% end %>
+    </div>
+</div>

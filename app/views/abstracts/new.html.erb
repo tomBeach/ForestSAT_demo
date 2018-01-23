@@ -1,0 +1,221 @@
+<!-- ======= abstracts new_form ======= -->
+
+<div class="dataBox">
+    <div class="dataRow aR_1">
+        <h2 class="dataTitle">New Abstract</h2>
+    </div>
+
+    <%= form_for(@abstract, url: "/signup_abstract") do |f| %>
+
+        <!-- ======= keyword initialize ======= -->
+        <% selected_keyword1 = nil %>
+        <% selected_keyword2 = nil %>
+        <% selected_keyword3 = nil %>
+        <% if @abstract[:keyword1_id] %>
+            <% selected_keyword1 = @abstract[:keyword1_id] %>
+        <% end %>
+        <% if @abstract[:keyword2_id] %>
+            <% selected_keyword2 = @abstract[:keyword2_id] %>
+        <% end %>
+        <% if @abstract[:keyword3_id] %>
+            <% selected_keyword3 = @abstract[:keyword3_id] %>
+        <% end %>
+
+        <!-- ======= session type request ======= -->
+        <% present_request = "no preference" %>
+        <% if @abstract[:present_request] %>
+            <% present_request = @abstract[:present_request] %>
+        <% end %>
+        <% request_type_array = [] %>
+        <% request_types = ["oral", "poster", "no preference"] %>
+        <% request_types.each_with_index do |request, index| %>
+            <% request_type_array << [request, request] %>
+        <% end %>
+
+        <!-- ======= keywords selectboxes ======= -->
+        <% keywords = [nil] %>
+        <% @keywords.each do |keyword| %>
+            <% keywords << [keyword[:keyword_name], keyword[:id]] %>
+        <% end %>
+        <% puts "keywords: #{keywords.inspect}" %>
+
+        <!-- ======= session selectbox ======= -->
+        <% sessions = [nil] %>
+        <% @sessions.each do |session| %>
+            <% session_org_id = Presentation.where(id: session[:id]).pluck(:session_org_id).first %>
+            <% puts "session_org_id: #{session_org_id.inspect}" %>
+            <% session_org = Author.find(session_org_id) %>
+            <% puts "session_org: #{session_org.inspect}" %>
+            <% session_org_name = session_org.full_name %>
+            <% sessions << [session[:session_title], session[:id]] %>
+        <% end %>
+        <% puts "sessions: #{sessions.inspect}" %>
+
+        <!-- ======= reviewer initialize ======= -->
+        <% selected_reviewer1 = nil %>
+        <% selected_reviewer2 = nil %>
+        <% if @abstract[:reviewer1_id] %>
+            <% selected_reviewer1 = @abstract[:reviewer1_id] %>
+        <% end %>
+        <% if @abstract[:reviewer2_id] %>
+            <% selected_reviewer2 = @abstract[:reviewer2_id] %>
+        <% end %>
+
+        <!-- ======= ======= ======= title (index 0) ======= ======= ======= -->
+        <!-- ======= ======= ======= title (index 0) ======= ======= ======= -->
+        <!-- ======= ======= ======= title (index 0) ======= ======= ======= -->
+
+        <%= fields_for :abstract do |abstract| %>
+            <%= abstract.hidden_field :corr_author_id, value: current_user[:id].to_s %>
+            <%= hidden_field_tag "admin_flag", @admin_flag.to_s %>
+
+            <!-- ======= label ======= -->
+            <div class="aR_2 toggle_input titleRow_2">
+                <p class="dataLabel">abstract title</p>
+            </div>
+
+            <!-- ======= entry ======= -->
+            <div class="aR_3 toggle_input titleRow_3">
+                <%= abstract.text_field :abs_title, maxlength: 200, placeholder: "Abstract Title (limit 200 characters)", class: "textEntry leftEntry" %>
+            </div>
+
+            <!-- ======= buttons ======= -->
+            <div class="aR_4 toggle_input titleRow_4">
+                <a id="cancelBtn_1" href="#" class="newAbsLink">cancel</a>
+                <a id="blankBtnA_1" href="#" class="newAbsLink blankBtn">&nbsp;</a>
+                <a id="blankBtnB_1" href="#" class="newAbsLink blankBtn">&nbsp;</a>
+                <a id="nextBtn_1" href="#" class="newAbsLink">next</a>
+            </div>
+        <% end %>
+
+        <!-- ======= ======= ======= authors (index 1) ======= ======= ======= -->
+        <!-- ======= ======= ======= authors (index 1) ======= ======= ======= -->
+        <!-- ======= ======= ======= authors (index 1) ======= ======= ======= -->
+
+        <!-- ======= primary author ======= -->
+        <div class="aR_2 toggle_input authorRow_2">
+            <p class="dataLabel">primary author</p>
+            <%= fields_for :author do |author| %>
+                <%= text_field_tag "author[firstnames][]", "", id: "primary_firstname", class: "dataEntry leftEntry", placeholder: "first name" %>
+                <%= text_field_tag "author[lastnames][]", "", id: "primary_lastname", class: "dataEntry", placeholder: "last name" %>
+            <% end %>
+            <%= fields_for :abstract_author do |abstract_author| %>
+                <%= hidden_field_tag "abstract_author[author_types][]", "primary", class: "author author_type" %>
+            <% end %>
+            <%= fields_for :abstract do |abstract| %>
+                <%= abstract.radio_button :pres_author_id, 0, class: "presenting" %>
+            <% end %>
+            <i class="radioLabel">presenting</i>
+            <%= fields_for :affiliation do |affiliation| %>
+                <%= text_field_tag "affiliation[institutions][]", "", id: "primary_institution", class: "dataEntry leftEntry", placeholder: "institution" %>
+                <%= text_field_tag "affiliation[departments][]", "", id: "primary_department", class: "dataEntry", placeholder: "department" %>
+            <% end %>
+        </div>
+
+        <!-- ======= secondary authors ======= -->
+        <div class="aR_3 toggle_input authorRow_3">
+            <p class="dataLabel">secondary authors</p>
+            <div class="scrollBox">
+                <div id='secondary_1'>
+                    <%= fields_for :author do |author| %>
+                        <%= text_field_tag "author[firstnames][]", "", id: "firstname_1", class: "dataEntry secAuthor", placeholder: "firstname" %>
+                        <%= text_field_tag "author[lastnames][]", "", id: "lastname_1", class: "dataEntry secAuthor", placeholder: "lastname" %>
+                    <% end %>
+                    <%= fields_for :abstract_author do |abstract_author| %>
+                        <%= hidden_field_tag "abstract_author[author_types][]", "secondary", class: "author author_type" %>
+                    <% end %>
+                    <%= fields_for :abstract do |abstract| %>
+                        <%= abstract.radio_button :pres_author_id, 1, class: "presenting" %>
+                    <% end %>
+                    <i class="radioLabel">presenting</i>
+                    <%= fields_for :affiliation do |affiliation| %>
+                        <%= text_field_tag "affiliation[institutions][]", "", class: "dataEntry leftEntry secAuthor", placeholder: "institution" %>
+                        <%= text_field_tag "affiliation[departments][]", "", class: "dataEntry secAuthor lastDept", placeholder: "department" %>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+
+        <!-- ======= buttons ======= -->
+        <div class="aR_4 toggle_input authorRow_4">
+            <a id="cancelBtn_2" href="#" class="newAbsLink">cancel</a>
+            <a id="authorBtn" href="#" class="newAbsLink">add author</a>
+            <a id="prevBtn_2" href="#" class="newAbsLink">prev</a>
+            <a id="nextBtn_2" href="#" class="newAbsLink">next</a>
+        </div>
+
+        <!-- ======= ======= ======= text (index 2) ======= ======= ======= -->
+        <!-- ======= ======= ======= text (index 2) ======= ======= ======= -->
+        <!-- ======= ======= ======= text (index 2) ======= ======= ======= -->
+
+        <%= fields_for :abstract do |abstract| %>
+
+            <!-- ======= label ======= -->
+            <div class="aR_2 toggle_input textRow_2">
+                <p class="dataLabel">abstract text</p>
+            </div>
+
+            <!-- ======= entry ======= -->
+            <div class="aR_3 toggle_input textRow_3">
+                <%= abstract.text_area :abs_text, maxlength: "2500", placeholder: "Abstract Text (limit 2500 characters)", class: "areaEntry leftEntry", cols: "30", rows: "6" %>
+            </div>
+
+            <!-- ======= buttons ======= -->
+            <div class="aR_4 toggle_input textRow_4">
+                <a id="cancelBtn_3" href="#" class="newAbsLink">cancel</a>
+                <a id="blankBtnA_3" href="#" class="newAbsLink blankBtn">&nbsp;</a>
+                <a id="prevBtn_3" href="#" class="newAbsLink">prev</a>
+                <a id="nextBtn_3" href="#" class="newAbsLink">next</a>
+            </div>
+        <% end %>
+
+        <!-- ======= ======= ======= keywords (index 3) ======= ======= ======= -->
+        <!-- ======= ======= ======= keywords (index 3) ======= ======= ======= -->
+        <!-- ======= ======= ======= keywords (index 3) ======= ======= ======= -->
+
+        <%= fields_for :abstract do |abstract| %>
+
+            <!-- ======= format request ======= -->
+            <div class="aR_2 toggle_input keywordRow_2">
+                <p class="dataLabel">preferred format?</p>
+                <%= abstract.select(:present_request, options_for_select(request_type_array, present_request), {}, { :class => "selectEntry leftEntry" }) %>
+            </div>
+
+            <!-- ======= keywords ======= -->
+            <div class="aR_3 toggle_input keywordRow_3">
+                <p class="dataLabel keywordLabel"><span>keyword1</span><span>keyword2</span><span>keyword3</span></p>
+                <div class="keyword_entries">
+                    <%= abstract.select(:keyword_1, options_for_select(keywords, selected_keyword1), {}, { :class => "selectEntry leftEntry" }) %>
+                    <%= abstract.select(:keyword_2, options_for_select(keywords, selected_keyword2), {}, { :class => "selectEntry" }) %>
+                    <%= abstract.select(:keyword_3, options_for_select(keywords, selected_keyword3), {}, { :class => "selectEntry" }) %>
+                </div>
+
+                <!-- ======= invited ======= -->
+                <p class="dataLabel invitedLabel">was this abstract invited?</p>
+                <div class="invited_entries">
+                    <span>
+                        <input id="invitedCheck" class="checkEntry" type="checkbox" name="abstract[invited]">
+                        <i>check if invited</i>
+                    </span>
+                <!-- </div> -->
+
+                <!-- ======= session ======= -->
+                <p class="dataLabel sessionLabel">if not, consider for a special session? (optional)</p>
+                <!-- <div class="invited_entries"> -->
+                    <span>
+                        <%= abstract.select(:presentation_id, options_for_select(sessions), {}, { :class => "sessionSelect" }) %>
+                        <i>select a session</i>
+                    </span>
+                </div>
+            </div>
+
+            <!-- ======= buttons ======= -->
+            <div class="aR_4 toggle_input keywordRow_4">
+                <a id="cancelBtn_4" href="#" class="newAbsLink">cancel</a>
+                <a id="blankBtnB_4" href="#" class="newAbsLink blankBtn">&nbsp;</a>
+                <a id="prevBtn_4" href="#" class="newAbsLink">prev</a>
+                <a id="nextBtn_4" href="#" class="newAbsLink">submit</a>
+            </div>
+        <% end %>
+    <% end %>
+</div>

@@ -1,0 +1,610 @@
+/* ======= general ======= */
+body {
+    font-family: "Ariel", sans-serif;
+}
+table {
+    border-collapse: collapse;
+    box-sizing: border-box;
+}
+div {
+    box-sizing: border-box;
+}
+#pageWrap {
+    width: 900px;
+    margin: 0 auto;
+}
+#mainTitle {
+    float: right;
+    margin-top: 20px;
+    width: 180px;
+}
+#user {
+    display: inline-block;
+    width: 240px;
+    float: right;
+}
+#yield {
+    margin: 0;
+}
+.entryTitle {
+    margin: 20px;
+    width: 180px;
+}
+.new_abstract {
+    width: 90%;
+    height: 400px;
+}
+.toggle_input {
+    display: none;
+}
+
+/* ======= menu ======= */
+#menuBox {
+    margin-top: 20px;
+    height: 220px;
+}
+.menuRow {
+    height: 66px;
+    margin: 0;
+    margin-bottom: 5px;
+}
+.menuGroup {
+    display: inline-block;
+    height: 100%;
+    text-align: center;
+    background-color: #eee;
+}
+
+/* ======= menu groups ======= */
+#signinItems, #abstractItems {
+    width: 420px;
+    text-align: center;
+}
+#userItems, #adminItems, #reviewItems, #sessionItems {
+    width: 280px;
+    text-align: center;
+}
+
+/* ======= menu labels/items ======= */
+.menuLabel {
+    margin: 2px auto;
+    font-size: 1em;
+    font-style: italic;
+    color: #ccc;
+}
+.menuItem {
+    display: inline-block;
+    width: 116px;
+    height: 20px;
+    margin: 1px;
+    vertical-align: bottom;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    color: red;
+    border-radius: 8px;
+    border: solid 2px #813772;
+}
+.menuItem:hover {
+    color: white;
+    background-color: #813772;
+}
+.filler {
+    border: solid 2px #eee;
+}
+.filler:hover {
+    background-color: white;
+}
+
+/* ======= sessionInfo ======= */
+#sessionHeader {
+    float: left;
+    width: 180px;
+}
+#titleDetail {
+    float: left;
+    width: 622px;
+    height: 60px;
+    margin: 20px;
+    margin-bottom: 2px;
+    margin-left: 2px;
+    border: solid 2px #626e60;
+}
+#authorDetail {
+    float: left;
+    width: 180px;
+    height: 320px;
+    margin-top: 2px;
+    margin-left: 2px;
+    font-size: 0.8em;
+    border: solid 2px #626e60;
+}
+#authorDetail > p {
+    margin: 2px 5px;
+}
+.titleDisplay {
+    margin: 5px;
+    font-size: 1.2em;
+    text-align: center;
+    padding: 10px;
+    color: #813772;
+}
+
+/* ======= sessions ======= */
+#sessionCalendar {
+    float: left;
+    width: 640px;
+    height: 320px;
+    margin: 20px;
+    margin-top: 2px;
+    margin-right: 2px;
+    background-color: #cad0c8;
+    border: solid 2px #626e60;
+}
+#sessionCalendar tr {
+    height: 88px;
+}
+#sessionCalendar tr td:nth-of-type(1) {
+    padding: 4px;
+}
+#sessionCalendar tr:nth-of-type(1) {
+    height: 26px;
+}
+#sessionCalendar tr:nth-of-type(2) {
+    height: 26px;
+}
+td {
+    width: 80px;
+    border: solid 1px #626e60;
+    vertical-align: top;
+}
+#sessionTitle {
+    height: 26px;
+}
+#sessionCalendar ul {
+    list-style: none;
+    margin-top: 0.1em;
+    margin-bottom: 0.1em;
+    margin-left: 5px;
+    margin-right: 0;
+    padding-left: 2px;
+}
+#sessionCalendar li {
+    margin: 1px;
+    width: 50px;
+    font-size: 0.9em;
+    color: red;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.sessionAuthors {
+    margin: 2px 5px;
+    margin-left: 10px;
+}
+
+/* ======= abstract entries ======= */
+.abstractEntryBox {
+    width: 720px;
+    height: 320px;
+    margin: 20px;
+    background-color: #cad0c8;
+    border: solid 2px #626e60;
+}
+.entry {
+    float: left;
+    height: 26px;
+    margin-left: 10px;
+    padding-left: 10px;
+    font-size: 1em;
+    font-style: italic;
+    color: #cad0c8;
+    border-radius: 4px;
+}
+.abstractBtn {
+    -webkit-appearance: none;
+    position: absolute;
+    width: 120px;
+    height: 32px;
+    margin: 5px;
+    bottom: 10px;
+    font-size: 1em;
+    text-align: center;
+    text-decoration: none;
+    color: red;
+    border-radius: 8px;
+    border: solid 2px #813772;
+}
+.abstractBtn:hover {
+    color: white;
+    background-color: #813772
+}
+
+/* ======= abstracts ======= */
+.abstractRow_1, .abstractRow_2, .abstractRow_3 {
+    width: 100%;
+}
+.abstractRow_1 {
+    height: 80px;
+    text-align: center;
+}
+.abstractRow_2 {
+    height: 140px;
+    text-align: center;
+}
+.abstractRow_3 {
+    position: relative;
+    height: 84px;
+    width: 100%;
+    text-align: left;
+}
+.abstractLabel_1, .abstractLabel_2 {
+    margin: 16px 20px;
+    text-align: left;
+    font-size: 1em;
+    font-style: italic;
+    color: #626e60;
+}
+.abstractLabel_2 {
+    margin: 0 20px;
+}
+#abstract_abs_title {
+    width: 90%;
+    height: 30px;
+    margin: -5px auto;
+    padding: 10px;
+    font-size: 0.8em;
+    border-radius: 4px;
+}
+#abstract_abs_text {
+    width: 90%;
+    margin: 10px auto;
+    padding: 10px;
+    font-size: 0.8em;
+    border-radius: 4px;
+}
+.abstractRow_3 > button:nth-of-type(1) {
+    margin-left: 40px;
+}
+.abstractRow_3 > button:nth-of-type(2) {
+    margin-left: 560px;
+}
+
+/* ======= authors ======= */
+.authorRow_1, .authorRow_2, .authorRow_3 {
+    width: 100%;
+}
+.authorRow_1 {
+    height: 130px;
+    text-align: center;
+}
+.authorRow_2 {
+    height: 120px;
+    width: 680px;
+    margin: 0 auto;
+    border: solid 1px #626e60;
+    text-align: center;
+    overflow-y: scroll;
+}
+.authorRow_3 {
+    position: relative;
+    height: 70px;
+    width: 100%;
+    text-align: left;
+}
+.authorLabel_1, .authorLabel_2 {
+    width: 680px;
+    margin: 10px auto;
+    font-size: 1em;
+    font-style: italic;
+    color: #626e60;
+    background-color: #eee;
+}
+.authorLabel_2 {
+    text-align: center;
+}
+.authorEntryGrp {
+    display: inline-block;
+    margin: 5px 0;
+    text-align: center;
+}
+.authorName {
+    width: 80px;
+}
+.affiliation {
+    width: 120px;
+}
+.radio {
+    float: left;
+    width: 160px;
+    height: 26px;
+    margin-top: 10px;
+    margin-left: 10px;
+    font-size: 1em;
+    text-align: left;
+    color: #626e60;
+}
+.authorRow_3 > button:nth-of-type(1) {
+    margin-left: 40px;
+}
+.authorRow_3 > button:nth-of-type(2) {
+    margin-left: 300px;
+}
+.authorRow_3 > button:nth-of-type(3) {
+    margin-left: 560px;
+}
+
+/* ======= keywords ======= */
+.keyRow_1, .keyRow_2, .keyRow_3 {
+    width: 100%;
+}
+.keyRow_1 {
+    height: 120px;
+    text-align: center;
+}
+.keyRow_2 {
+    height: 130px;
+    text-align: center;
+}
+.keyRow_3 {
+    position: relative;
+    height: 70px;
+    margin: 0;
+    padding: 10px;
+    text-align: left;
+}
+.keyGrp_1 {
+    display: inline-block;
+    width: 100%;
+    margin: 5px 0;
+    text-align: center;
+}
+.keyLabel_1 {
+    width: 440px;
+    margin: 10px;
+    font-size: 1em;
+    font-style: italic;
+    color: #626e60;
+    background-color: #eee;
+}
+.keywordLabel {
+    margin: 0 30px;
+}
+.keywords {
+    margin-top: 30px;
+    padding-left: 36px;
+    text-align: left;
+}
+.keyword {
+    float: left;
+    height: 26px;
+    width: 125px;
+    margin-top: 10px;
+    margin-left: 10px;
+    padding-left: 10px;
+    font-size: 1em;
+    font-style: italic;
+    color: #cad0c8;
+    border-radius: 4px;
+}
+.select {
+    float: left;
+    height: 26px;
+    width: 140px;
+    margin-top: 0;
+    margin-left: 10px;
+    padding-left: 10px;
+    font-size: 1em;
+    font-style: italic;
+    color: #cad0c8;
+    border-radius: 4px;
+}
+.groupRow {
+    width: 100%;
+    height: 80px;
+    padding: 20px;
+}
+.groupRow > select:first-of-type {
+    margin-left: -10px;
+}
+.groupRow > input:first-of-type {
+    margin-left: 40px;
+}
+.spacerRow {
+    height: 100px;
+}
+.keywordInfo {
+    float: left;
+    width: 230px;
+    margin: 10px;
+    vertical-align: top;
+    color: #626e60;
+}
+.primaryRow > .keywordInfo:nth-of-type(1) {
+    margin-top: 24px;
+}
+.groupRow > .keywordInfo:nth-of-type(1) {
+    margin-top: -1px;
+}
+#prevBtn_3 {
+    margin-left: 30px;
+}
+#nextBtn_3 {
+    margin-left: 550px;
+}
+
+/* ======= reviewers ======= */
+.reviewRow_1, .reviewRow_2, .reviewRow_3 {
+    width: 100%;
+    text-align: center;
+}
+.reviewRow_1 {
+    height: 120px;
+}
+.reviewRow_2 {
+    height: 60px;
+}
+.reviewRow_3 {
+    height: 80px;
+    text-align: left;
+}
+.reviewRow_4 {
+    position: relative;
+    height: 60px;
+    width: 100%;
+    padding-left: 20px;
+}
+.reviewGrp_1 {
+    display: inline-block;
+    width: 100%;
+    margin: 5px 0;
+    text-align: center;
+}
+.reviewLabel {
+    display: inline-block;
+    float: left;
+    width: 320px;
+    margin: 10px 20px;
+    font-size: 1em;
+    font-style: italic;
+    text-align: left;
+    color: #626e60;
+    background-color: #eee;
+}
+.reviews {
+    margin-top: 30px;
+    padding-left: 36px;
+    text-align: left;
+}
+.reviewEntry {
+    float: left;
+    height: 26px;
+    width: 125px;
+    margin: 5px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    font-size: 1em;
+    font-style: italic;
+    color: #cad0c8;
+    border-radius: 4px;
+}
+.reviewRow_1 > input[type=text]:nth-of-type(1) {
+    margin-left: 40px;
+}
+.reviewRow_1 > input[type=text]:nth-of-type(3) {
+    margin-left: 60px;
+}
+.reviewerInfo {
+    clear: both;
+    margin: 0 20px;
+    text-align: left;
+    color: #626e60;
+}
+.reviewSelect {
+    float: left;
+    height: 26px;
+    width: 220px;
+    margin-top: 5px;
+    margin-left: 20px;
+    padding-left: 10px;
+    font-size: 1em;
+    font-style: italic;
+    color: #cad0c8;
+    border-radius: 4px;
+}
+.reviewRow_2 > select:nth-of-type(1) {
+    margin-left: 40px;
+}
+.reviewRow_2 > select:nth-of-type(2) {
+    margin-left: 140px;
+}
+.reviewRadio {
+    float: left;
+    width: 120px;
+    height: 26px;
+    margin-top: 0;
+    margin-left: 20px;
+    font-size: 1em;
+    text-align: left;
+    color: #626e60;
+}
+.reviewRow_3 > .reviewRadio:nth-of-type(1) {
+    margin-left: 40px;
+}
+.reviewRow_3 > .reviewRadio:nth-of-type(3) {
+    margin-left: 100px;
+}
+#prevBtn_4 {
+    margin-left: 30px;
+}
+#nextBtn_4 {
+    margin-left: 550px;
+}
+
+
+
+
+/* ======= widgets ======= */
+// buttons
+// - prev
+// - next
+// - author
+// - new_keyword
+// - save_keyword
+// - cancel
+// - admin_review
+// - review_save
+// - admin_session
+// - session_save
+// authors
+// - firstnames
+// - lastname
+// radiobuttons
+// - presenting
+// - reviewer_recommend
+// - actual_recommend
+// - actual_accept
+// affiliations
+// - institutions
+// - departments
+// scroll_boxes
+// - secondary_authors
+// selectboxes
+// - keyword_1 (corr_author, admin)
+// - keyword_2 (corr_author, admin)
+// - keyword_3 (corr_author, admin)
+// - reviewer_1
+// - reviewer_2
+// new_keywords
+// - keyword_1
+// - keyword_2
+// - keyword_3
+
+/* ======= structures ======= */
+// button_bar
+// author_grid
+// author_scroll
+// keyword_grid
+// session_grid
+// reviewer_grid
+// show_view_toggle
+// admin_view_toggle
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ======= widgets ======= */

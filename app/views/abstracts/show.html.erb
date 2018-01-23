@@ -1,0 +1,182 @@
+<!-- ======= abstracts/show.html.erb ======= -->
+
+<% abstract_paper = "not recommended" %>
+<% if @abstract[:paper] == true %>
+    <% abstract_paper = "recommended" %>
+<% end %>
+<% abstract_invited = "not invited" %>
+<% if @abstract[:invited] == true %>
+    <% abstract_invited = "invited" %>
+<% end %>
+
+<div class="showAbstractBox">
+
+    <!-- ======= ======= ======= title ======= ======= ======= -->
+    <div class="showAbstractRow_1">
+        <p class="showAbstractTitle"><%= @abstract[:abs_title] %></p>
+    </div>
+
+    <!-- ======= ======= ======= scroll ======= ======= ======= -->
+    <div class="showAbstractScroll">
+
+        <!-- ======= presenting ======= -->
+        <div class="abstractRow_2">
+            <p class="dataLabel">presenting author</p>
+            <p class="dataLabel">submitter</p>
+            <p class="showPresentingAuthor"><%= @pres_author_string %></p>
+            <p class="showSubmitter"><%= @corr_author_name %></p>
+        </div>
+
+        <!-- ======= authors ======= -->
+        <div class="abstractRow_3">
+            <p class="dataLabel">authors</p>
+            <p class="showAbstractAuthors">
+
+                <% author_index = 0 %>
+                <% @authors_data.each do |key, value| %>
+                    <% if author_index == 0 %>
+                        <span class="primaryAuthor">
+                            <%= value[:name] %>
+                        </span>
+                        <span>
+                            <%= " (" %>
+                            <% value[:affls].each_with_index do |affiliation, j| %>
+                                <% puts "affiliation: #{affiliation.inspect}"  %>
+                                <% puts "value[:affls].length: #{value[:affls].length.inspect}"  %>
+                                <% if j == value[:affls].length - 1 %>
+                                    <%= affiliation + " )" %>
+                                <% else %>
+                                    <%= affiliation + ", " %>
+                                <% end %>
+                            <% end %>
+                        </span>
+                    <% else %>
+                        <span>
+                            <%= ", " %>
+                            <span>
+                                <%= value[:name] %>
+                            </span>
+                            <span>
+                                <%= " (" %>
+                                <% value[:affls].each_with_index do |affiliation, k| %>
+                                    <% puts "affiliation: #{affiliation.inspect}"  %>
+                                    <% puts "value[:affls].length: #{value[:affls].length.inspect}"  %>
+                                    <% if k == value[:affls].length - 1 %>
+                                        <%= affiliation + " )" %>
+                                    <% else %>
+                                        <%= affiliation + ", " %>
+                                    <% end %>
+                                <% end %>
+                            </span>
+                        </span>
+                    <% end %>
+                    <% author_index = author_index + 1 %>
+                <% end %>
+            </p>
+        </div>
+
+        <!-- ======= text ======= -->
+        <div class="abstractRow_4">
+            <p class="dataLabel">text</p>
+            <p class="showAbstractText"><%= @abstract[:abs_text] %></p>
+        </div>
+
+        <% keyword_array = [] %>
+        <% if @abstract[:keyword_1] != "" %>
+            <% keyword1 = Keyword.select(:keyword_name).find(@abstract[:keyword_1].to_i) %>
+            <% keyword1_name = keyword1[:keyword_name] %>
+            <% keyword_array << keyword1_name %>
+        <% end %>
+        <% if @abstract[:keyword_2] != "" %>
+            <% keyword2 = Keyword.select(:keyword_name).find(@abstract[:keyword_2].to_i) %>
+            <% keyword2_name = keyword2[:keyword_name] %>
+            <% keyword_array << keyword2_name %>
+        <% end %>
+        <% if @abstract[:keyword_3] != "" %>
+            <% keyword3 = Keyword.select(:keyword_name).find(@abstract[:keyword_3].to_i) %>
+            <% keyword3_name = keyword3[:keyword_name] %>
+            <% keyword_array << keyword3_name %>
+        <% end %>
+
+        <!-- ======= keywords ======= -->
+        <div class="abstractRow_5">
+            <p class="dataLabel">keywords</p>
+            <p class="showAbstractKeywords">
+                <% if keyword_array.length > 0 %>
+                    <% keyword_array.each_with_index do |keyword, index| %>
+                        <% if index < (keyword_array.length - 1) %>
+                            <span><%= keyword + ", " %></span>
+                        <% else %>
+                            <span><%= keyword %></span>
+                        <% end %>
+                    <% end %>
+                <% end %>
+            </p>
+        </div>
+
+        <!-- ======= admin: sessons, recommendations ======= -->
+        <% if current_user[:admin] %>
+          <div>
+            <p class="dataLabel adminLabels">admin parameters</p>
+            <div class="dataRow">
+                <div class="formLabel">code:</div>
+                <div class="formValue"><%= @abstract[:id] %></div>
+            </div>
+            <div class="dataRow">
+                <div class="formLabel">Session:</div>
+                <div class="formValue"><%= @present %></div>
+            </div>
+            <div class="dataRow">
+                <div class="formLabel">Session Sequence:</div>
+                <div class="formValue"><%= @abstract[:session_sequence] %>&nbsp;</div>
+            </div>
+            <div class="dataRow">
+                <div class="formLabel">Assigned Session Type:</div>
+                <div class="formValue"><%= @abstract[:present_assigned] %>&nbsp;</div>
+            </div>
+            <div class="dataRow_lg">
+                <div class="dataRow_sm">
+                    <p class="formLabel_sm">Reviewer1 &nbsp;&nbsp;comment:</p>
+                    <p class="formValue"><%= @abstract[:reviewer1_comment] %>&nbsp;</p>
+                </div>
+                <div class="dataRow_sm">
+                    <p class="formLabel_sm">rec:</p>
+                    <p class="formValue"><%= @abstract[:reviewer1_rec] %>&nbsp;</p>
+                </div>
+                <div class="dataRow_sm">
+                    <p class="formLabel_sm">grade:</p>
+                    <p class="formValue"><%= @abstract[:reviewer1_grade] %>&nbsp;</p>
+                </div>
+            </div>
+            <div class="dataRow_lg">
+                <div class="dataRow_sm">
+                    <p class="formLabel_sm">Reviewer2 &nbsp;&nbsp;comment:</p>
+                    <p class="formValue"><%= @abstract[:reviewer2_comment] %>&nbsp;</p>
+                </div>
+                <div class="dataRow_sm">
+                    <p class="formLabel_sm">rec:</p>
+                    <p class="formValue"><%= @abstract[:reviewer2_rec] %>&nbsp;</p>
+                </div>
+                <div class="dataRow_sm">
+                    <p class="formLabel_sm">grade:</p>
+                    <p class="formValue"><%= @abstract[:reviewer2_grade] %>&nbsp;</p>
+                </div>
+            </div>
+            <div class="dataRow">
+                <div class="formLabel">Paper Candidate?:</div>
+                <div class="formValue"><%= abstract_paper %></div>
+            </div>
+            <div class="dataRow">
+                <div class="formLabel">Invited?:</div>
+                <div class="formValue"><%= abstract_invited %>&nbsp;</div>
+            </div>
+        <% end %>
+        </div>
+    </div>
+
+    <div class="buttonRow fR">
+        <%= link_to "Back", request.referer.present? ? request.referer : "/home", class: "formLink" %>
+        <%= link_to "Edit Abstract", edit_abstract_path(@abstract), class: "formLink" %>
+    </div>
+
+</div>

@@ -1,0 +1,165 @@
+<!-- ======= abstracts/select_abstracts.html.erb ======= -->
+
+<!-- ======= users selectbox ======= -->
+<% user_name_ids = [] %>
+<% @users.each_with_index do |user, index| %>
+    <% fullname = user[:firstname] + " " + user[:lastname] %>
+    <% user_name_ids << [fullname, user[:id]] %>
+<% end %>
+<% keywords = [["", 0]] %>
+<% @keywords.each_with_index do |keyword, index| %>
+    <% keywords << [keyword[:keyword_name], keyword[:id]] %>
+<% end %>
+
+<!-- ======= admin_select selectbox ======= -->
+<% admin_select_options = [nil, "oral", "poster", "rejected"] %>
+
+<div class="absRevBox">
+    <div class="dataRow fR_1">
+        <% if @title %>
+            <h2 class="dataTitle"><%= @title %></h2>
+        <% else %>
+            <h2 class="dataTitle">Select Abstracts</h2>
+        <% end %>
+    </div>
+
+    <div id="abstractsHead">
+
+    <!-- ======= keyword select boxes ======= -->
+    <%= form_for("filter_by_keyword", url: "/filter_by_keyword", :html => {:id => "filter_by_keyword"}) do %>
+        <table id="selabsStaticTable">
+            <thead>
+                <tr>
+                    <td id="reviewersFilters" colspan="6">
+                        <%= select_tag("keyword_1", options_for_select(keywords), :id => "keywords") %>
+                        <%= button_tag "Filter by Keyword", type: "button", id: "filter_selections", class: "formBtn formBtn_1" %>
+                        <%= button_tag "Get all abstracts", type: "button", id: "all_selections", class: "formBtn formBtn_1" %>
+                    </td>
+                </tr>
+                <tr>
+                    <th>title</th>
+                    <th>primary</th>
+                    <th>reviewers</th>
+                    <th>recommend</th>
+                    <th>keywords</th>
+                    <th>grade</th>
+                    <th>final</th>
+                </tr>
+            <thead>
+        </table>
+    <% end %>
+</div>
+
+<%= form_for("save_selection", url: "/save_selection", :html => {:id => "save_selection"}) do %>
+<!-- == note: form submitted via javascript -->
+
+    <%= fields_for :abstract do |a| %>
+
+        <!-- == for one-at-a-time abstract save (value via javascript) -->
+        <%= a.hidden_field "abstract_id" %>
+        <%= a.hidden_field "admin_final" %>
+
+        <div id="selAbsBody">
+            <table id="selabsScrollTable">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                <!-- ======= list abstracts/reviewers ======= -->
+                <% if @abstracts.length > 0 %>
+                    <% @abstracts.each do |next_abstract| %>
+
+                        <!-- == get reviewers via abstracgt reviewer ids== -->
+                        <% reviewer_name1 = "" %>
+                        <% reviewer_name2 = "" %>
+                        <% if next_abstract[:reviewer1_id] %>
+                            <% selected_reviewer1 = User.find(next_abstract[:reviewer1_id]) %>
+                            <% selected_reviewer_id1 = selected_reviewer1[:id] %>
+                            <% reviewer1 = User.find(next_abstract[:reviewer1_id]) %>
+                            <% reviewer_name1 = reviewer1[:firstname] + " " + reviewer1[:lastname]%>
+                        <% end %>
+                        <% if next_abstract[:reviewer2_id] %>
+                            <% selected_reviewer2 = User.find(next_abstract[:reviewer2_id]) %>
+                            <% selected_reviewer_id2 = selected_reviewer2[:id] %>
+                            <% reviewer2 = User.find(next_abstract[:reviewer2_id]) %>
+                            <% reviewer_name2 = reviewer2[:firstname] + " " + reviewer2[:lastname]%>
+                        <% end %>
+
+                        <!-- == get abstract authors via join table == -->
+                        <% sql = "SELECT authors.firstname, authors.lastname, abstract_authors.author_type FROM authors INNER JOIN abstract_authors ON authors.id = abstract_authors.author_id WHERE abstract_authors.abstract_id = '" + next_abstract[:id].to_s + "' AND abstract_authors.author_type = 'primary';" %>
+                        <% author_data = ActiveRecord::Base.connection.execute(sql) %>
+                        <% primary_author = author_data[0]["firstname"].to_s + " " + author_data[0]["lastname"].to_s %>
+
+                        <!-- ======= interpret keyword recommendations from boolean ======= -->
+                        <% if next_abstract[:reviewer1_keywords] == true %>
+                            <% reviewer1_keywords = "yes" %>
+                        <% else %>
+                            <% reviewer1_keywords = "no" %>
+                        <% end %>
+                        <% if next_abstract[:reviewer2_keywords] == true %>
+                            <% reviewer2_keywords = "yes" %>
+                        <% else %>
+                            <% reviewer2_keywords = "no" %>
+                        <% end %>
+
+                        <!-- ======= abstract identity/reviewer1 rec/grade ======= -->
+                        <tr>
+                            <td><%= link_to next_abstract[:abs_title], abstract_path(next_abstract) %></td>
+                            <td><%= primary_author %></td>
+                            <td><%= reviewer_name1 %></td>
+                            <td><%= next_abstract[:reviewer1_rec] %></td>
+                            <td><%= reviewer1_keywords %></td>
+                            <td><%= next_abstract[:reviewer1_grade] %></td>
+                            <td><%= select_tag("abstract[admin_finals][]", options_for_select(admin_select_options, next_abstract[:admin_final]), :id => "abstract_admin_finals_" + next_abstract[:id].to_s) %></td>
+                            <%= hidden_field_tag "abstract[abstract_ids][]", next_abstract[:id].to_s %>
+                        </tr>
+
+                        <!-- ======= reviewer2 rec/grade ======= -->
+                        <tr>
+                            <% formatted_date = next_abstract[:updated_at].in_time_zone("Eastern Time (US & Canada)").strftime('%m/%d %l:%M') %>
+                            <td class="dateCell">last updated: <%= formatted_date %> </td>
+                            <td></td>
+                            <td><%= reviewer_name2 %></td>
+                            <td><%= next_abstract[:reviewer2_rec] %></td>
+                            <td><%= reviewer2_keywords %></td>
+                            <td><%= next_abstract[:reviewer2_grade] %></td>
+                            <td></td>
+                        </tr>
+
+                        <!-- ======= separate rows ======= -->
+                        <tr class="tableSpacer">
+                            <td colspan="7"></td>
+                        </tr>
+
+                    <% end %>
+                <% else %>
+                    <tr class="abstractMessage">
+                        <td colspan="7">
+                            <p>There are no abstracts currently in the system.  Please contact the system administrator if you believe this is an error.</p>
+                        </td>
+                    </tr>
+                <% end %>
+
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ======= save all changes option ======= -->
+        <div class="buttonRow fR">
+            <%= link_to "Back", request.referer.present? ? request.referer : "/home", class: "formLink" %>
+            <%= a.button "Save all changes", type: "button", id: "save_all_selections", class: "formBtn formBtn_1" %>
+        </div>
+
+        </div>
+    <% end %>
+<% end %>
