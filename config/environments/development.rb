@@ -34,7 +34,7 @@ Rails.application.configure do
 
     # ====== ======= ======= testing lines ======= ======= =======
     # config.action_mailer.delivery_method = :smtp
-    # config.action_mailer.default_url_options = { :host => "https://forestsat3.herokuapp.com/" }
+    # config.action_mailer.default_url_options = { :host => "https://forestsat-demo.herokuapp.com/" }
     # config.action_mailer.default :charset => "utf-8"
     # config.action_mailer.perform_deliveries = true
     #

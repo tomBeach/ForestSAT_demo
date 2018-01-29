@@ -380,7 +380,7 @@ i {
     width: 20px;
     height: 20px;
     margin: 0 5px;
-    background-color: $color_Sa_3;
+    background-color: $button_blue;
 }
 
 /* ======= buttons/links ======= */
@@ -407,7 +407,7 @@ i {
     padding: 2px 10px 0 10px;
 }
 .formBtn_green {
-    background-color: $color_Sa_3;
+    background-color: $button_blue;
 }
 .formBtn_blue {
     background-color: $secB_grad_1;
@@ -551,7 +551,7 @@ i {
     box-sizing: border-box;
 }
 .menuItem > a {
-    background-color: $color_Sa_3;
+    background-color: $button_blue;
 }
 .menuItem:hover {
     background-color: $bright_accent;

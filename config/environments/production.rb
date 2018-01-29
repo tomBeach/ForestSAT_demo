@@ -6,7 +6,7 @@ Rails.application.configure do
 
   # ====== added devise/sendgrid mailer lines =======
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = { :host => "https://forestsat3.herokuapp.com/" }
+  config.action_mailer.default_url_options = { :host => "https://forestsat-demo.herokuapp.com/" }
   config.action_mailer.default :charset => "utf-8"
   config.action_mailer.perform_deliveries = true
 
@@ -78,7 +78,7 @@ Rails.application.configure do
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
   # config.active_job.queue_adapter     = :resque
-  # config.active_job.queue_name_prefix = "ForestSat3_#{Rails.env}"
+  # config.active_job.queue_name_prefix = "forestsat-demo_#{Rails.env}"
   config.action_mailer.perform_caching = false
 
   # Ignore bad email addresses and do not raise email delivery errors.
