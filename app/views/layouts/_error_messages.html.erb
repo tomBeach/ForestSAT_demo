@@ -1,8 +1,10 @@
 <% if object.errors.any? %>
     <% puts "+++ object.errors.any? +++" %>
+    <% puts "object.errors: #{object.errors.inspect}" %>
     <div class="errorMsg">This form contains <%= pluralize(object.errors.count, 'error') %>:</div>
         <ul class="errorList">
             <% object.errors.full_messages.each do |msg| %>
+            <% puts "msg: #{msg.inspect}" %>
                 <li><%= msg %></li>
             <% end %>
         </ul>

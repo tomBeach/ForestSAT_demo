@@ -117,28 +117,44 @@ class AuthorsController < ApplicationController
         puts "\nauthor_params: #{author_params.inspect}"
         affiliation_params = ok_params[1]
         puts "\naffiliation_params: #{affiliation_params.inspect}"
-        puts "\naffiliation_params[:new_institution].length: #{affiliation_params[:new_institution].length.inspect}"
-        puts "\n...length: #{affiliation_params[:new_institution].length.inspect}"
 
         respond_to do |format|
+
+            # == modify author values
             if @author.update(author_params)
+
+                # == modify affiliation values if any
                 affiliation_params[:affl_ids].each_with_index do |affl_id, index|
                     institution = affiliation_params[:institutions][index]
                     department = affiliation_params[:departments][index]
                     next_affl = Affiliation.find(affl_id.to_i)
                     next_affl.update(:institution => institution, :department => department)
                 end
+
+                # == add new link between author and affiliation
                 if affiliation_params[:new_institution].length > 0
                     puts "+++ new_institution DATA PRESENT +++"
                     check_affl = Affiliation.where(:institution => affiliation_params[:new_institution], :department => affiliation_params[:new_department]).first
                     puts "check_affl: #{check_affl.inspect}"
+
+                    # == add new affiliation if not currently in database
                     if !check_affl
                         new_affl = Affiliation.create(:institution => affiliation_params[:new_institution], :department => affiliation_params[:new_department])
                         if new_affl
                             AuthorAffiliation.create(:author_id => @author[:id], :affiliation_id => new_affl[:id])
                         end
+                    else
+                        AuthorAffiliation.create(:author_id => @author[:id], :affiliation_id => check_affl[:id])
                     end
                 end
+
+                if affiliation_params[:delete_affiliations]
+                    affiliation_params[:delete_affiliations].each_with_index do |affl|
+                        puts "affl: #{affl.inspect}"
+                        delete_affiliation = AuthorAffiliation.destroy(affl.to_i)
+                    end
+                end
+
                 format.html { redirect_to @author, notice: 'Author was successfully updated.' }
             else
                 format.html { render :edit }
@@ -175,7 +191,7 @@ class AuthorsController < ApplicationController
             puts "******* author_affl_params *******"
             ok_params = []
             ok_params << params.require(:author).permit(:firstname, :lastname)
-            ok_params << params.require(:affiliation).permit(:new_institution, :new_department, :affl_ids => [], :institutions => [], :departments => [], :delete_affiliation => [])
+            ok_params << params.require(:affiliation).permit(:new_institution, :new_department, :affl_ids => [], :institutions => [], :departments => [], :delete_affiliations => [])
             return ok_params
         end
 end

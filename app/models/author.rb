@@ -6,7 +6,6 @@ class Author < ApplicationRecord
     has_many :abstracts, :through => :abstract_authors
     has_many :author_affiliations
     has_many :affiliations, :through => :author_affiliations
-    validates_uniqueness_of :firstname, :lastname
 
     # ======= full_name =======
     def full_name
@@ -22,7 +21,7 @@ class Author < ApplicationRecord
 
     # ======= get_author =======
     def self.get_author(firstname, lastname)
-        puts "******* get_author *******"
+        puts "\n******* get_author *******"
         self.where(:firstname => firstname, :lastname => lastname).first
     end
 

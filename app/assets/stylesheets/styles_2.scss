@@ -272,20 +272,20 @@
     width: 100%;
 }
 #assignStaticTable > thead > tr > th:nth-of-type(1) {
-    width: 40%;
+    width: 45%;
     padding-left: 10px;
     text-align: center;
 }
 #assignStaticTable > thead > tr > th:nth-of-type(2) {
-    width: 20%;
+    width: 15%;
     text-align: center;
 }
 #assignStaticTable > thead > tr > th:nth-of-type(3) {
-    width: 10%;
+    width: 15%;
     text-align: center;
 }
 #assignStaticTable > thead > tr > th:nth-of-type(4) {
-    width: 10%;
+    width: 15%;
     text-align: center;
 }
 #assignStaticTable > thead > tr > th:nth-of-type(5) {
@@ -299,19 +299,19 @@
     overflow-y: scroll;
 }
 #assignScrollTable > tbody > tr > td:nth-of-type(1) {
-    width: 50%;
+    width: 45%;
     text-align: left;
 }
 #assignScrollTable > tbody > tr > td:nth-of-type(2) {
-    width: 20%;
+    width: 15%;
     text-align: center;
 }
 #assignScrollTable > tbody > tr > td:nth-of-type(3) {
-    width: 10%;
+    width: 15%;
     text-align: center;
 }
 #assignScrollTable > tbody > tr > td:nth-of-type(4) {
-    width: 10%;
+    width: 15%;
     text-align: center;
 }
 #assignScrollTable > tbody > tr > td:nth-of-type(5) {
@@ -346,6 +346,10 @@
 // ======= ======= ======= SELECT ABSTRACT TABLES ======= ======= ======= //
 // ======= ======= ======= SELECT ABSTRACT TABLES ======= ======= ======= //
 // ======= ======= ======= SELECT ABSTRACT TABLES ======= ======= ======= //
+
+#selabsStaticTable > thead > tr:nth-of-type(1) {
+    border-bottom: 2px solid $dataBox;
+}
 
 // /* ======= select_abstracts (7 columns)) ======= */
 #selabsStaticTable > thead > tr > th:nth-of-type(1) {
@@ -554,6 +558,10 @@
 // ======= ======= ======= MY ABSTRACT TABLES ======= ======= ======= //
 // ======= ======= ======= MY ABSTRACT TABLES ======= ======= ======= //
 // ======= ======= ======= MY ABSTRACT TABLES ======= ======= ======= //
+
+#abstractsStaticTable > thead > tr:nth-of-type(1) {
+    border-bottom: solid 2px $dataBox;
+}
 
 /* ======= abstracts/reviewers headers ======= */
 #abstractsStaticTable > thead > tr, #reviewersStaticTable > thead > tr {

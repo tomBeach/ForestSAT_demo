@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
     protect_from_forgery with: :exception
   	before_action :configure_permitted_parameters, if: :devise_controller?
-  	before_action :authenticate_user!, except: [:home, :signed_in_msg]
+  	before_action :authenticate_user!, except: [:home, :signed_in_msg, :faq]
     before_action :check_login_state
 
     require "yaml"

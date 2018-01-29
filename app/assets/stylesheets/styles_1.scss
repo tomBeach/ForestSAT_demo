@@ -72,7 +72,7 @@ i {
 /* ======= messages ======= */
 #messages, #messagesWide {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     height: 60px;
@@ -103,15 +103,20 @@ i {
     display: none;
 }
 .errorMsg {
-    float: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
     width: 40%;
     height: 100%;
-    padding-top: 15px;
     text-align: right;
     color: $bright_accent;
 }
 .errorList {
-    float: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
     width: 50%;
     height: 90%;
     margin: 5px 0;
@@ -264,19 +269,8 @@ i {
     display: none;
 }
 
-/* ======= labels ======= */
-.dataLabel {
-    width: 20%;
-    margin: 10px 20px;
-    margin-top: 0;
-    padding: 2px 20px;
-    text-align: left;
-    color: $dataText;
-    background-color: $label_accent;
-}
-
 /* ======= entries ======= */
-.dataEntry {
+.dataEntry, .authorEntry, .signinEntry, .selectEntry, .keywordEntry {
     height: 20px;
     width: 100px;
     margin: 0 5px;
@@ -287,16 +281,12 @@ i {
     border-radius: 4px;
     box-sizing: border-box;
 }
-.selectEntry {
+.selectEntry, .keywordEntry {
     float: left;
-    height: 20px;
     width: 120px;
-    margin: 0 5px;
-    padding: 5px;
-    font-size: 0.8em;
-    text-align: left;
-    border-radius: 4px;
-    box-sizing: border-box;
+}
+.signinEntry {
+    width: 140px;
 }
 .areaEntry {
     width: 90%;
@@ -304,16 +294,39 @@ i {
 .leftEntry {
     margin-left: 30px;
 }
+.absTextEntry {
+  margin-top: 10px;
+  height: 120px;
+}
+.field_with_errors {
+    display: inline-block;
+    width: 140px;
+    margin: 0;
+    margin-left: 5px;
+    padding: 0;
+}
+.field_with_errors > .signinEntry {
+    margin: 0;
+    padding: 0;
+    border: solid 2px red;
+}
+
+/* ======= labels ======= */
+.dataLabel {
+    width: 20%;
+    margin: 10px 20px;
+    margin-top: 0;
+    padding: 2px 20px;
+    text-align: left;
+    color: $dataText;
+    background-color: $label_accent;
+}
 .radioLabel {
     display: inline-block;
     margin: 0 5px;
 }
 .secAuthor {
     margin-top: 10px;
-}
-.absTextEntry {
-  margin-top: 10px;
-  height: 120px;
 }
 
 /* ======= ======= ======= FORMS ======= ======= ======= */
@@ -327,7 +340,7 @@ i {
     font-size: 0.8em;
 }
 .formLabel, .formLabel_sm {
-    width: 30%;
+    width: 29%;
     text-align: right;
     vertical-align: text-top;
     color: $form_label;
@@ -335,14 +348,14 @@ i {
 .formLabel_sm {
     width: 27%;
 }
+.formLabel > p {
+    margin: 2px 5px;
+}
 .formValue {
-    width: 59%;
+    width: 70%;
     text-align: left;
     vertical-align: text-top;
     color: black;
-}
-.formLabel > p {
-    margin: 2px 5px;
 }
 .formValue > p {
     margin: 2px 5px;
@@ -359,49 +372,38 @@ i {
 .formValue > input[type=checkbox] {
     width: 20px;
     height: 20px;
+    margin: 0 5px;
     background-color: $color_Sa_3;
 }
 
 /* ======= buttons/links ======= */
-.formBtn {
+.formBtn, .formLink, .formLink_wide {
     display: inline-block;
-    width: 145px;
-    height: 20px;
+    width: 140px;
+    height: 18px;
+    margin: 0 5px;
     font-size: 0.8em;
+    text-align: center;
     border-radius: 4px;
     color: white;
     border: none;
-    // -webkit-box-shadow: 2px 2px 2px #666;
-    // -moz-box-shadow: 2px 2px 2px #666;
-    // box-shadow: 2px 2px 2px #666;
-}
-.formBtn_1 {
-    background-color: $color_Sa_3;
-}
-.formBtn_2 {
-    background-color: $secB_grad_1;
+    box-sizing: border-box;
 }
 .formLink, .formLink_wide {
-    display: inline-block;
-    height: 18px;
-    width: 120px;
     padding-top: 2px;
-    text-align: center;
-    text-decoration: none;
     font-size: 0.8em;
-    border-radius: 4px;
-    color: white;
+    text-decoration: none;
     background-color: $secB_grad_1;
-    // -webkit-box-shadow: 2px 2px 2px #666;
-    // -moz-box-shadow: 2px 2px 2px #666;
-    // box-shadow: 2px 2px 2px #666;
 }
 .formLink_wide {
     width: auto;
     padding: 2px 10px 0 10px;
-    // -webkit-box-shadow: 2px 2px 2px #666;
-    // -moz-box-shadow: 2px 2px 2px #666;
-    // box-shadow: 2px 2px 2px #666;
+}
+.formBtn_green {
+    background-color: $color_Sa_3;
+}
+.formBtn_blue {
+    background-color: $secB_grad_1;
 }
 .blankBtn {
     display: inline-block;
@@ -413,7 +415,7 @@ i {
     font-size: 0.8em;
     border-radius: 4px;
 }
-.formBtn_1:hover, .formBtn_2:hover {
+.formBtn_green:hover, .formBtn_blue:hover {
     background-color: $bright_accent;
 }
 .formLink:hover, .formLink_wide:hover {
@@ -459,10 +461,10 @@ i {
     list-style-type: square;
 }
 .sectionInfo > li > span:nth-of-type(1) {
-    color: white;
+    color: #05537a;
 }
 .sectionInfo > li:nth-of-type(4) > span:nth-of-type(2) {
-    color: white;
+    color: #05537a;
 }
 
 /* ======= user views (devise/users) ======= */
@@ -478,8 +480,14 @@ i {
 #showUserSpacer {
     height: 140px;
 }
+#resetPswdSpacer {
+    height: 175px;
+}
 #showAuthorSpacer {
     height: 180px;
+}
+#forgotPasswordSpacer {
+    height: 210px;
 }
 
 /* ======= admin views ======= */
@@ -532,10 +540,7 @@ i {
     font-size: 0.9em;
     color: white;
     border-radius: 4px;
-    border: solid 1px $menuLabel;
-    // -webkit-box-shadow: 3px 3px 3px #999;
-    // -moz-box-shadow: 3px 3px 3px #999;
-    // box-shadow: 3px 3px 3px #999;
+    border: solid 1px $menuItemsBorder;
     box-sizing: border-box;
 }
 .menuItem > a {

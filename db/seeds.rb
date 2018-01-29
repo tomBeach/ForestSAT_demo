@@ -1,9 +1,10 @@
-AuthorAffiliation.delete_all
-Presentation.delete_all
+# AuthorAffiliation.delete_all
 Keyword.delete_all
-AbstractAuthor.delete_all
-Author.delete_all
-Affiliation.delete_all
+# AbstractAuthor.delete_all
+# Author.delete_all
+# Affiliation.delete_all
+# Abstract.delete_all
+Presentation.delete_all
 Room.delete_all
 
 Keyword.create([
@@ -34,7 +35,7 @@ Keyword.create([
 ])
 
 Author.create([
-    { firstname:"Eddard", lastname:"Stark", user_id:nil }
+    { firstname:"Jeffrey", lastname:"Masek", user_id:nil }
     # { firstname:"George", lastname:"Bush", user_id:nil },
     # { firstname:"Jimmy", lastname:"Carter", user_id:nil },
     # { firstname:"Donald", lastname:"Trump", user_id:nil },
@@ -42,7 +43,7 @@ Author.create([
 ])
 
 Affiliation.create([
-    { institution:"Winterfell", department:"Royalty" }
+    { institution:"NASA", department:"Goddard" }
     # { institution:"Texas Tech", department:"Business" },
     # { institution:"Georgia Tech", department:"Engineering" },
     # { institution:"NYU", department:"Real Estate" },
@@ -62,39 +63,50 @@ Room.create([
     { room_name:"R200", room_type:"conference", room_floor:"2" }
 ])
 
-Presentation.create([
-    { session_org_id:"1", session_chair_id:"1", room_id:"1", session_type:"special", session_title:"Forest Biodiversity (Chirici)", session_start:nil },
-    { session_org_id:"1", session_chair_id:"1", room_id:"1", session_type:"special", session_title:"Remote Sensing for GHG Inventories (McRoberts)", session_start:nil },
-    { session_org_id:"1", session_chair_id:"1", room_id:"1", session_type:"special", session_title:"Forest Functional Traits/Spectroscopy (Townsend)", session_start:nil },
-    { session_org_id:"1", session_chair_id:"1", room_id:"1", session_type:"special", session_title:"Forest Carbon MRV (Poulter)", session_start:nil },
-    { session_org_id:"1", session_chair_id:"1", room_id:"1", session_type:"special", session_title:"Near Real-Time Monitoring (Reiche)", session_start:nil },
-    { session_org_id:"1", session_chair_id:"1", room_id:"1", session_type:"special", session_title:"Early Detection of Plant Stress (Suarez)", session_start:nil },
-    { session_org_id:"1", session_chair_id:"1", room_id:"1", session_type:"special", session_title:"Mangroves (Lucas)", session_start:nil },
-    { session_org_id:"1", session_chair_id:"1", room_id:"1", session_type:"special", session_title:"Monitoring Tropical Forest Dynamics (Hansen)", session_start:nil },
-    { session_org_id:"1", session_chair_id:"1", room_id:"1", session_type:"special", session_title:"Sensor Fusion for Global Forest Structure (Healey)", session_start:nil },
-    { session_org_id:"1", session_chair_id:"1", room_id:"1", session_type:"special", session_title:"Terrestrial Laser Scanning (Disney)", session_start:nil },
-    { session_org_id:"1", session_chair_id:"1", room_id:"1", session_type:"special", session_title:"Other/Plenary", session_start:nil },
-    { session_org_id:"1", session_chair_id:"1", room_id:"1", session_type:"special", session_title:"Forests in Space and Time (Fischer)", session_start:nil  }
+default_author = Author.all.first
+default_author_id = default_author[:id]
+default_room = Room.all.first
+default_room_id = default_room[:id]
+puts "\ndefault_author: #{default_author.inspect}"
+puts "default_author_id: #{default_author_id.inspect}"
+puts "\ndefault_room: #{default_room.inspect}"
+puts "default_room_id: #{default_room_id.inspect}"
+
+Presentation.create!([
+    { session_org_id:default_author_id, session_chair_id:default_author_id, room_id:default_room_id, session_type:"special", session_title:"Forests in the Global Carbon Cycle (Fischer)", session_start:nil },
+    { session_org_id:default_author_id, session_chair_id:default_author_id, room_id:default_room_id, session_type:"special", session_title:"Forest Biodiversity (Chirici)", session_start:nil },
+    { session_org_id:default_author_id, session_chair_id:default_author_id, room_id:default_room_id, session_type:"special", session_title:"Remote Sensing for GHG Inventories (McRoberts)", session_start:nil },
+    { session_org_id:default_author_id, session_chair_id:default_author_id, room_id:default_room_id, session_type:"special", session_title:"Forest Carbon MRV (Poulter)", session_start:nil },
+    { session_org_id:default_author_id, session_chair_id:default_author_id, room_id:default_room_id, session_type:"special", session_title:"Near Real-Time Monitoring (Reiche)", session_start:nil },
+    { session_org_id:default_author_id, session_chair_id:default_author_id, room_id:default_room_id, session_type:"special", session_title:"Plantation Management With High-Resolution RS (Pang)", session_start:nil },
+    { session_org_id:default_author_id, session_chair_id:default_author_id, room_id:default_room_id, session_type:"special", session_title:"Early Detection of Plant Stress (Suarez)", session_start:nil },
+    { session_org_id:default_author_id, session_chair_id:default_author_id, room_id:default_room_id, session_type:"special", session_title:"Mangroves (Lucas)", session_start:nil },
+    { session_org_id:default_author_id, session_chair_id:default_author_id, room_id:default_room_id, session_type:"special", session_title:"Monitoring Tropical Forest Dynamics (Hansen)", session_start:nil },
+    { session_org_id:default_author_id, session_chair_id:default_author_id, room_id:default_room_id, session_type:"special", session_title:"Next Generation Large-area Forest Monitoring (Wulder)", session_start:nil },
+    { session_org_id:default_author_id, session_chair_id:default_author_id, room_id:default_room_id, session_type:"special", session_title:"Terrestrial Laser Scanning (Disney)", session_start:nil },
+    { session_org_id:default_author_id, session_chair_id:default_author_id, room_id:default_room_id, session_type:"special", session_title:"Other/Plenary", session_start:nil  }
 ])
 
-# Affiliation.delete_all
-# Affiliation.create([
-#     { institution:"Cornell", department:"Geology" },
-#     { institution:"Texas Tech", department:"Business" },
-#     { institution:"Georgia Tech", department:"Engineering" },
-#     { institution:"Atlantic City", department:"Real Estate" },
-#     { institution:"Yale University", department:"Law" }
-# ])
-#
-# AuthorAffiliation.delete_all
-# AuthorAffiliation.create([
-#     { author_id:1, affiliation_id:1 },
-#     { author_id:2, affiliation_id:2 },
-#     { author_id:3, affiliation_id:3 },
-#     { author_id:4, affiliation_id:4 },
-#     { author_id:5, affiliation_id:5 }
-# ])
+default_session = Presentation.all.first
+default_session_id = default_session[:id]
+puts "\ndefault_session: #{default_session.inspect}"
+puts "default_session_id: #{default_session_id.inspect}"
 
+# == session titles 2.0 ==
+# Forests in the Global Carbon Cycle (Fischer)
+# Forest Biodiversity (Chirici)
+# Remote Sensing for GHG Inventories (McRoberts)
+# Forest Carbon MRV (Poulter)
+# Near Real-Time Monitoring (Reiche)
+# Plantation Management With High-Resolution RS (Pang)
+# Early Detection of Plant Stress (Suarez)
+# Mangroves (Lucas)
+# Monitoring Tropical Forest Dynamics (Hansen)
+# Next Generation Large-area Forest Monitoring (Wulder)
+# Terrestrial Laser Scanning (Disney)
+# Other/Plenary
+
+# == session titles 1.0 ==
 # Forests in Space and Time (Fischer)
 # Forest Biodiversity (Chirici)
 # Remote Sensing for GHG Inventories (McRoberts)

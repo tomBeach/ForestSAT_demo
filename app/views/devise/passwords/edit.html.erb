@@ -8,26 +8,23 @@
             <h2 class="dataTitle">New Password Set</h2>
         </div>
         <div class="dataRow">
-            <div class="formLabel">
-                <%= f.label :password, "New password" %>
-                <% if @minimum_password_length %>
-                    <em>(<%= @minimum_password_length %> characters minimum)</em><br />
-                <% end %>
-            </div>
-            <div class="formValue">
-                <%= f.password_field :password, autofocus: true, autocomplete: "off" %>
-            </div>
-        </div>
+            <div class="formLabel"><%= f.label :password, "New password" %></div>
+            <div class="formValue"><%= f.password_field :password, class: "signinEntry", autofocus: true, autocomplete: "off" %></div>
         <div class="dataRow">
             <div class="formLabel"><%= f.label :password_confirmation, "Confirm new password" %></div>
-            <div class="formValue"><%= f.password_field :password_confirmation, autocomplete: "off" %></div>
+            <div class="formValue"><%= f.password_field :password_confirmation, class: "signinEntry", autocomplete: "off" %></div>
+        </div>
+        <div class="dataRow">
+            <div class="formLabel">&nbsp;</div>
+            <div class="formValue"><%= f.submit "Change password", class: "formBtn formBtn_green" %></div>
+        </div>
+
+        <div id="resetPswdSpacer" class="dataSpacer">
+            &nbsp;
         </div>
 
         <div class="buttonRow">
             <%= link_to "Back", request.referer.present? ? request.referer : "/home", class: "formLink" %>
-            <span>
-                <%= f.submit "Change password", class: "formBtn formBtn_1" %>
-            </span>
         </div>
     </div>
 <% end %>

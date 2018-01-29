@@ -5,9 +5,6 @@ class UsersController < ApplicationController
     # ======= home =======
     def home
         puts "\n******* home *******"
-        # puts "SENDMAIL_USERNAME: #{SENDMAIL_USERNAME}"
-        # puts "SENDMAIL_PASSWORD: #{SENDMAIL_PASSWORD}"
-        # puts "MAIL_HOST: #{MAIL_HOST}"
 
         flash_msg = ""
         @users = User.all
@@ -19,25 +16,24 @@ class UsersController < ApplicationController
             @abstracts = Abstract.all
             @affiliations = Affiliation.all
             puts "+++++++ NO USERS +++++++"
-            flash_msg = flash_msg + " NO USERS  "
             if @rooms == []
                 puts "+++++++ NO ROOMS +++++++"
-                flash_msg = flash_msg + " NO ROOMS  "
             end
             if @authors == []
                 puts "+++++++ NO AUTHORS +++++++"
-                flash_msg = flash_msg + " NO AUTHORS  "
             end
             if @abstracts == []
                 puts "+++++++ NO ABSTRACTS +++++++"
-                flash_msg = flash_msg + " NO ABSTRACTS  "
             end
             if @affiliations == []
                 puts "+++++++ NO AFFILIATIONS +++++++"
-                flash_msg = flash_msg + " NO AFFILIATIONS  "
             end
-            flash.now[:notice] = flash_msg
         end
+    end
+
+    # ======= faq =======
+    def faq
+        puts "\n******* faq *******"
     end
 
     # ======= signed_in_msg =======
@@ -73,8 +69,6 @@ class UsersController < ApplicationController
     def save_selected_reviewers
         puts "\n******* save_selected_reviewers *******"
         puts "params: #{params.inspect}"
-        puts "params[:user]: #{params[:user].inspect}"
-        puts "params[:controller]: #{params[:controller]}"
 
         current_reviewer_ids = User.where(:reviewer => true).pluck(:id)
         former_reviewer_ids = []
@@ -84,6 +78,7 @@ class UsersController < ApplicationController
         # == some users have been selected as reviewers (params[:user] not nil)
         if params[:user]
             ok_params = reviewer_status_params
+            puts "ok_params: #{ok_params.inspect}"
 
             # == temporarily(?) disallowing removal of reviewers (due to chain-reaction consequences)
             # current_reviewer_ids.each_with_index do |reviewer_id, index|
@@ -116,7 +111,7 @@ class UsersController < ApplicationController
             notice_array.push(" Newly assigned reviewers: ")
             if ok_params[:reviewer_ids].length > 0
                 ok_params[:reviewer_ids].each_with_index do |reviewer_id, index|
-                    user = User.find(reviewer_id)
+                    user = User.find(reviewer_id.to_i)
 
                     # == set selected reviewer status to true
                     user.update(:reviewer => true)
@@ -129,6 +124,7 @@ class UsersController < ApplicationController
 
         # == no users have been selected as reviewers (any previous reviewers status set to false)
         else
+            puts "current_reviewer_ids: #{current_reviewer_ids.inspect}"
             current_reviewer_ids.each do |reviewer_id|
                 former_reviewer_ids << reviewer_id
                 former_reviewer = User.find(reviewer_id)
@@ -137,6 +133,7 @@ class UsersController < ApplicationController
         end
 
         # == remove former reviewers from abstracts previously assigned
+        puts "former_reviewer_ids: #{former_reviewer_ids.inspect}"
         former_reviewer_ids.each do |reviewer_id|
             abstracts1 = Abstract.where(:reviewer1_id => reviewer_id)
             abstracts1.each do |abstract|
@@ -147,11 +144,6 @@ class UsersController < ApplicationController
                 abstract.update(:reviewer2_id => nil)
             end
         end
-        puts "former_reviewer_ids.length: #{former_reviewer_ids.length.inspect}"
-        if ok_params
-            puts "ok_params[:reviewer_ids].length: #{ok_params[:reviewer_ids].length.inspect}"
-        end
-        puts "notice_array: #{notice_array.inspect}"
 
         # == build notice string from notice array contents
         notice_array.each_with_index do |item, index|
@@ -175,11 +167,9 @@ class UsersController < ApplicationController
     def save_assigned_reviewers
         puts "\n******* save_assigned_reviewers *******"            # save assign for each abstract (single save disabled)
         ok_params = reviewer_params
-        puts "\nok_params: #{ok_params.inspect}"
 
         # == save all abstract updates
         ok_params[:abstract_ids].each_with_index do |abstract_id, index|
-            puts "abstract_id: #{abstract_id.inspect}"
             reviewer1_id = ok_params[:reviewer1_ids][index]
             reviewer2_id = ok_params[:reviewer2_ids][index]
 
@@ -197,7 +187,6 @@ class UsersController < ApplicationController
 
             # == set reviewer ids (if any) for each abstract
             @abstract = Abstract.find(abstract_id)
-            puts "@abstract: #{@abstract.inspect}"
             @abstract.update(:reviewer1_id => reviewer1_id, :reviewer2_id => reviewer2_id)
         end
         flash[:notice] = 'All reviewer changes updated successfully.'
@@ -219,9 +208,6 @@ class UsersController < ApplicationController
     # ======= process_admin_functions =======
     def process_admin_functions
         puts "\n******* admin_functions *******"
-        puts "\nparams: #{params.inspect}"
-        puts "\nparams[:keyword]: #{params[:keyword].inspect}"
-
         notice_string = ""
 
         # == parse returned form values for keywords, rooms, [users, authors, affiliations]
@@ -230,13 +216,9 @@ class UsersController < ApplicationController
         room_params = ok_params[1]
         if ok_params[0]
             keyword = keyword_params[:keyword_name]
-            puts "\nok_params: #{ok_params.inspect}"
-            puts "\nkeyword_params: #{keyword_params.inspect}"
-            puts "\nkeyword: #{keyword.inspect}"
         end
         if ok_params[1]
             room = room_params[:room_name]
-            puts "\nroom_params: #{room_params.inspect}"
         end
 
         # == create new keyword
@@ -270,7 +252,6 @@ class UsersController < ApplicationController
 
         def process_admin_params
             puts "******* process_admin_params *******"
-            puts "params: #{params.inspect}"
             ok_params = []
             if params[:keyword]
                 ok_params << params.require(:keyword).permit(:keyword_name)

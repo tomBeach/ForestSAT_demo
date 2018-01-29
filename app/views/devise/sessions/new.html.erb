@@ -11,26 +11,26 @@
             <div class="formLabel"><%= label(:username, "username") %></div>
             <div class="formValue">
                 <span>
-                    <%= f.text_field :username, value: "", autofocus: true %>
+                    <%= f.text_field :username, value: "", class: "signinEntry" , autofocus: true %>
                     <i>&nbsp;&nbsp;&nbsp;NOTE: please use username, not email address</i>
                 </span>
             </div>
         </div>
         <div class="dataRow">
             <div class="formLabel"><%= label(:password, "password") %></div>
-            <div class="formValue"><%= f.password_field :password, value: "", autocomplete: "off" %></div>
+            <div class="formValue"><%= f.password_field :password, value: "", class: "signinEntry", autocomplete: "off" %></div>
         </div>
         <% if devise_mapping.rememberable? -%>
-        <div class="dataRow">
-                <div class="formLabel"><%= f.label :remember_me %></div>
-                <div class="formValue">
-                    <%= f.check_box :remember_me %>
+            <div class="dataRow">
+                    <div class="formLabel"><%= f.label :remember_me %></div>
+                    <div class="formValue">
+                        <%= f.check_box :remember_me %>
+                    </div>
                 </div>
-            </div>
-        <% end -%>
+            <% end -%>
         <div class="dataRow">
             <div class="formLabel">&nbsp;</div>
-            <div class="formValue"><%= f.submit "Login", id: "signin", class: "formBtn formBtn_1" %></div>
+            <div class="formValue"><%= f.submit "Login", id: "signin", class: "formBtn formBtn_green" %></div>
         </div>
 
         <div id="newSessionSpacer" class="dataSpacer">
@@ -39,9 +39,6 @@
 
         <div class="buttonRow">
             <%= link_to "Back", request.referer.present? ? request.referer : "/home", class: "formLink" %>
-            <%- if controller_name != 'sessions' %>
-                <%= link_to "Log in", new_session_path(resource_name), class: "formLink" %>
-            <% end -%>
         </div>
 
     </div>

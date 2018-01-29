@@ -77,5 +77,11 @@ class RegistrationsController < Devise::RegistrationsController
         def account_update_params
             puts "******* account_update_params *******"
             params.require(:user).permit(:firstname, :lastname, :institution, :department, :username, :current_password, :password, :password_confirmation, :email, :admin)
+
+            if params[@devise_mapping.name][:password_confirmation].blank?
+                params[@devise_mapping.name].delete(:password)
+                params[@devise_mapping.name].delete(:password_confirmation)
+            end
+            super
         end
 end

@@ -14,10 +14,14 @@
 <% end %>
 
 <!-- ======= authors selectbox ======= -->
+<% author_ids = [] %>
 <% author_name_ids = [] %>
 <% @authors_data_array.each do |author| %>
     <% author_name = author["firstname"] + " " + author["lastname"] %>
-    <% author_name_ids << [author_name, author["id"]] %>
+    <% if !author_ids.include? author["id"] %>
+        <% author_ids << author["id"] %>
+        <% author_name_ids << [author_name, author["id"]] %>
+    <% end %>
 <% end %>
 
 <!-- ======= init keywords ======= -->
@@ -62,10 +66,10 @@
             <div class="editAbstractRow_2">
                 <p class="dataLabel">title</p>
                 <%= f.hidden_field :id, value: @abstract[:id] %>
-                <%= f.text_field :abs_title, class: "title", class: "textEntry leftEntry" %>
+                <%= f.text_field :abs_title, maxlength: "250", class: "title", class: "textEntry leftEntry" %>
             </div>
 
-            <!-- ======= ======= ======= title ======= ======= ======= -->
+            <!-- ======= ======= ======= text ======= ======= ======= -->
             <div class="editAbstractRow_2_1">
                 <p class="dataLabel">text</p>
                 <%= f.text_area :abs_text, maxlength: "2500", placeholder: "Abstract Text", class: "areaEntry leftEntry", cols: "30", rows: "6" %>
@@ -89,13 +93,17 @@
                 <% puts "@authors_data: #{@authors_data.inspect}" %>
 
                 <% author_index = 0 %>
-                <% @authors_data.each do |key, value| %>
+                <% @authors_data.each do |key, author| %>
                     <div class="authors">
                         <p class="authorInfo">
-                            <span><%= value[:name] %></span>
+                            <span><%= author[:name] %></span>
                             <%= fields_for :author do |auth| %>
-                                <span><%= check_box_tag "author[delete_authors][]", value[:id] %></span>
-                                <i>check to remove author with this affiliation from abstract</i>
+                                <% if author[:id] == @primary_author_id %>
+                                    <span><i>primary author (can not be deleted)</i></span>
+                                <% else %>
+                                    <span><%= check_box_tag "author[delete_authors][]", author[:id] %></span>
+                                    <i>check to remove author with this affiliation from abstract</i>
+                                <% end %>
                             <% end %>
                         </p>
                     </div>
@@ -105,7 +113,7 @@
             <!-- ======= add author ======= -->
             <div class="editAbstractRow_5 newAuthorButton">
                 <p class="dataLabel authorLabels">
-                    <span><%= button_tag "Add author", type: "button", id: "add_author",  class: "formBtn formBtn_1" %></span>
+                    <span><%= button_tag "Add author", type: "button", id: "add_author",  class: "formBtn formBtn_green" %></span>
                     <span> <i>click to add new author data</i></span>
                 </p>
             </div>
@@ -194,7 +202,7 @@
 
         <div class="buttonRow fR">
             <%= link_to "Back", request.referer.present? ? request.referer : "/home", class: "formLink" %>
-            <%= button_tag "Save", type: "submit", id: "save_abstract",  class: "formBtn formBtn_1" %>
+            <%= button_tag "Save", type: "submit", id: "save_abstract",  class: "formBtn formBtn_green" %>
         </div>
 
     </div>

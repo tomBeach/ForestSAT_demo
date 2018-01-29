@@ -76,7 +76,7 @@
 
             <!-- ======= entry ======= -->
             <div class="aR_3 toggle_input titleRow_3">
-                <%= abstract.text_field :abs_title, maxlength: 200, placeholder: "Abstract Title (limit 200 characters)", class: "textEntry leftEntry" %>
+                <%= abstract.text_field :abs_title, maxlength: 200, placeholder: "Abstract Title (limit 200 characters)", class: "textEntry leftEntry", :data => {:valid => '0'} %>
             </div>
 
             <!-- ======= buttons ======= -->
@@ -96,19 +96,19 @@
         <div class="aR_2 toggle_input authorRow_2">
             <p class="dataLabel">primary author</p>
             <%= fields_for :author do |author| %>
-                <%= text_field_tag "author[firstnames][]", "", id: "primary_firstname", class: "dataEntry leftEntry", placeholder: "first name" %>
-                <%= text_field_tag "author[lastnames][]", "", id: "primary_lastname", class: "dataEntry", placeholder: "last name" %>
+                <%= text_field_tag "author[firstnames][]", "", id: "primary_firstname", class: "authorEntry leftEntry", placeholder: "first name" %>
+                <%= text_field_tag "author[lastnames][]", "", id: "primary_lastname", class: "authorEntry", placeholder: "last name" %>
             <% end %>
             <%= fields_for :abstract_author do |abstract_author| %>
                 <%= hidden_field_tag "abstract_author[author_types][]", "primary", class: "author author_type" %>
             <% end %>
             <%= fields_for :abstract do |abstract| %>
-                <%= abstract.radio_button :pres_author_id, 0, class: "presenting" %>
+                <%= radio_button_tag "abstract[pres_author_id]", 0, false, class: "presenting" %>
             <% end %>
             <i class="radioLabel">presenting</i>
             <%= fields_for :affiliation do |affiliation| %>
-                <%= text_field_tag "affiliation[institutions][]", "", id: "primary_institution", class: "dataEntry leftEntry", placeholder: "institution" %>
-                <%= text_field_tag "affiliation[departments][]", "", id: "primary_department", class: "dataEntry", placeholder: "department" %>
+                <%= text_field_tag "affiliation[institutions][]", "", id: "primary_institution", class: "authorEntry leftEntry", placeholder: "institution" %>
+                <%= text_field_tag "affiliation[departments][]", "", id: "primary_department", class: "authorEntry", placeholder: "department" %>
             <% end %>
         </div>
 
@@ -125,7 +125,7 @@
                         <%= hidden_field_tag "abstract_author[author_types][]", "secondary", class: "author author_type" %>
                     <% end %>
                     <%= fields_for :abstract do |abstract| %>
-                        <%= abstract.radio_button :pres_author_id, 1, class: "presenting" %>
+                        <%= radio_button_tag "abstract[pres_author_id]", 1, false, class: "presenting" %>
                     <% end %>
                     <i class="radioLabel">presenting</i>
                     <%= fields_for :affiliation do |affiliation| %>
@@ -185,9 +185,9 @@
             <div class="aR_3 toggle_input keywordRow_3">
                 <p class="dataLabel keywordLabel"><span>keyword1</span><span>keyword2</span><span>keyword3</span></p>
                 <div class="keyword_entries">
-                    <%= abstract.select(:keyword_1, options_for_select(keywords, selected_keyword1), {}, { :class => "selectEntry leftEntry" }) %>
-                    <%= abstract.select(:keyword_2, options_for_select(keywords, selected_keyword2), {}, { :class => "selectEntry" }) %>
-                    <%= abstract.select(:keyword_3, options_for_select(keywords, selected_keyword3), {}, { :class => "selectEntry" }) %>
+                    <%= abstract.select(:keyword_1, options_for_select(keywords, selected_keyword1), {}, { :class => "keywordEntry leftEntry" }) %>
+                    <%= abstract.select(:keyword_2, options_for_select(keywords, selected_keyword2), {}, { :class => "keywordEntry" }) %>
+                    <%= abstract.select(:keyword_3, options_for_select(keywords, selected_keyword3), {}, { :class => "keywordEntry" }) %>
                 </div>
 
                 <!-- ======= invited ======= -->

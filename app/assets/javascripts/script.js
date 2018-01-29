@@ -13,10 +13,15 @@ $(document).on('turbolinks:load', function() {
     } else if (pathname == "/review_abstracts") {
         activateRevAbsBtns();
     } else if ((pathname == "/select_abstracts") || (pathname == "/filter_by_keyword")) {
-        var tooltip = "Click link to see abstract details."
+        var tooltip = "Click link to see reviewer comments and abstract details."
         var targetElement = "#selabsScrollTable > tbody > tr > td:nth-of-type(1) > a";
         customToolTips(targetElement, tooltip);
         activateSubmitSelection();
+    } else if ((pathname == "/abstracts") || (pathname == "/my_abstracts") || (pathname == "/my_abstracts/my")) {
+        var tooltip = 'Filter abstract list by current selection status (oral, poster, rejected) or all.';
+        var targetElement = "#abstractsStaticTable > thead > tr:nth-of-type(1)";
+        customToolTips(targetElement, tooltip);
+        activateSelectFilter();
     } else if (pathname == "/users") {
         var tooltip = 'Edit these parameters via Admin menu links.';
         var targetElement = "tr > td:nth-of-type(2), tr > td:nth-of-type(3), tr > td:nth-of-type(4)";
@@ -26,7 +31,7 @@ $(document).on('turbolinks:load', function() {
         if ((pathParts[1] == "abstracts") && (pathParts[3] == "edit")) {
             activateNewAuthor();
         } else if ((pathPartsCount == 2) && (pathParts[1] == "abstracts")) {
-            var tooltip = "Scroll window for additional options."
+            var tooltip = "Scroll window for complete abstract."
             var targetElement = ".showAbstractScroll";
             customToolTips(targetElement, tooltip);
         }
@@ -187,6 +192,21 @@ $(document).on('turbolinks:load', function() {
         }
     }
 
+    // ======= abstractBySelection =======
+    function abstractBySelection() {
+        console.log("== abstractBySelection ==");
+        var selectType = $('#select_type').find(":selected").text();
+        console.log("pathname:", pathname);
+        console.log("selectType:", selectType);
+        $("#my_abstracts").submit();
+    }
+
+    // ======= activateSelectFilter =======
+    function activateSelectFilter() {
+        console.log("== activateSelectFilter ==");
+        $('#filter_abstracts').on('click', abstractBySelection);
+    }
+
     // ======= activateSubmitSelection =======
     function activateSubmitSelection() {
         console.log("== activateSubmitSelection ==");
@@ -253,232 +273,4 @@ $(document).on('turbolinks:load', function() {
         console.log("abstract_abstract_id", $("#abstract_abstract_id").val());
         $("#save_reviewers").submit();
     }
-
-    var abstractMgr = {
-        secondaryAuthorIndex: 1,
-        currentInputsIndex: 0,
-        firstnames: null,
-        lastnames: null,
-        institutions: null,
-        departments: null,
-        author_types: null,
-
-        // ======= initialize =======
-        initialize: function() {
-            console.log("== initialize ==");
-            $('.titleRow_2').css('display', 'block');
-            $('.titleRow_3').css('display', 'block');
-            $('.titleRow_4').css('display', 'flex');
-            $('#cancelBtn_1').on('click', abstractMgr.cancelAbstractSubmit);
-            $('#nextBtn_1').on('click', abstractMgr.nextInputView);
-        },
-
-        // ======= addNewAuthor =======
-        addNewAuthor: function(e) {
-            console.log("== addNewAuthor ==");
-            e.preventDefault();
-            abstractMgr.secondaryAuthorIndex = abstractMgr.secondaryAuthorIndex + 1;
-            var authorIndex = abstractMgr.secondaryAuthorIndex;
-            var authorHtml = "";
-            authorHtml += "<div id='secondary_" + authorIndex + "' class=''>";
-
-            // == author names inputs
-            authorHtml += "<input type='text' name='author[firstnames][]' id='firstname_" + authorIndex + "' value='' class='dataEntry secAuthor'>";
-            authorHtml += "<input type='text' name='author[lastnames][]' id='lastname_" + authorIndex + "' value='' class='dataEntry secAuthor'>";
-
-            // == author type
-            authorHtml += "<input type='hidden' name='abstract_author[author_types][]' id='abstract_author_author_types_' value='secondary' class='author author_type'>"
-
-            // == presenting radios
-            authorHtml += "<input class='' type='radio' value='" + authorIndex + "' name='abstract[pres_author_id]' id='abstract_pres_author_id_true'>";
-            authorHtml += "<i class='radioLabel'>presenting</i>";
-
-            // == affiliations
-            authorHtml += "<input type='text' name='affiliation[institutions][]' id='sec_institution_" + authorIndex + "' value='' class='dataEntry leftEntry secAuthor'>";
-            authorHtml += "<input type='text' name='affiliation[departments][]' id='sec_department_" + authorIndex + "' value='' class='dataEntry secAuthor lastDept'>";
-            authorHtml += "</div>";
-            console.log("authorHtml:", authorHtml);
-            $('.scrollBox').append(authorHtml);
-        },
-
-        // ======= toggleSessionSelect =======
-        toggleSessionSelect: function() {
-            console.log("== toggleSessionSelect ==");
-            if ($('.sessionLabel').css('display') == 'block') {
-                $('.sessionLabel').css('display', 'none');
-                // $('.invited_entries > span:nth-of-type(1) > i').text('for which session?');
-                $('.invited_entries > span:nth-of-type(2) > i').text('for which special session?');
-            } else {
-                $('.sessionLabel').css('display', 'block');
-                // $('.invited_entries > span:nth-of-type(1) > i').text('check if invited');
-                $('.invited_entries > span:nth-of-type(2) > i').text('select a session');
-            }
-        },
-
-        // ======= cancelAbstractSubmit =======
-        cancelAbstractSubmit: function() {
-            console.log("== cancelAbstractSubmit ==");
-            location.href = "/home";
-        },
-
-        // ======= submitAbstractForm =======
-        submitAbstractForm: function() {
-            console.log("== submitAbstractForm ==");
-            $("#new_abstract").submit();
-        },
-
-        // ======= prevInputView =======
-        prevInputView: function(e) {
-            console.log("== prevInputView ==");
-            abstractMgr.toggleInputView(-1);
-            e.preventDefault();
-        },
-
-        // ======= nextInputView =======
-        nextInputView: function(e) {
-            console.log("== nextInputView ==");
-            abstractMgr.toggleInputView(1);
-            e.preventDefault();
-        },
-
-        // ======= toggleInputView =======
-        toggleInputView: function(inc_dec) {
-            console.log("== toggleInputView ==");
-            console.log("inc_dec:", inc_dec);
-
-            var index = abstractMgr.currentInputsIndex;
-            var adminFlag = $('#admin_flag').val();
-
-            // == increase or decrease index
-            index += inc_dec;
-            if (index < 0) {
-                index = 4;
-            } else if (index >= 5) {
-                index = 0;
-            }
-            console.log("index:", index);
-
-            // == update master index
-            abstractMgr.currentInputsIndex = index;
-
-            // == title screen
-            if (index == 0) {
-                // == hide adjacent rows
-                $('.authorRow_2, .authorRow_3, .authorRow_4').css('display', 'none');
-
-                // == show current rows
-                $('.titleRow_2, .titleRow_3').css('display', 'block');
-                $('.titleRow_4').css('display', 'flex');
-
-                // == activate/dectivate adjacent and current buttons
-                $('#cancelBtn_1').on('click', abstractMgr.cancelAbstractSubmit);
-                $('#nextBtn_1').on('click', abstractMgr.nextInputView);
-                $('#cancelBtn_2, #cancelBtn_3, #cancelBtn_4').off('click', abstractMgr.nextInputView);
-                $('#nextBtn_2, #nextBtn_3, #nextBtn_4').off('click', abstractMgr.nextInputView);
-                $('#prevBtn_2, #prevBtn_3, #prevBtn_4').off('click', abstractMgr.prevInputView);
-                $('#authorBtn').off('click', abstractMgr.addNewAuthor);
-            }
-
-            // == author screen
-            if (index == 1) {
-                // == hide adjacent rows
-                $('.keywordRow_2, .keywordRow_3, .keywordRow_4').css('display', 'none');
-                $('.titleRow_2, .titleRow_3, .titleRow_4').css('display', 'none');
-                $('.textRow_2, .textRow_3, .textRow_4').css('display', 'none');
-
-                // == show current rows
-                $('.authorRow_2, .authorRow_3').css('display', 'block');
-                $('.authorRow_4').css('display', 'flex');
-
-                // == activate/dectivate adjacent and current buttons
-                $('#cancelBtn_2').on('click', abstractMgr.cancelAbstractSubmit);
-                $('#nextBtn_2').on('click', abstractMgr.nextInputView);
-                $('#prevBtn_2').on('click', abstractMgr.prevInputView);
-                $('#authorBtn').on('click', abstractMgr.addNewAuthor);
-                $('#cancelBtn_1, #cancelBtn_3, #cancelBtn_4').off('click', abstractMgr.cancelAbstractSubmit);
-                $('#nextBtn_1, #nextBtn_3, #nextBtn_4').off('click', abstractMgr.nextInputView);
-                $('#prevBtn_1, #prevBtn_3, #prevBtn_4').off('click', abstractMgr.prevInputView);
-            }
-
-            // == text screen
-            if (index == 2) {
-                // == hide adjacent rows
-                $('.authorRow_2, .authorRow_3, .authorRow_4').css('display', 'none');
-                $('.keywordRow_2, .keywordRow_3, .keywordRow_4').css('display', 'none');
-
-                // == show current rows
-                $('.textRow_2, .textRow_3').css('display', 'block');
-                $('.textRow_4').css('display', 'flex');
-
-                // == activate/dectivate adjacent and current buttons
-                $('#cancelBtn_3').on('click', abstractMgr.cancelAbstractSubmit);
-                $('#nextBtn_3').on('click', abstractMgr.nextInputView);
-                $('#prevBtn_3').on('click', abstractMgr.prevInputView);
-                $('#authorBtn').off('click', abstractMgr.addNewAuthor);
-                $('#invitedCheck').off('click', abstractMgr.toggleSessionSelect);
-                $('#cancelBtn_1, #cancelBtn_2, #cancelBtn_4').off('click', abstractMgr.cancelAbstractSubmit);
-                $('#nextBtn_1, #nextBtn_2, #nextBtn_4').off('click', abstractMgr.nextInputView);
-                $('#prevBtn_1, #prevBtn_2, #prevBtn_4').off('click', abstractMgr.prevInputView);
-            }
-
-            // == keyword/request screen
-            if (index == 3) {
-                // == hide adjacent rows
-                $('.textRow_2, .textRow_3, .textRow_4').css('display', 'none');
-
-                // == show current rows
-                $('.keywordRow_2, .keywordRow_3').css('display', 'block');
-                if (adminFlag == "true") {
-                    $('.adminInfo').css('display', 'block');
-                    $('#abstract_keyword_1, #abstract_keyword_2, #abstract_keyword_3').css('display', 'block');
-                } else {
-                    $('.adminInfo').css('display', 'none');
-                    $('#new_keyword_1, #new_keyword_2, #new_keyword_3').css('display', 'none');
-                }
-                $('.keywordRow_4').css('display', 'flex');
-
-                // == activate/dectivate adjacent and current buttons
-                $('#cancelBtn_4').on('click', abstractMgr.cancelAbstractSubmit);
-                $('#nextBtn_4').on('click', abstractMgr.nextInputView);
-                $('#prevBtn_4').on('click', abstractMgr.prevInputView);
-                $('#invitedCheck').on('click', abstractMgr.toggleSessionSelect);
-                $('#cancelBtn_1, #cancelBtn_2, #cancelBtn_3').off('click', abstractMgr.cancelAbstractSubmit);
-                $('#nextBtn_1, #nextBtn_2, #nextBtn_3').off('click', abstractMgr.nextInputView);
-                $('#prevBtn_1, #prevBtn_2, #prevBtn_3').off('click', abstractMgr.prevInputView);
-
-                var firstnames = $('.firstname').map(function(){return $(this).val();}).get();
-                var lastnames = $('.lastname').map(function(){return $(this).val();}).get();
-                var institutions = $('.institution').map(function(){return $(this).val();}).get();
-                var departments = $('.department').map(function(){return $(this).val();}).get();
-                var author_types = $('.author_type').map(function(){return $(this).val();}).get();
-
-                var presentingRadios = $('.presenting')
-                var checkedRadio = $('.presenting:checked', '#new_abstract').val()
-
-                abstractMgr.firstnames = firstnames;
-                abstractMgr.lastnames = lastnames;
-                abstractMgr.institutions = institutions;
-                abstractMgr.departments = departments;
-                abstractMgr.author_types = author_types;
-            }
-
-            // == submit after validation
-            if (index == 4) {
-                if ($("input[name='abstract[pres_author_id]']:checked").length) {
-                    $('.keywordRow_2, .keywordRow_3, .keywordRow_4').css('display', 'none');
-                    $('#secondary_authors').append(abstractMgr.firstnames);
-                    $('#secondary_authors').append(abstractMgr.lastnames);
-                    $('#secondary_authors').append(abstractMgr.institutions);
-                    $('#secondary_authors').append(abstractMgr.departments);
-                    $('#secondary_authors').append(abstractMgr.author_types);
-                    $('#nextBtn_4').text('submit');
-                    $("#new_abstract").submit();
-                } else {
-                    $('.notice').text('Please select a presenting author.');
-                    abstractMgr.toggleInputView(-3);
-                }
-            }
-        }
-    }
-    abstractMgr.initialize()
 });

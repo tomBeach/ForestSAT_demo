@@ -1,6 +1,10 @@
-<h1>Editing Affiliation</h1>
+<div class="dataBox">
 
-<%= render 'form', affiliation: @affiliation %>
+    <!-- ======= ======= ======= title ======= ======= ======= -->
+    <div class="dataRow fR_1">
+        <h2 class="dataTitle"><%= @affiliation[:institution] + " " + @affiliation[:department] %></h2>
+    </div>
 
-<%= link_to 'Show', @affiliation %> |
-<%= link_to "Back", request.referer.present? ? request.referer : "/home" %>
+    <%= render 'form', affiliation: @affiliation %>
+
+</div>

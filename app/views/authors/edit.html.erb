@@ -44,7 +44,7 @@
                         <span>
                             <%= text_field_tag "affiliation[institutions][]", institution, class: "authorName institution" %>
                             <%= text_field_tag "affiliation[departments][]", department, class: "authorName department" %>
-                            <%= check_box_tag "affiliation[delete_affiliation][]", affl_id %>
+                            <%= check_box_tag "affiliation[delete_affiliations][]", affl_id %>
                             <i>check to remove</i>
                         </span>
                     </div>
@@ -65,7 +65,7 @@
 
         <div class="buttonRow fR">
           <%= link_to "Back", request.referer.present? ? request.referer : "/home", class: "formLink" %>
-          <%= button_tag "Update", type: "submit", id: "update_author",  class: "formBtn formBtn_1" %>
+          <%= button_tag "Update", type: "submit", id: "update_author",  class: "formBtn formBtn_green" %>
         </div>
     </div>
 <% end %>

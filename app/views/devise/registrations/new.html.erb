@@ -8,36 +8,36 @@
         </div>
         <div class="dataRow">
             <div class="formLabel">firstname</div>
-            <div class="formValue"><%= f.text_field :firstname, autofocus: true %></div>
+            <div class="formValue"><%= f.text_field :firstname, class: "signinEntry", autofocus: true %></div>
         </div>
         <div class="dataRow">
             <div class="formLabel">lastname</div>
-            <div class="formValue"><%= f.text_field :lastname, autofocus: true %></div>
+            <div class="formValue"><%= f.text_field :lastname, class: "signinEntry", autofocus: true %></div>
         </div>
         <div class="dataRow">
             <div class="formLabel">username</div>
-            <div class="formValue"><%= f.text_field :username, autofocus: true %></div>
+            <div class="formValue"><%= f.text_field :username, class: "signinEntry", autofocus: true %></div>
         </div>
         <div class="dataRow">
             <div class="formLabel">email</div>
-            <div class="formValue"><%= f.email_field :email, autofocus: true %></div>
+            <div class="formValue"><%= f.email_field :email, class: "signinEntry", autofocus: true %></div>
         </div>
         <div class="dataRow">
             <div class="formLabel">password</div>
             <div class="formValue">
-                <%= f.password_field :password, autocomplete: "off" %>
-                <% if @minimum_password_length %>
-                    <i><%= @minimum_password_length %> characters minimum</i>
-                <% end %>
+                <span>
+                    <%= f.password_field :password, class: "signinEntry", autocomplete: "off" %>
+                    <i>6 characters minimum</i>
+                </span>
             </div>
         </div>
         <div class="dataRow">
             <div class="formLabel">password confirm</div>
-            <div class="formValue"><%= f.password_field :password_confirmation, autocomplete: "off" %></div>
+            <div class="formValue"><%= f.password_field :password_confirmation, class: "signinEntry", autocomplete: "off" %></div>
         </div>
         <div class="dataRow">
             <div class="formLabel">&nbsp;</div>
-            <div class="formValue"><%= f.submit "Register", id: "signup", class: "formBtn formBtn_1" %></div>
+            <div class="formValue"><%= f.submit "Register", id: "signup", class: "formBtn formBtn_green" %></div>
         </div>
 
         <div id="newUserSpacer" class="dataSpacer">
@@ -46,13 +46,6 @@
 
         <div class="buttonRow">
             <%= link_to "Back", request.referer.present? ? request.referer : "/home", class: "formLink" %>
-            <%- if controller_name != 'sessions' %>
-                <%= link_to "Log in", new_session_path(resource_name), class: "formLink" %>
-            <% end -%>
-            <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
-                <%= link_to "Resend confirm", new_confirmation_path(resource_name), class: "formLink_wide" %>
-                <i>resend confirmation instructions</i>
-            <% end -%>
         </div>
     </div>
 <% end %>

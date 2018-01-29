@@ -11,7 +11,7 @@
 
 <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
     <div class="dataRow">
-        <div class="formLabel">Didn't receive confirmation instructions?</div>
+        <div class="formLabel">Didn't receive instructions?</div>
         <div class="formValue"><%= link_to "Resend Instructions", new_confirmation_path(resource_name), class: "formLink" %></div>
     </div>
 <% end -%>

@@ -30,10 +30,10 @@
         <table id="selabsStaticTable">
             <thead>
                 <tr>
-                    <td id="reviewersFilters" colspan="6">
+                    <td id="reviewersFilters" colspan="7">
                         <%= select_tag("keyword_1", options_for_select(keywords), :id => "keywords") %>
-                        <%= button_tag "Filter by Keyword", type: "button", id: "filter_selections", class: "formBtn formBtn_1" %>
-                        <%= button_tag "Get all abstracts", type: "button", id: "all_selections", class: "formBtn formBtn_1" %>
+                        <%= button_tag "Filter by Keyword", type: "button", id: "filter_selections", class: "formBtn formBtn_green" %>
+                        <%= button_tag "Get all abstracts", type: "button", id: "all_selections", class: "formBtn formBtn_green" %>
                     </td>
                 </tr>
                 <tr>
@@ -78,6 +78,7 @@
                 <!-- ======= list abstracts/reviewers ======= -->
                 <% if @abstracts.length > 0 %>
                     <% @abstracts.each do |next_abstract| %>
+                    <% puts "next_abstract: #{next_abstract.inspect}" %>
 
                         <!-- == get reviewers via abstracgt reviewer ids== -->
                         <% reviewer_name1 = "" %>
@@ -98,7 +99,16 @@
                         <!-- == get abstract authors via join table == -->
                         <% sql = "SELECT authors.firstname, authors.lastname, abstract_authors.author_type FROM authors INNER JOIN abstract_authors ON authors.id = abstract_authors.author_id WHERE abstract_authors.abstract_id = '" + next_abstract[:id].to_s + "' AND abstract_authors.author_type = 'primary';" %>
                         <% author_data = ActiveRecord::Base.connection.execute(sql) %>
-                        <% primary_author = author_data[0]["firstname"].to_s + " " + author_data[0]["lastname"].to_s %>
+                        <% puts "author_data: #{author_data.inspect}" %>
+                        <% author_data_array = author_data.to_a %>
+                        <% puts "author_data_array: #{author_data_array.inspect}" %>
+                        <% puts "author_data_array[0]: #{author_data_array[0].inspect}" %>
+                        <% if author_data_array[0] %>
+                            <% primary_author = author_data_array[0]["firstname"].to_s + " " + author_data_array[0]["lastname"].to_s %>
+                            <% puts "\nnext_abstract[:id]: #{next_abstract[:id].inspect}" %>
+                        <% else %>
+                            <% primary_author = "no primary author listed" %>
+                        <% end %>
 
                         <!-- ======= interpret keyword recommendations from boolean ======= -->
                         <% if next_abstract[:reviewer1_keywords] == true %>
@@ -145,7 +155,7 @@
                 <% else %>
                     <tr class="abstractMessage">
                         <td colspan="7">
-                            <p>There are no abstracts currently in the system.  Please contact the system administrator if you believe this is an error.</p>
+                            <p>No abstracts currently in the system match the selected keyword(s).  Please contact the system administrator if you believe this is an error.</p>
                         </td>
                     </tr>
                 <% end %>
@@ -157,7 +167,7 @@
         <!-- ======= save all changes option ======= -->
         <div class="buttonRow fR">
             <%= link_to "Back", request.referer.present? ? request.referer : "/home", class: "formLink" %>
-            <%= a.button "Save all changes", type: "button", id: "save_all_selections", class: "formBtn formBtn_1" %>
+            <%= a.button "Save all changes", type: "button", id: "save_all_selections", class: "formBtn formBtn_green" %>
         </div>
 
         </div>

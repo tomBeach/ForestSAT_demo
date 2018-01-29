@@ -10,21 +10,29 @@
         </div>
     <% end %>
 
-    <div class="actions">
-        <div class="field">
-            <%= f.label :institution %><br />
-            <%= f.text_field :institution, autofocus: true %>
-        </div>
-        <div class="field">
-            <%= f.label :department %><br />
-            <%= f.text_field :department, autofocus: true %>
-        </div>
-        <div class="field">
+    <div class="dataRow">
+        <div class="formLabel"><%= f.label :institution %></div>
+        <div class="formValue"><%= f.text_field :institution, autofocus: true %></div>
+    </div>
+    <div class="dataRow">
+        <div class="formLabel"><%= f.label :department %></div>
+        <div class="formValue"><%= f.text_field :department, autofocus: true %></div>
+    </div>
+    <div class="dataRow">
+        <div class="formLabel">
             <% if @author_id %>
                 <% puts "@author_id: #{@author_id}" %>
                 <%= f.hidden_field :author_id, value: @author_id.to_s %>
             <% end %>
-            <%= f.submit %>
         </div>
+        <div class="formValue">
+            <%= button_tag "Update", type: "submit", id: "update_author",  class: "formBtn formBtn_green" %>
+        </div>
+
     </div>
+    <div class="dataRow">
+        <div class="formLabel">&nbsp;</div>
+        <div class="formValue"><%= link_to "Back", request.referer.present? ? request.referer : "/home" %></div>
+    </div>
+
 <% end %>

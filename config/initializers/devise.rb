@@ -14,7 +14,9 @@ Devise.setup do |config|
   # with default "from" parameter. NOTE: This creates the "from" address for email message
   # config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
   # config.mailer_sender = 'localhost'
-  config.mailer_sender = 'tbeach2k@gmail.com'
+  # config.mailer_sender = 'tbeach2k@gmail.com'
+  # config.mailer_sender = 'Jeffrey.G.Masek@nasa.gov'
+  config.mailer_sender = 'forestsat2018@gmail.com'
 
   # Configure the class responsible to send e-mails.
   config.mailer = 'Devise::Mailer'

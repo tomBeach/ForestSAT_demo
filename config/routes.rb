@@ -1,16 +1,12 @@
 Rails.application.routes.draw do
 
     get "/" => "users#home"
+    get "/faq" => "users#faq"
     get "/home" => "users#home"
     get "/new_user" => "users#new"
     get "/signed_in_msg" => "users#signed_in_msg"
 
     devise_for :users, :controllers => { :registrations => "registrations" }
-    # devise_for :users, :controllers => { :registrations => "registrations", :confirmations => "confirmations" }
-    # devise_scope :user do
-    #     # get "/confirmation-getting-started" => "registrations#getting_started", as: "confirmation_getting_started"
-    #     get "/confirmation_getting_started" => "users#signed_in_msg"
-    # end
 
     resources :users, :only => [:index, :show]
     resources :affiliations
@@ -19,7 +15,9 @@ Rails.application.routes.draw do
     resources :authors
     resources :rooms
 
-    get "/my_abstracts" => "abstracts#my_abstracts"
+    get "/abstracts" => "abstracts#index"
+    get "/my_abstracts/:my" => "abstracts#index"
+    post "/my_abstracts" =>  "abstracts#index"
 
     get "/admin_functions" => "users#admin_functions"
     post "/process_admin_functions" => "users#process_admin_functions"

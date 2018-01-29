@@ -1,20 +1,37 @@
-<h2>Resend confirmation instructions</h2>
-
-<% puts "+++++ devise: confirmations/new.html.erb +++++" %>
+<!-- ======= devise/confirmations/new.html.erb ======= -->
 
 <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
 
-  <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username, autofocus: true %>
-  </div>
+    <div class="dataBox">
+        <div class="dataRow fR_1">
+            <h2 class="dataTitle">Resend confirmation instructions</h2>
+        </div>
+        <div class="dataRow">
+            <div class="formLabel"><%= label(:username, "username") %></div>
+            <div class="formValue">
+                <span>
+                    <%= f.text_field :username, value: "", class: "signinEntry", autofocus: true %>
+                    <i>&nbsp;NOTE: please use username, not email address</i>
+                </span>
+            </div>
+        </div>
+        <div class="dataRow">
+            <div class="formLabel"><%= label(:email, "email") %></div>
+            <div class="formValue">
+                <%= f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: "signinEntry" %>
+            </div>
+        </div>
+        <div class="dataRow">
+            <div class="formLabel"><i>request instructions</i> </div>
+            <div class="formValue"><%= f.submit "Send confirm instructions", class: "formBtn formBtn_green" %></div>
+        </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
-  </div>
+        <div id="resetPswdSpacer" class="dataSpacer">
+            &nbsp;
+        </div>
 
-  <div class="actions">
-    <%= f.submit "Resend confirmation instructions" %>
-  </div>
+        <div class="buttonRow">
+            <%= link_to "Back", request.referer.present? ? request.referer : "/home", class: "formLink" %>
+        </div>
+    </div>
 <% end %>

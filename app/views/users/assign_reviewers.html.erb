@@ -70,8 +70,14 @@
                                 <%= hidden_field_tag "abstract[abstract_ids][]", next_abstract[:id].to_s %>
                                 <td><%= link_to next_abstract[:abs_title], abstract_path(next_abstract) %></td>
                                 <td><%= primary_author %></td>
-                                <td><%= select_tag("abstract[reviewer1_ids][]", options_for_select(reviewer_name_ids, selected_reviewer_id1), :id => "abstract_reviewer1_ids_" + next_abstract[:id].to_s) %></td>
-                                <td><%= select_tag("abstract[reviewer2_ids][]", options_for_select(reviewer_name_ids, selected_reviewer_id2), :id => "abstract_reviewer2_ids_" + next_abstract[:id].to_s) %></td>
+                                <% puts "reviewer_name_ids.length: #{reviewer_name_ids.length.inspect}" %>
+                                <% if reviewer_name_ids.length > 1 %>
+                                    <td><%= select_tag("abstract[reviewer1_ids][]", options_for_select(reviewer_name_ids, selected_reviewer_id1), :id => "abstract_reviewer1_ids_" + next_abstract[:id].to_s) %></td>
+                                    <td><%= select_tag("abstract[reviewer2_ids][]", options_for_select(reviewer_name_ids, selected_reviewer_id2), :id => "abstract_reviewer2_ids_" + next_abstract[:id].to_s) %></td>
+                                <% else %>
+                                    <td> <i>no reviewers selected</i> </td>
+                                    <td> <i>no reviewers selected</i> </td>
+                                <% end %>
                                 <% formatted_date = next_abstract[:updated_at].in_time_zone("Eastern Time (US & Canada)").strftime('%m/%d %l:%M') %>
                                 <td><%= formatted_date %> </td>
                             </tr>
@@ -94,7 +100,7 @@
 
         <div class="buttonRow fR">
             <%= link_to "Back", request.referer.present? ? request.referer : "/home", class: "formLink" %>
-            <%= button_tag "Save all changes", type: "submit", class: "formBtn formBtn_1" %>
+            <%= button_tag "Save all changes", type: "submit", class: "formBtn formBtn_green" %>
         </div>
     </div>
     <% end %>
