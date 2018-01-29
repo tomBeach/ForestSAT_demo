@@ -11,14 +11,14 @@
             <div class="formLabel"><%= label(:username, "username") %></div>
             <div class="formValue">
                 <span>
-                    <%= f.text_field :username, value: "", class: "signinEntry" , autofocus: true %>
+                    <%= f.text_field :username, value: "admin_demo", class: "signinEntry" , autofocus: true %>
                     <i>&nbsp;&nbsp;&nbsp;NOTE: please use username, not email address</i>
                 </span>
             </div>
         </div>
         <div class="dataRow">
             <div class="formLabel"><%= label(:password, "password") %></div>
-            <div class="formValue"><%= f.password_field :password, value: "", class: "signinEntry", autocomplete: "off" %></div>
+            <div class="formValue"><%= f.password_field :password, value: "admin_demo", class: "signinEntry", autocomplete: "off" %></div>
         </div>
         <% if devise_mapping.rememberable? -%>
             <div class="dataRow">

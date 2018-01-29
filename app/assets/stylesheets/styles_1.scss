@@ -164,12 +164,16 @@ i {
     font-size: 65px;
     color: $bright_accent;
 }
-.titleBox > p > span:nth-of-type(2) {
+.titleBox > p > span:nth-of-type(2), .titleBox > p > span:nth-of-type(3) {
     margin: 0;
     width: 100%;
     font-family: 'Fira Sans', sans-serif;
     font-size: 65px;
     color: white;
+}
+.titleBox > p > span:nth-of-type(3) {
+    font-size: 60px;
+    color: $dataBox;
 }
 .subtitleBox {
   display: flex;
@@ -251,6 +255,9 @@ i {
 }
 .homeTitle {
     text-align: left;
+}
+.homeTitle:nth-of-type(1) > span {
+    color: $section_accent;
 }
 .fR_1 {
     height: 60px;
@@ -447,7 +454,7 @@ i {
     height: 280px;
 }
 .dataTitle > span:nth-of-type(1) {
-    color: $bright_accent;
+    color: $section_accent;
 }
 .sectionText, .sectionInfo {
     width: 74%;
@@ -461,10 +468,10 @@ i {
     list-style-type: square;
 }
 .sectionInfo > li > span:nth-of-type(1) {
-    color: #05537a;
+    color: $section_accent;
 }
 .sectionInfo > li:nth-of-type(4) > span:nth-of-type(2) {
-    color: #05537a;
+    color: $section_accent;
 }
 
 /* ======= user views (devise/users) ======= */

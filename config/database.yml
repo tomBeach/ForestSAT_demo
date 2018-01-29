@@ -5,12 +5,12 @@ default: &default
   timeout: 5000
 development:
   adapter: postgresql
-  database: forestsat_dev
+  database: forestsat_demo
   pool: 5
   timeout: 5000
 test:
   adapter: postgresql
-  database: forestsat_test
+  database: forestsat_demo_test
   pool: 5
   timeout: 5000
 production:
