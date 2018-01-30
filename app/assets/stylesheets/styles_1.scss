@@ -96,7 +96,7 @@ i {
     line-height: 1.4em;
     text-align: center;
     vertical-align: middle;
-    color: $bright_accent;
+    color: $really_dark_green;
     // overflow-x: scroll;
 }
 .alert {
@@ -162,18 +162,14 @@ i {
     width: 100%;
     font-family: 'Raleway', sans-serif;
     font-size: 65px;
-    color: $bright_accent;
+    color: $really_dark_green;
 }
-.titleBox > p > span:nth-of-type(2), .titleBox > p > span:nth-of-type(3) {
+.titleBox > p > span:nth-of-type(2) {
     margin: 0;
     width: 100%;
     font-family: 'Fira Sans', sans-serif;
     font-size: 65px;
     color: white;
-}
-.titleBox > p > span:nth-of-type(3) {
-    font-size: 60px;
-    color: $dataBox;
 }
 .subtitleBox {
   display: flex;
@@ -211,7 +207,7 @@ i {
     width: 90%;
     margin: 20px auto;
     text-align: center;
-    color: $bright_accent;
+    color: $really_dark_green;
 }
 .subtitle {
     display: inline-block;
@@ -255,9 +251,6 @@ i {
 }
 .homeTitle {
     text-align: left;
-}
-.homeTitle:nth-of-type(1) > span {
-    color: $section_accent;
 }
 .fR_1 {
     height: 60px;
@@ -359,7 +352,7 @@ i {
     margin: 2px 5px;
 }
 .formValue {
-    width: 70%;
+    width: 65%;
     text-align: left;
     vertical-align: text-top;
     color: black;
@@ -380,37 +373,37 @@ i {
     width: 20px;
     height: 20px;
     margin: 0 5px;
-    background-color: $button_blue;
+    background-color: $hilite_green;
 }
 
 /* ======= buttons/links ======= */
 .formBtn, .formLink, .formLink_wide {
     display: inline-block;
     width: 140px;
-    height: 18px;
+    height: 20px;
     margin: 0 5px;
     font-size: 0.8em;
     text-align: center;
     border-radius: 4px;
     color: white;
-    border: none;
+    border: solid 1px $brown;
     box-sizing: border-box;
 }
 .formLink, .formLink_wide {
-    padding-top: 2px;
+    padding-top: 1px;
     font-size: 0.8em;
     text-decoration: none;
-    background-color: $secB_grad_1;
+    background-color: $button_orange;
 }
 .formLink_wide {
     width: auto;
     padding: 2px 10px 0 10px;
 }
 .formBtn_green {
-    background-color: $button_blue;
+    background-color: $button_orange;
 }
 .formBtn_blue {
-    background-color: $secB_grad_1;
+    background-color: $button_orange;
 }
 .blankBtn {
     display: inline-block;
@@ -422,17 +415,21 @@ i {
     font-size: 0.8em;
     border-radius: 4px;
 }
-.formBtn_green:hover, .formBtn_blue:hover {
-    background-color: $bright_accent;
+.formBtn:hover, .formBtn_green:hover, .formBtn_blue:hover {
+    background-color: $med_green;
+    border: solid 1px $really_dark_green;
 }
 .formLink:hover, .formLink_wide:hover {
-    background-color: $bright_accent;
+    background-color: $med_green;
+    border: solid 1px $really_dark_green;
 }
 .formValue > input[type=submit]:hover {
-    background-color: $bright_accent;
+    background-color: $med_green;
+    border: solid 1px $really_dark_green;
 }
 .formValue > input[type=checkbox]:hover {
-    background-color: $bright_accent;
+    background-color: $med_green;
+    border: solid 1px $really_dark_green;
 }
 .button_to {
     display: inline-block;
@@ -454,12 +451,12 @@ i {
     height: 280px;
 }
 .dataTitle > span:nth-of-type(1) {
-    color: $section_accent;
+    color: $really_dark_green;
 }
 .sectionText, .sectionInfo {
     width: 74%;
     margin: 2px auto;
-    font-size: 1.2em;
+    font-size: 1em;
     text-align: left;
 }
 .sectionInfo {
@@ -468,10 +465,10 @@ i {
     list-style-type: square;
 }
 .sectionInfo > li > span:nth-of-type(1) {
-    color: $section_accent;
+    color: #05537a;
 }
 .sectionInfo > li:nth-of-type(4) > span:nth-of-type(2) {
-    color: $section_accent;
+    color: #05537a;
 }
 
 /* ======= user views (devise/users) ======= */
@@ -529,7 +526,7 @@ i {
     padding: 2px;
     padding-left: 10px;
     text-align: left;
-    color: $dataText;
+    color: $really_dark_green;
     background-color: $menuLabel;
 }
 #menuBox > div:nth-of-type(2) > p:nth-of-type(1) {
@@ -551,11 +548,11 @@ i {
     box-sizing: border-box;
 }
 .menuItem > a {
-    background-color: $button_blue;
+    background-color: $hilite_green;
 }
 .menuItem:hover {
-    background-color: $bright_accent;
-    border: solid 1px $bright_accent;
+    background-color: $med_green;
+    border: solid 1px $really_dark_green;
 }
 .menuLinks {
     text-align: center;
@@ -574,13 +571,13 @@ i {
     box-sizing: border-box;
 }
 .linkItem:hover {
-    background-color: $bright_accent;
-    border: solid 1px $bright_accent;
+    background-color: $med_green;
+    border: solid 1px $really_dark_green;
 }
 
 @media only screen and (max-width: 1175px) {
     #contentBox {
-        // background-color: $bright_accent;
+        // background-color: $really_dark_green;
     }
     // #titleBox {
     //     width: 100%;

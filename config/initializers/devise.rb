@@ -17,6 +17,7 @@ Devise.setup do |config|
   config.mailer_sender = 'tbeach2k@gmail.com'
   # config.mailer_sender = 'Jeffrey.G.Masek@nasa.gov'
   # config.mailer_sender = 'forestsat2018@gmail.com'
+  # config.mailer_sender = 'submissions@forestsat.com'
 
   # Configure the class responsible to send e-mails.
   config.mailer = 'Devise::Mailer'

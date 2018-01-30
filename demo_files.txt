@@ -1,0 +1,21 @@
+======= demo files =======
+
+config/environments/production.rb
+  config.action_mailer.default_url_options = { :host => "https://forestsat-demo.herokuapp.com/" }
+
+config/environments/developmenmt (commented)
+    # config.action_mailer.default_url_options = { :host => "https://forestsat-demo.herokuapp.com/" }
+
+
+config/initializers/devise.rb
+  config.mailer_sender = 'tbeach2k@gmail.com'
+
+config/environment
+  :domain => 'https://forestsat-demo.herokuapp.com/',
+
+config/application.rb
+  module ForestSat_demo
+
+devise/sessions/new.html.erb
+  value: "admin_demo"
+

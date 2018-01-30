@@ -544,7 +544,7 @@
 }
 .commentBtn {
     margin: 5px 10px;
-    background-color: $button_blue;
+    background-color: $hilite_green;
 }
 .commentBox > .commentBtn:nth-of-type(1) {
     margin-top: 10px;
@@ -686,7 +686,7 @@
 .aR_4 {
     width: 95%;
     margin: 0 auto;
-    padding-top: 5px;
+    padding-top: 2px;
     background-color: $label_accent;
 }
 .scrollBox, .adminScrollBox, .affiliationScrollBox {
@@ -728,16 +728,15 @@
     font-size: 0.8em;
     border-radius: 4px;
     color: white;
-    background-color: $secB_grad_1;
-    // -webkit-box-shadow: 2px 2px 2px #666;
-    // -moz-box-shadow: 2px 2px 2px #666;
-    // box-shadow: 2px 2px 2px #666;
+    background-color: $button_orange;
+    border: solid 1px $brown;
 }
 .blankBtn {
     visibility: hidden;
 }
 .newAbsLink:hover {
-    background-color: $bright_accent;
+    background-color: $med_green;
+    border: solid 1px $really_dark_green;
 }
 
 // ======= ======= ======= NEW ABSTRACT DETAILS ======= ======= ======= //
@@ -790,7 +789,7 @@
     text-decoration: none;
     font-size: 0.9em;
     color: white;
-    background-color: $button_blue;
+    background-color: $hilite_green;
     border-radius: 4px;
 }
 .abstractBtn:hover {

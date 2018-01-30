@@ -99,7 +99,7 @@
 .showAbstractText {
     margin: 20px 30px;
 }
-.showAbstractKeywords {
+.showAbstractKeywords, .showSpecialSessions {
     margin-left: 30px;
 }
 
@@ -129,6 +129,9 @@
 }
 .editAbstractRow_6 {
     height: 80px;
+}
+.editAbstractRow_7 {
+    height: 100px;
 }
 
 /* ======= presenting/submitting ======= */
@@ -164,7 +167,6 @@
     margin-left: 30px;
     color: $form_label;
 }
-
 
 /* ======= authors/affiliations list ======= */
 .authors {
@@ -258,86 +260,79 @@
 // ======= ======= ======= colorchips ======= ======= ======= //
 // ======= ======= ======= colorchips ======= ======= ======= //
 
-.chip {
-    float: left;
-    width: 20px;
+/* ======= chip table attributes ======= */
+#colorsTable {
+    width: 50%;
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+#colorsTable > thead > tr > th:nth-of-type(1) {
+    width: 100px;
+}
+#colorsTable > thead > tr > th:nth-of-type(2) {
+    width: 40px;
+}
+#colorsTable > thead > tr > th:nth-of-type(3) {
+    width: 80px;
+}
+#colorsTable > tbody > tr {
+    height: 40px;
+}
+#colorsTable > thead > tr > th, #colorsTable > tbody > tr > td {
+    text-align: center;
+    border: solid 1px black;
+}
+.colorGroup {
     height: 20px;
+    text-align: center;
 }
-#chip_1 {
-    background-color: $bright_accent;
+
+/* ======= chip column colors ======= */
+#really_dark_green {
+    background-color: #134110;
 }
-#chip_2 {
-    background-color: $title_stripe;
+#dk_green {
+    background-color: #35602f;
 }
-#chip_3 {
-    background-color: $dataText;
+#med_green {
+    background-color: #1f8e0b;
 }
-#chip_4 {
-    background-color: $dataBox;
+#lt_med {
+    background-color: #c2ecc1;
 }
-#chip_5 {
-    background-color: $label_accent;
+#lt_green {
+    background-color: #e5f6e6;
 }
-#chip_6 {
-    background-color: $accent_2;
+#lt_yellow_green {
+    background-color: #cfecc1;
 }
-#chip_7 {
-    background-color: $dataBox;
+#tan {
+    background-color: #f4e1cd;
 }
-#chip_8 {
-    background-color: $color_P_1;
+#very_lt_orange {
+    background-color: #eedbc8;
 }
-#chip_9 {
-    background-color: $color_P_2;
+#lt_orange {
+    background-color: #f5ca9a;
 }
-#chip_10 {
-    background-color: $color_P_3;
+#brown {
+    background-color: #803f14;
 }
-#chip_11 {
-    background-color: $color_P_4;
+#MENU_orange {
+    background-color: #a15608;
 }
-#chip_12 {
-    background-color: $color_Sb_0;
+#lt_tan {
+    background-color: #fef4f0;
 }
-#chip_13 {
-    background-color: $color_Sb_1;
+#dk_gray {
+    background-color: #404040;
 }
-#chip_14 {
-    background-color: $color_Sb_2;
+#lt_gray {
+    background-color: #cccccc;
 }
-#chip_15 {
-    background-color: $color_Sb_3;
+#bkgd_primary {
+    background-color: #f6fbf2;
 }
-#chip_16 {
-    background-color: $color_Sb_4;
-}
-#chip_17 {
-    background-color: $color_Sa_0;
-}
-#chip_18 {
-    background-color: $color_Sa_1;
-}
-#chip_19 {
-    background-color: $color_Sa_2;
-}
-#chip_20 {
-    background-color: $button_blue;
-}
-#chip_21 {
-    background-color: $color_Sa_4;
-}
-#chip_22 {
-    background-color: $secB_grad_0;
-}
-#chip_23 {
-    background-color: $secB_grad_1;
-}
-#chip_24 {
-    background-color: $secB_grad_2;
-}
-#chip_25 {
-    background-color: $secB_grad_3;
-}
-#chip_26 {
-    background-color: $secB_grad_4;
+#bkgd_secondary {
+    background-color: #fefdfb;
 }

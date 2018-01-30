@@ -31,6 +31,11 @@ class UsersController < ApplicationController
         end
     end
 
+    # ======= colors =======
+    def colors
+        puts "\n******* colors *******"
+    end
+
     # ======= faq =======
     def faq
         puts "\n******* faq *******"

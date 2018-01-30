@@ -351,6 +351,9 @@ class AbstractsController < ApplicationController
 
         # == generate list of keywords for selectboxes
         @keywords = Keyword.all
+
+        # == generate list of special sessions for selectboxes
+        @sessions = Presentation.all
     end
 
     # ======= update =======
@@ -555,8 +558,8 @@ class AbstractsController < ApplicationController
         end
 
         # == identify session (presentation) assigned for abstract if any
-        if @abstract[:present_id]
-            present = Presentation.find(@abstract[:present_id])
+        if @abstract[:presentation_id]
+            present = Presentation.find(@abstract[:presentation_id])
             @present = present[:session_title]
         else
             @present = "unassigned"

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     get "/" => "users#home"
     get "/faq" => "users#faq"
     get "/home" => "users#home"
+    get "/colors" => "users#colors"
     get "/new_user" => "users#new"
     get "/signed_in_msg" => "users#signed_in_msg"
 

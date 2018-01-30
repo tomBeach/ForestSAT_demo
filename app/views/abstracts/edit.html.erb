@@ -48,6 +48,13 @@
 <% request_select = [["oral", "oral"], ["poster", "poster"], ["no preference", "no preference"]] %>
 <% present_request = @abstract[:present_request] %>
 
+<!-- ======= sessions selectbox ======= -->
+<% session_name_ids = [[nil, nil]] %>
+<% @sessions.each_with_index do |session, index| %>
+    <% session_name_ids << [session[:session_title], session[:id]] %>
+<% end %>
+
+<!-- ======= ======= ======= main form ======= ======= ======= -->
 <%= form_for(@abstract, url: "/save_abstract") do |f| %>
 
     <!-- ======= abstracts/show.html.erb ======= -->
@@ -153,6 +160,13 @@
                     <%= f.select(:keyword_1, options_for_select(keywords, selected_keyword1), {}, { :class => "keywordSelect" }) %>
                     <%= f.select(:keyword_2, options_for_select(keywords, selected_keyword2), {}, { :class => "keywordSelect" }) %>
                     <%= f.select(:keyword_3, options_for_select(keywords, selected_keyword3), {}, { :class => "keywordSelect" }) %>
+            </div>
+
+            <!-- ======= special sessions ======= -->
+            <div class="editAbstractRow_7">
+                <p class="dataLabel">special session</p>
+                    <% puts "selected_keyword1: #{selected_keyword1.inspect}" %>
+                    <%= f.select(:presentation_id, options_for_select(session_name_ids, @abstract[:presentation_id])) %>
             </div>
 
             <!-- ======= admin: sessons, recommendations ======= -->
