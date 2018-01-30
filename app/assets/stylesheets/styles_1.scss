@@ -164,12 +164,17 @@ i {
     font-size: 65px;
     color: $really_dark_green;
 }
-.titleBox > p > span:nth-of-type(2) {
+.titleBox > p > span:nth-of-type(2), .titleBox > p > span:nth-of-type(3) {
     margin: 0;
     width: 100%;
     font-family: 'Fira Sans', sans-serif;
     font-size: 65px;
     color: white;
+}
+.titleBox > p > span:nth-of-type(3) {
+    font-family: 'Raleway', sans-serif;
+    font-size: 60px;
+    color: $really_dark_green;
 }
 .subtitleBox {
   display: flex;
@@ -251,6 +256,10 @@ i {
 }
 .homeTitle {
     text-align: left;
+}
+.homeTitle > span:nth-of-type(2) {
+    font-size: 0.9em;
+    color: $textAccent;
 }
 .fR_1 {
     height: 60px;
