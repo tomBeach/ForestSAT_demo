@@ -19,3 +19,12 @@ config/application.rb
 devise/sessions/new.html.erb
   value: "admin_demo"
 
+application.html.erb
+  <p><span>ForestSat</span><span>2018</span>
+  <span>demo</span></p>
+
+home
+  <h2 class="dataTitle homeTitle">Welcome to the 
+  <span>ForestSat 2018 </span>(demo version)</h2>
+
+
