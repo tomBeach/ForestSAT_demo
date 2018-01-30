@@ -255,10 +255,11 @@ i {
     background-color: $dataRow_lg;
 }
 .homeTitle {
+    min-width: 620px;
     text-align: left;
 }
 .homeTitle > span:nth-of-type(2) {
-    font-size: 0.9em;
+    font-size: 0.8em;
     color: $textAccent;
 }
 .fR_1 {
