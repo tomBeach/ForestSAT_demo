@@ -17,7 +17,7 @@ gem 'jbuilder', '~> 2.5'
 
 # ======= added gems =======
 gem 'pg'
-gem 'devise'
+gem 'devise', '~> 4.7.1'
 # gem 'sendgrid-ruby'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
